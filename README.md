@@ -1,4 +1,4 @@
-# Azure Resources Information
+# Azure Resources Reference
 
 ## Presentation:
 * [Azure Presentation (Overview)](https://smblobacct.blob.core.windows.net/myblob/helloazure.zip)
