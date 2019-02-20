@@ -5,7 +5,7 @@
 
 
 ## Hands-On:
-* Microsoft Cloud Workshop (https://github.com/microsoft/mcw)
+* [Microsoft Cloud Workshop](https://github.com/microsoft/mcw)
 
 ## Reference:
-* Microsoft Cloud Adoption Framework for Azure (https://docs.microsoft.com/en-us/azure/architecture/cloud-adoption/overview)
+* [Microsoft Cloud Adoption Framework for Azure] (https://docs.microsoft.com/en-us/azure/architecture/cloud-adoption/overview)
