@@ -7,9 +7,5 @@
 ## Hands-On:
 * Microsoft Cloud Workshop (https://github.com/microsoft/mcw)
 
-First Name | Last Name
---- | ---
-Smith | Mangmeetakun
-May | Lertwitworathep
-Mac | Mangmeetakun
-Jospeh | K.
+## Reference:
+* Microsoft Cloud Adoption Framework for Azure (https://docs.microsoft.com/en-us/azure/architecture/cloud-adoption/overview)
