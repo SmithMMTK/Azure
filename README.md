@@ -8,6 +8,6 @@
 * Microsoft Cloud Workshop (https://github.com/microsoft/mcw)
 
 First Name | Last Name
--- | --
+--- | ---
 Smith | Mangmeetakun
 May | Lertwitworathep
