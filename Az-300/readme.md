@@ -1,7 +1,10 @@
 ## Index
+- [COMPUTE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#compute)
 - [NETWORKING](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking)
 - [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
 
+---
+### COMPUTE
 ---
 
 ### NETWORKING
