@@ -1,6 +1,7 @@
 
 ## NETWORKING
 * [Load Balancer - Overview](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview)
+![alt text](https://docs.microsoft.com/en-us/azure/load-balancer/media/load-balancer-overview/load-balancer-distribution.png)
 
 ## SECURITY
 * [Access Review - Concept](https://docs.microsoft.com/en-us/azure/active-directory/governance/access-reviews-overview)
