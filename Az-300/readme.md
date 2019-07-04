@@ -317,7 +317,27 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
 ```
 
 #### [Role-based access control (RBAC)](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview)
+Access management for cloud resources is a critical function for any organization that is using the cloud. Role-based access control (RBAC) helps you manage who has access to Azure resources, what they can do with those resources, and what areas they have access to.
 
+![Alt text](https://docs.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-least-privilege.png)
+
+**[How RBAC works](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview#how-rbac-works)**
+
+- Security principal : A security principal is an object that represents a user, group, service principal, or managed identity that is requesting access to Azure resources.
+
+    ![Alt text](https://docs.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-security-principal.png)
+
+- Role definition : A role definition is a collection of permissions. It's sometimes just called a role. A role definition lists the operations that can be performed, such as read, write, and delete. Roles can be high-level, like owner, or specific, like virtual machine reader
+
+    ![Alt text](https://docs.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-role-definition.png)
+
+- Scope : Scope is the set of resources that the access applies to. When you assign a role, you can further limit the actions allowed by defining a scope. 
+
+    ![Alt text](https://docs.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-scope.png)
+
+- Role assignments : A role assignment is the process of attaching a role definition to a user, group, service principal, or managed identity at a particular scope for the purpose of granting access. Access is granted by creating a role assignment, and access is revoked by removing a role assignment
+
+    ![Alt text](https://docs.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-overview.png)
 
 
 
