@@ -14,7 +14,12 @@
 - Hot - Optimized for storing data that is accessed frequently.
 - Cool - Optimized for storing data that is infrequently accessed and stored for at least **30 days**.
 - Archive - Optimized for storing data that is rarely accessed and stored for at least **180 days** with flexible latency requirements (on the order of hours).
-    **Only support at Blob level**
+    **Only support at Blob level.**
+
+Blob-level tiering billing
+|Operation|Write Charges (Operation + Access)|Read Charges (Operation + Access)|
+|----|---|---|
+|SetBlobTier Direction|hot->cool, hot->archive, cool->archive|archive->cool, archive->hot, cool->hot|
 
 ---
 
