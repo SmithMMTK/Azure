@@ -37,6 +37,7 @@ By default, Load Balancer uses a 5-tuple hash composed of source IP address, sou
       --frontend-ip-name myFrontEnd \
       --backend-pool-name myBackEndPool
 ```
+---
 
 ### SECURITY
 
