@@ -1,11 +1,43 @@
 ## Index
 - [COMPUTE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#compute)
+- [APPLICATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#application)
 - [STORAGE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#storage)
 - [NETWORKING](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking)
 - [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
 
 ---
 ### COMPUTE 
+#### [Container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
+
+- Build the container image
+
+Windows environment
+```docker
+    FROM windows/iis
+    RUN mkdir -p c:\app
+    COPY app c:\app
+    WORKDIR c:\app
+    RUN npm install
+    CMD node index.js
+```
+
+Linux environment
+```docker
+    FROM node:8.9.3-alpine
+    RUN mkdir -p /Users/smithm/app
+    COPY ./app/* /Users/smithm/app/
+    WORKDIR /Users/smithm/app
+    RUN npm install
+    CMD node /Users/smithm/app/index.js
+```
+
+Set a command or process that will run each time a container is run **CMD** 
+
+
+
+---
+### APPLICATION
+
 
 ---
 ### STORAGE
