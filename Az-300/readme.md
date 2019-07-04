@@ -28,6 +28,15 @@ By default, Load Balancer uses a 5-tuple hash composed of source IP address, sou
     -InboundNatRule $natrule1,$natrule2,$natrule3
 ```
 
+```bash
+      az network lb create \
+      --resource-group myResourceGroupSLB \
+      --name myLoadBalancer \
+      --sku standard \
+      --public-ip-address myPublicIP \
+      --frontend-ip-name myFrontEnd \
+      --backend-pool-name myBackEndPool
+```
 
 ### SECURITY
 * [Access Review - Concept](https://docs.microsoft.com/en-us/azure/active-directory/governance/access-reviews-overview)
