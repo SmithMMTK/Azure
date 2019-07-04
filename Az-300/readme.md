@@ -6,7 +6,8 @@
 - [Create LB by PowerShell](https://docs.microsoft.com/en-us/azure/load-balancer/quickstart-create-standard-load-balancer-powershell)
 
 ```powershell
-$nb = New-AzLoadBalancer -ResourceGroupName $rgName -Name ‘MyLB’ -SKU Standard -Location $local
+$nb = New-AzLoadBalancer -ResourceGroupName $rgName 
+-Name ‘MyLB’ -SKU Standard -Location $local
 
 
 ```
