@@ -115,6 +115,12 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 ### SECURITY
 
+#### [Azure AD Device Identity](https://docs.microsoft.com/en-us/azure/active-directory/devices/)
+
+Through devices in Azure AD, your users are getting access to your corporate assets. To protect your corporate assets, as an IT administrator, you want to manage these device identities in Azure AD. This enables you to make sure that your users are accessing your resources from devices that meet your standards for security and compliance.
+
+
+
 #### [Access Review - Overview](https://docs.microsoft.com/en-us/azure/active-directory/governance/access-reviews-overview)
     
 Azure Active Directory (Azure AD) **Access Reviews** enable organizations to efficiently manage group memberships, access to enterprise applications, and role assignments. User's access can be reviewed on a regular basis to make sure only the right people have continued access [How to: Configure Access Review](https://docs.microsoft.com/en-us/azure/active-directory/governance/create-access-review).   
@@ -147,6 +153,7 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
 
     (Get-AzKeyVaultSecret -vaultName "my-Vault" -name "ExamplePassword").SecretValueText
 ```
+
 
 ### AUTOMATION
 - Resource Group and ARM Template Deployment
