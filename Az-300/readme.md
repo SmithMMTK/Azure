@@ -284,5 +284,33 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
         -DatabaseName "Database01" -ServerName "Server01" 
         -ElasticPoolName "ElasticPool01"
     ```
-- [Assigned managed identity to access Resource Manager](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm)
-    - [Configure by PowerShell](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/qs-configure-powershell-windows-vm)
+- Azure Resource Manager templates ([detail](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates))
+
+    ```json
+    {
+        "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+        "contentVersion": "",
+        "apiProfile": "",
+        "parameters": {  },
+        "variables": {  },
+        "functions": [  ],
+        "resources": [  ],
+        "outputs": {  }
+    }
+    ```
+    - parameters : Values that are provided when deployment is executed to customize resource deployment.
+        ```json
+        "parameters": 
+        {
+            "<parameter-name>" : {
+                "type" : "<type-of-parameter-value>",
+                "defaultValue": "<default-value-of-parameter>",
+                "allowedValues": [ "<array-of-allowed-values>" ],
+                "metadata": {
+                    "description": "<description-of-the parameter>" 
+                }
+            }
+        }
+        ```
+    - variables : Values that are used as JSON fragments in the template to simplify template language expressions.
+    - resources : Resource types that are deployed or updated in a resource group or subscription.
