@@ -285,16 +285,16 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
 
 **Use Azure Key Vault with an Azure web app in .NET** ([detail](https://docs.microsoft.com/en-us/azure/key-vault/tutorial-net-create-vault-azure-web-app))
 
-    ```c#
-        async Task<string>GetConnectionString(string secretUri)
-        {
-            var provider = new AzureServiceTokenProvider();
-            var callback = new KeyVaultClient.AuthenticationCallback(provider.KeyVaultTokenCallBack);
-            var client = new KeyVaultClient(callback);
-            var secreat = await client.GetSecret(secretUri);
-            return secreat.Value;
-        }
-    ```
+```c#
+    async Task<string>GetConnectionString(string secretUri)
+    {
+        var provider = new AzureServiceTokenProvider();
+        var callback = new KeyVaultClient.AuthenticationCallback(provider.KeyVaultTokenCallBack);
+        var client = new KeyVaultClient(callback);
+        var secreat = await client.GetSecret(secretUri);
+        return secreat.Value;
+    }
+```
 
 
 
