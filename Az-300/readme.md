@@ -193,8 +193,11 @@ ExpressRoute lets you extend your on-premises networks into the Microsoft cloud 
     - VNet peering - connecting VNets within the same Azure region
     - Global VNet peering - connecting VNets across Azure regions
 
+- [VPN Gateway](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways) A VPN gateway is a specific type of virtual network gateway that is used to send encrypted traffic between an Azure virtual network and an on-premises location over the public Internet.
+    - [Point-to-Site VPN](https://docs.microsoft.com/en-us/azure/vpn-gateway/point-to-site-about)
+    - [Site-to-Site VPN](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-devices)
 
-
+    
 ---
 
 ### SECURITY
