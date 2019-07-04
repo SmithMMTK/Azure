@@ -2,7 +2,11 @@
 ## NETWORKING
 * [Load Balancer - Overview](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview)
 
-    LB
+```powershell
+$nb = New-AzLoadBalancer -ResourceGroupName $rgName
+
+```
+
 ![alt text](https://docs.microsoft.com/en-us/azure/load-balancer/media/load-balancer-overview/load-balancer-distribution.png)
 
 ## SECURITY
