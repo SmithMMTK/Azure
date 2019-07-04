@@ -1,6 +1,6 @@
-#Index
-## [NETWORKING](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking)
-## [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
+## Index
+### [NETWORKING](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking)
+### [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
 
 ## NETWORKING
 ### [Load Balancer - Overview](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview)
