@@ -6,3 +6,4 @@
 
 ## Useful Link
 * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+* [Az-300 Prep](https://github.com/SmithMMTK/home/tree/master/Az-300)
