@@ -4,6 +4,7 @@
 - [APPLICATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#application)
 - [STORAGE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#storage)
     - [Storage Service](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-storage-service)
+    - [Cosmos DB](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#cosmos-db)
 - [NETWORKING](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking)
     - [Load Balancer](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#load-balancer---overview)
 - [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
@@ -79,6 +80,25 @@ Set a command or process that will run each time a container is run **CMD**
 
 #### [Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
 
+[Consistency, availability, and performance tradeoffs](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels-tradeoffs)
+
+You can choose from five well-defined models on the consistency spectrum. From strongest to weakest, the models are:
+
+- Strong
+- Bounded staleness
+- Session
+- Consistent prefix
+- Eventual
+
+Consistency levels and latency
+- The read latency for all consistency levels is always guaranteed to be **less than 10 milliseconds** at the 99th percentile.
+    - The average read latency, at the 50th percentile, is typically 2 milliseconds or less
+- The write latency for all consistency levels is always guaranteed to be **less than 10 milliseconds** at the 99th percentile.
+    - The average write latency, at the 50th percentile, is usually 5 milliseconds or less
+
+[Consistency levels and data durability](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels)
+![alt text](https://docs.microsoft.com/en-us/azure/cosmos-db/media/consistency-levels/five-consistency-levels.png)
+
 ---
 
 ### NETWORKING
@@ -103,6 +123,16 @@ If you choose to install and use PowerShell locally, this article requires the A
     -Probe $probe `
     -LoadBalancingRule $rule `
     -InboundNatRule $natrule1,$natrule2,$natrule3
+```
+
+```powershell
+    $probe = New-AzLoadBalancerProbeConfig `
+    -Name "myHealthProbe" `
+    -RequestPath healthcheck2.aspx `
+    -Protocol http `
+    -Port 80 `
+    -IntervalInSeconds 16 `
+    -ProbeCount 2
 ```
 
 ```bash
