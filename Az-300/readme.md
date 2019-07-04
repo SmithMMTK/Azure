@@ -159,8 +159,7 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
         -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-storage-account-create/azuredeploy.json
     ```
 
-
-    New-AzResourceGroup **-Name**
-
-    New-AzResourceGroupDeployment **-ResourceGroupName**
+    Two differrence parameters:
+    - New-AzResourceGroup **-Name**
+    - New-AzResourceGroupDeployment **-ResourceGroupName**
     
