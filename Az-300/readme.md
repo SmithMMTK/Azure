@@ -1,5 +1,6 @@
 ## Index
 - [COMPUTE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#compute)
+    - [Container](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#container)
 - [APPLICATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#application)
 - [STORAGE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#storage)
 - [NETWORKING](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking)
