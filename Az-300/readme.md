@@ -16,6 +16,7 @@
     - [Azure AD Device Identity](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-ad-device-identity)
     - [Access Review](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#access-review---overview)
     - [Key Vault](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#key-vault)
+    - [Role-based access control (RBAC)](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#role-based-access-control-rbac)
 - [AUTOMATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#automation)
 
 ---
