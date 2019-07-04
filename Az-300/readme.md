@@ -340,6 +340,14 @@ Access management for cloud resources is a critical function for any organizatio
     ![Alt text](https://docs.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-overview.png)
 
 
+```bash
+    az role definition create --role-definition customrole.json
+    
+    az role assignment create --role "App Svc Contributor" 
+        --assignee-object-id "GUID"
+        --assignee "user/group"
+```
+
 
 ---
 
