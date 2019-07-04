@@ -21,7 +21,11 @@ Windows environment
     CMD node index.js
 ```
 
+
 Linux environment
+    
+    git clone https://github.com/Azure-Samples/aci-helloworld.git
+
 ```docker
     FROM node:8.9.3-alpine
     RUN mkdir -p /Users/smithm/app
@@ -32,6 +36,12 @@ Linux environment
 ```
 
 Set a command or process that will run each time a container is run **CMD** 
+
+    docker build ./aci-helloworld -t aci-tutorial-app
+
+- [How-to: Create and deploy container image](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)
+
+
 
 
 
