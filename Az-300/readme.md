@@ -162,6 +162,31 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 ### SECURITY
 
+#### [Managed identities for Azure resources](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
+
+The feature provides Azure services with an automatically managed identity in Azure AD. You can use the identity to authenticate to any service that supports Azure AD authentication, including Key Vault, without any credentials in your code.
+
+- Hands-on: [Windows VM with Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm)
+- Hands-on: [Linux VM with Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-linux-vm-access-arm)
+
+Quick-Steps ([detail](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm))
+- Add role assignment (**Reader**) to **all resource groups**
+- Use **Invoke** cmdlet to get access token
+    ```powershell
+    $response = Invoke-WebRequest -Uri 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://management.azure.com/' 
+    -Method GET -Headers @{Metadata="true"}
+
+    $content = $response.Content | ConvertFrom-Json
+
+    $ArmToken = $content.access_token
+    ```
+- Call Azure Resource Manager using access token
+    ```powershell
+    (Invoke-WebRequest -Uri https://management.azure.com/subscriptions/<SUBSCRIPTION ID>/resourceGroups/<RESOURCE GROUP>?api-version=2016-06-01 
+    -Method GET -ContentType "application/json" 
+    -Headers @{ Authorization ="Bearer $ArmToken"}).content
+    ```
+
 #### [Azure AD Device Identity](https://docs.microsoft.com/en-us/azure/active-directory/devices/)
 
 Through devices in Azure AD, your users are getting access to your corporate assets. To protect your corporate assets, as an IT administrator, you want to manage these device identities in Azure AD. This enables you to make sure that your users are accessing your resources from devices that meet your standards for security and compliance.
