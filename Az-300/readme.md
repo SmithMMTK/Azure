@@ -31,6 +31,16 @@
 - Average load reduce to 75, (75x3) / 2 = 112.5 => No Scale-down
 - Averge load reduce to 50, (50x3) / 2 = 75 => Scale-down by 1
 
+**Auto Scale Rule**
+- Time aggregation: Maximum
+- Metric name: CPU Percentage
+- Time grain statistic: Average
+- Operator: Greater than
+- Threshold: 80
+- Duration (in minutes): 10
+- Actions: Increase count to
+    - Increase count by: // for add additional instance
+- Instance count: 3
 
 #### [Container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
 
