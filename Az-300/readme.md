@@ -7,6 +7,7 @@
 - [NETWORKING](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking)
     - [Load Balancer](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#load-balancer---overview)
 - [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
+    - [Azure AD Device Identity](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-ad-device-identity)
     - [Access Review](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#access-review---overview)
     - [Key Vault](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#key-vault)
 - [AUTOMATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#automation)
