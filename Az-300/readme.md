@@ -10,6 +10,8 @@ By default, Load Balancer uses a 5-tuple hash composed of source IP address, sou
 
 - [Create LB by PowerShell](https://docs.microsoft.com/en-us/azure/load-balancer/quickstart-create-standard-load-balancer-powershell)
 
+If you choose to install and use PowerShell locally, this article requires the Azure PowerShell module version 5.4.1 or later. Run Get-Module -ListAvailable Az to find the installed version.
+
 ```powershell
 $lb = New-AzLoadBalancer `
   -ResourceGroupName $rgName `
