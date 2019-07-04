@@ -62,7 +62,7 @@ Set a command or process that will run each time a container is run **CMD**
 
     docker build ./aci-helloworld -t aci-tutorial-app
 
-**[How-to: Create and deploy container image](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)**
+**Hands-On [Create and deploy container image](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)**
 
 **Azure Web App for Continers** 
 
@@ -169,6 +169,7 @@ The feature provides Azure services with an automatically managed identity in Az
 
 - Hands-on: [Windows VM with Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm)
 - Hands-on: [Linux VM with Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-linux-vm-access-arm)
+- Hadns-on: [Windows VM Access Storage Account via SAS](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-storage-sas)
 
 Quick-Steps ([detail:](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm))
 - Add role assignment (**Reader**) to **all resource groups**
