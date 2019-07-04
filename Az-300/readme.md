@@ -8,8 +8,8 @@
     - [Cosmos DB](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#cosmos-db)
 - [NETWORKING](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking)
     - [Application Gateway](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#application-gateway)
-    - [Express Route](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#express-route)
     - [Load Balancer](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#load-balancer---overview)
+    - [Networking Options](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking-options)
 - [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
     - [Managed Identities for Azure Resources](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#managed-identities-for-azure-resources)
     - [Azure AD Device Identity](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-ad-device-identity)
@@ -176,8 +176,25 @@ If you choose to install and use PowerShell locally, this article requires the A
       --frontend-ip-name myFrontEnd \
       --backend-pool-name myBackEndPool
 ```
-#### [Express Route](https://docs.microsoft.com/en-us/azure/expressroute/expressroute-about-virtual-network-gateways)
+
 ExpressRoute lets you extend your on-premises networks into the Microsoft cloud over a private connection facilitated by a connectivity provider
+
+#### [Networking Options](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview)
+
+- [Hub-spoke topology](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/hub-spoke) The hub is a virtual network (VNet) in Azure that acts as a central point of connectivity to your on-premises network. The spokes are VNets that peer with the hub, and can be used to isolate workloads. 
+
+![Alt Text](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/images/hub-spoke.png)
+
+- [Express Route](https://docs.microsoft.com/en-us/azure/expressroute/expressroute-about-virtual-network-gateways)
+ExpressRoute lets you extend your on-premises networks into the Microsoft cloud over a private connection facilitated by a connectivity provider
+
+- [VNet Peering](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) Virtual network peering enables you to seamlessly connect Azure virtual networks. Once peered, the virtual networks appear as one, for connectivity purposes. The traffic between virtual machines in the peered virtual networks is routed through the Microsoft backbone infrastructure, much like traffic is routed between virtual machines in the same virtual network, through private IP addresses only. Azure supports:
+
+    - VNet peering - connecting VNets within the same Azure region
+    - Global VNet peering - connecting VNets across Azure regions
+
+
+
 ---
 
 ### SECURITY
