@@ -315,6 +315,8 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
     }
 ```
 
+#### [Role-based access control (RBAC)](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview)
+
 
 
 
