@@ -348,6 +348,21 @@ Access management for cloud resources is a critical function for any organizatio
         --assignee "user/group"
 ```
 
+```json
+    {
+        "Actions" : [ ],
+        "NotActions" : [ ],
+        "DataActions" : [ "Read", "Write", "Blob", "Queue"],
+        "NoDataActions" : [ "Exclusion" ]
+    }
+
+```
+
+
+
+
+
+
 
 ---
 
