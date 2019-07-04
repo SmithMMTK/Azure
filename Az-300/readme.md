@@ -3,7 +3,7 @@
     - [Auto-Scale](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#auto-scale)
 - [APPLICATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#application)
     - [Container](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#container)
-    - [Azure messaging services]((https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-messaging-services))
+    - [Azure messaging services](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-messaging-services)
 - [STORAGE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#storage)
     - [Storage Service](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-storage-service)
     - [Cosmos DB](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#cosmos-db)
@@ -93,6 +93,19 @@ Set a command or process that will run each time a container is run **CMD**
 
 
 #### [Azure messaging services](https://docs.microsoft.com/en-us/azure/event-grid/compare-messaging-services)
+
+Azure offers three services that assist with delivering event messages throughout a solution. These services are:
+
+- [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/)
+- [Event Hubs](https://docs.microsoft.com/en-us/azure/event-hubs/)
+- [Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/)
+
+**Comparison of services**
+| Service | Purpose | Type | When to use |
+|---|---|---|---|
+| Event Grid | Reactive programming | Event distribution (discrete) | React to status changes |
+| Event Hubs | Big data pipeline | Event streaming (series) | Telemetry and distributed data streaming |
+| Service Bus | High-value enterprise messaging | Message | Order processing and financial transactions |
 
 ---
 ### STORAGE
