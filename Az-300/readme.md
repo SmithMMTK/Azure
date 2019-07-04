@@ -122,6 +122,7 @@ Through devices in Azure AD, your users are getting access to your corporate ass
 
 [Device Identity](https://docs.microsoft.com/en-us/azure/active-directory/devices/overview)
 - [Azure AD registered (Win10, iOS, Android, MacOS)](https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-register)
+
 - [Azure AD Joined (Win10)](https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-join)
     - [Plan AD Joined implementation](https://docs.microsoft.com/en-us/azure/active-directory/devices/azureadjoin-plan)
         - Managed environment - A managed environment can be deployed either through Password Hash Sync or Pass Through Authentication with Seamless Single Sign On.
@@ -131,6 +132,7 @@ Through devices in Azure AD, your users are getting access to your corporate ass
         - Federated environment - A federated environment should have an identity provider that supports both WS-Trust and WS-Fed protocols:
             - **WS-Fed**: This protocol is required to join a device to Azure AD.
             - **WS-Trust**: This protocol is required to sign in to an Azure AD joined device.
+
 - [Hybrid Azure AD Joined (Win7, Win8.1, Win10, WinSvr2008+)](https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-join-hybrid)
 
 
