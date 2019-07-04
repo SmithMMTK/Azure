@@ -1,5 +1,6 @@
 ## Index
 - [COMPUTE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#compute)
+    - [Auto-Scale](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#auto-scale)
     - [Container](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#container)
 - [APPLICATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#application)
 - [STORAGE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#storage)
@@ -17,7 +18,7 @@
 ### COMPUTE 
 
 
-### [Auto Scale](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-best-practices)
+#### [Auto Scale](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-best-practices)
 
 **Before Scaling down**, autoscale tries to estimate what the final state will be if it scaled in example:
 - Current Instance = 3
