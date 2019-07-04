@@ -107,6 +107,7 @@ Azure offers three services that assist with delivering event messages throughou
 | Event Hubs | Big data pipeline | Event streaming (series) | Telemetry and distributed data streaming |
 | Service Bus | High-value enterprise messaging | Message | Order processing and financial transactions |
 
+
 ---
 ### STORAGE
 #### [Azure Storage Service](https://docs.microsoft.com/en-us/azure/storage/common/storage-introduction)
