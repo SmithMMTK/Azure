@@ -4,7 +4,8 @@
 - [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
 
 ---
-### COMPUTE
+### COMPUTE 
+Add compute
 ---
 
 ### NETWORKING
