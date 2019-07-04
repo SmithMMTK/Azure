@@ -197,7 +197,7 @@ ExpressRoute lets you extend your on-premises networks into the Microsoft cloud 
     - [Point-to-Site VPN](https://docs.microsoft.com/en-us/azure/vpn-gateway/point-to-site-about)
     - [Site-to-Site VPN](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-devices)
 
-    
+
 ---
 
 ### SECURITY
@@ -282,6 +282,21 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
 
     (Get-AzKeyVaultSecret -vaultName "my-Vault" -name "ExamplePassword").SecretValueText
 ```
+
+**Use Azure Key Vault with an Azure web app in .NET** ([detail](https://docs.microsoft.com/en-us/azure/key-vault/tutorial-net-create-vault-azure-web-app))
+
+    ```c#
+        async Task<string>GetConnectionString(string secretUri)
+        {
+            var provider = new AzureServiceTokenProvider();
+            var callback = new KeyVaultClient.AuthenticationCallback(provider.KeyVaultTokenCallBack);
+            var client = new KeyVaultClient(callback);
+            var secreat = await client.GetSecret(secretUri);
+            return secreat.Value;
+        }
+    ```
+
+
 
 
 ---
