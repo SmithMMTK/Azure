@@ -217,8 +217,6 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
     (Get-AzKeyVaultSecret -vaultName "my-Vault" -name "ExamplePassword").SecretValueText
 ```
 
-- [Assigned managed identity to access Resource Manager](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm)
-    - [Configure by PowerShell](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/qs-configure-powershell-windows-vm)
 
 ---
 
@@ -259,3 +257,5 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
         -DatabaseName "Database01" -ServerName "Server01" 
         -ElasticPoolName "ElasticPool01"
     ```
+- [Assigned managed identity to access Resource Manager](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm)
+    - [Configure by PowerShell](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/qs-configure-powershell-windows-vm)
