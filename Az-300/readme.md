@@ -9,6 +9,7 @@
 - [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
     - [Access Review](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#access-review---overview)
     - [Key Vault](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#key-vault)
+- [AUTOMATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#automation)
 
 ---
 ### COMPUTE 
@@ -146,3 +147,20 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
 
     (Get-AzKeyVaultSecret -vaultName "my-Vault" -name "ExamplePassword").SecretValueText
 ```
+
+### AUTOMATION
+- Resource Group and ARM Template Deployment
+    ```powershell
+        $resourceGroupName = Read-Host -Prompt "Enter the Resource Group name"
+        $location = Read-Host -Prompt "Enter the location (i.e. centralus)"
+        
+        New-AzResourceGroup -Name $resourceGroupName -Location $location
+        New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName `
+        -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-storage-account-create/azuredeploy.json
+    ```
+
+
+    New-AzResourceGroup **-Name**
+    New-AzResourceGroupDeployment **-ResourceGroupName**
+    
+    
