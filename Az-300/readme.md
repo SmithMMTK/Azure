@@ -42,6 +42,10 @@
     - Increase count by: // for add additional instance
 - Instance count: 3
 
+
+---
+### APPLICATION
+
 #### [Container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
 
 **Build the container image**
@@ -84,10 +88,9 @@ Set a command or process that will run each time a container is run **CMD**
     az webapp deploymnet source // Enable Git
 ```
 
+**Web Jobs** is a feature of Azure App Service that enables you to run a program or script in the same context as a web app, API app, or mobile app. There is no additional cost to use WebJobs ([detail](https://docs.microsoft.com/en-us/azure/app-service/webjobs-create)).
 
 
----
-### APPLICATION
 
 
 ---
