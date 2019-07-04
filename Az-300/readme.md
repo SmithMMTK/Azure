@@ -82,6 +82,8 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
 
 - Store secrets backed by Hardware Security Modules - The secrets and keys can be protected either by software or FIPS 140-2 Level 2 validates HSMs
 
+    [How-to: Create Secret by Power Shell](https://docs.microsoft.com/en-in/azure/key-vault/quick-create-powershell)
+
 ```powershell
     New-AzKeyVault -Name 'my-Vault' -ResourceGroupName 'myResourceGroup' -Location 'East US'
 
