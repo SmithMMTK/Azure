@@ -102,7 +102,7 @@ Azure offers three services that assist with delivering event messages throughou
 
 **Comparison of services**
 
-| Service | Purpose | Type | When to use |
+| **Service** | **Purpose** | **Type** | **When to use** |
 |---|---|---|---|
 | Event Grid | Reactive programming | Event distribution (discrete) | React to status changes |
 | Event Hubs | Big data pipeline | Event streaming (series) | Telemetry and distributed data streaming |
