@@ -41,7 +41,8 @@ Set a command or process that will run each time a container is run **CMD**
 
 **[How-to: Create and deploy container image](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)**
 
-** Azure Web App for Continers
+**Azure Web App for Continers** 
+
 ```bash
     az webapp config container set // Change container image
     az webapp deployment container // Enable CD
