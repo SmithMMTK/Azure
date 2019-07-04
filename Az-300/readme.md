@@ -245,3 +245,14 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
         1. Create Storage Account
         1. Create Vault
         1. Create Virtual Network
+
+- Sets properties for a database, or moves an existing database into an elastic pool ([detail](https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/set-azurermsqldatabase?view=azurermps-6.13.0))
+    ```powershell
+        Set-AzureRmSqlDatabase -ResourceGroupName "ResourceGroup01"
+        -DatabaseName "Database01" -ServerName "Server01"
+        -Edition "Standard" -RequestedServiceObjectiveName "S2"
+
+        Set-AzureRmSqlDatabase -ResourceGroupName "ResourceGroup01"
+        -DatabaseName "Database01" -ServerName "Server01" 
+        -ElasticPoolName "ElasticPool01"
+    ```
