@@ -63,11 +63,11 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 #### [Access Review - Overview](https://docs.microsoft.com/en-us/azure/active-directory/governance/access-reviews-overview)
     
-Azure Active Directory (Azure AD) access reviews enable organizations to efficiently manage group memberships, access to enterprise applications, and role assignments. User's access can be reviewed on a regular basis to make sure only the right people have continued access [How to: Configure Access Review](https://docs.microsoft.com/en-us/azure/active-directory/governance/create-access-review).   
+Azure Active Directory (Azure AD) **Access Reviews** enable organizations to efficiently manage group memberships, access to enterprise applications, and role assignments. User's access can be reviewed on a regular basis to make sure only the right people have continued access [How to: Configure Access Review](https://docs.microsoft.com/en-us/azure/active-directory/governance/create-access-review).   
 
 - Security group members, Office group members
 - Assigned to a connected app
 
-You can use Azure Active Directory (Azure AD) Privileged Identity Management (PIM) to create access reviews for privileged Azure AD roles.
+You can use Azure Active Directory (Azure AD) Privileged Identity Management (**PIM**) to create access reviews for privileged Azure AD roles.
 - Azure AD role
 - Azure resource role
