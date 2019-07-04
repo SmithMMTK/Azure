@@ -48,7 +48,6 @@ By default, Load Balancer uses a 5-tuple hash composed of source IP address, sou
 ### SECURITY
 
 #### [Access Review - Overview](https://docs.microsoft.com/en-us/azure/active-directory/governance/access-reviews-overview)
-  - [Access Review - How To](https://docs.microsoft.com/en-us/azure/active-directory/governance/create-access-review)
     
     Azure Active Directory (Azure AD) access reviews enable organizations to efficiently manage group memberships, access to enterprise applications, and role assignments. User's access can be reviewed on a regular basis to make sure only the right people have continued access.
     - Security group members, Office group members
@@ -58,4 +57,4 @@ By default, Load Balancer uses a 5-tuple hash composed of source IP address, sou
     - Azure AD role
     - Azure resource role
 
-    
+  - [Access Review - How To](https://docs.microsoft.com/en-us/azure/active-directory/governance/create-access-review)   
