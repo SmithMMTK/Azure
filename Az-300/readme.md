@@ -239,3 +239,9 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
         Invoke-Sqlcmd -Query "SELECT GETDATE() AS TimeOfQuery"
         -ServerInstance "MyComputer\MainInstance"
     ```
+
+- Migrate from AWS to Azure ([detail](https://docs.microsoft.com/en-us/azure/site-recovery/migrate-tutorial-aws-azure))
+    - Prepare Infrastructure
+        1. Create Storage Account
+        1. Create Vault
+        1. Create Virtual Network
