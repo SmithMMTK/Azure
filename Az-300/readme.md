@@ -101,6 +101,7 @@ Azure offers three services that assist with delivering event messages throughou
 - [Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/)
 
 **Comparison of services**
+
 | Service | Purpose | Type | When to use |
 |---|---|---|---|
 | Event Grid | Reactive programming | Event distribution (discrete) | React to status changes |
