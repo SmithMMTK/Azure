@@ -352,12 +352,16 @@ Access management for cloud resources is a critical function for any organizatio
     {
         "Actions" : [ ],
         "NotActions" : [ ],
-        "DataActions" : [ "Read", "Write", "Blob", "Queue"],
+        "DataActions" : [ 
+            "Microsoft.Storage/storageAccounts/blobServices/containers/delete",
+            "Microsoft.Storage/storageAccounts/blobServices/containers/read",
+            "Microsoft.Storage/storageAccounts/blobServices/containers/write"],
         "NoDataActions" : [ "Exclusion" ]
     }
 
 ```
 
+[Detail](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions)
 
 
 
