@@ -73,9 +73,11 @@ Set a command or process that will run each time a container is run **CMD**
 
     **Blob-level tiering billing**
 
-    | Operation|Write Charges (Operation + Access) | Read Charges (Operation + Access) |
+    | Operation | Write Charges (Operation + Access) | Read Charges (Operation + Access) |
     |----|---|---|
     | SetBlobTier Direction | hot->cool, hot->archive, cool->archive | archive->cool, archive->hot, cool->hot |
+
+#### [Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
 
 ---
 
@@ -171,6 +173,7 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
     (Get-AzKeyVaultSecret -vaultName "my-Vault" -name "ExamplePassword").SecretValueText
 ```
 
+---
 
 ### AUTOMATION
 - Resource Group and ARM Template Deployment
