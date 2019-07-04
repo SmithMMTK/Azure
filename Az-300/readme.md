@@ -234,3 +234,8 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
     - New-AzResourceGroup **-Name**
     - New-AzResourceGroupDeployment **-ResourceGroupName**
     
+- Invoke SQL Command
+    ```powershell
+        Invoke-Sqlcmd -Query "SELECT GETDATE() AS TimeOfQuery"
+        -ServerInstance "MyComputer\MainInstance"
+    ```
