@@ -161,6 +161,6 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
 
 
     New-AzResourceGroup **-Name**
+
     New-AzResourceGroupDeployment **-ResourceGroupName**
-    
     
