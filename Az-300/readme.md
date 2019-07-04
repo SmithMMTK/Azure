@@ -120,6 +120,20 @@ If you choose to install and use PowerShell locally, this article requires the A
 
 Through devices in Azure AD, your users are getting access to your corporate assets. To protect your corporate assets, as an IT administrator, you want to manage these device identities in Azure AD. This enables you to make sure that your users are accessing your resources from devices that meet your standards for security and compliance.
 
+[Device Identity](https://docs.microsoft.com/en-us/azure/active-directory/devices/overview)
+- [Azure AD registered (Win10, iOS, Android, MacOS)](https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-register)
+- [Azure AD Joined (Win10)](https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-join)
+    - [Plan AD Joined implementation](https://docs.microsoft.com/en-us/azure/active-directory/devices/azureadjoin-plan)
+        - Managed environment - A managed environment can be deployed either through Password Hash Sync or Pass Through Authentication with Seamless Single Sign On.
+        
+            These scenarios don't require you to configure a federation server for authentication.
+
+        - Federated environment - A federated environment should have an identity provider that supports both WS-Trust and WS-Fed protocols:
+            - **WS-Fed**: This protocol is required to join a device to Azure AD.
+            - **WS-Trust**: This protocol is required to sign in to an Azure AD joined device.
+- [Hybrid Azure AD Joined (Win7, Win8.1, Win10, WinSvr2008+)](https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-join-hybrid)
+
+
 
 
 #### [Access Review - Overview](https://docs.microsoft.com/en-us/azure/active-directory/governance/access-reviews-overview)
