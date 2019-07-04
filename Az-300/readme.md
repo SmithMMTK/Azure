@@ -17,9 +17,9 @@
     **Only support at Blob level.**
 
 Blob-level tiering billing
-|Operation|Write Charges (Operation + Access)|Read Charges (Operation + Access)|
+| Operation|Write Charges (Operation + Access) | Read Charges (Operation + Access) |
 |----|---|---|
-|SetBlobTier Direction|hot->cool, hot->archive, cool->archive|archive->cool, archive->hot, cool->hot|
+| SetBlobTier Direction | hot->cool, hot->archive, cool->archive | archive->cool, archive->hot, cool->hot |
 
 ---
 
