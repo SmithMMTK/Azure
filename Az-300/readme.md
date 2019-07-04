@@ -9,6 +9,7 @@
 - [NETWORKING](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking)
     - [Load Balancer](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#load-balancer---overview)
 - [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
+    - [Managed Identities for Azure Resources](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#managed-identities-for-azure-resources)
     - [Azure AD Device Identity](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-ad-device-identity)
     - [Access Review](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#access-review---overview)
     - [Key Vault](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#key-vault)
@@ -169,7 +170,7 @@ The feature provides Azure services with an automatically managed identity in Az
 - Hands-on: [Windows VM with Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm)
 - Hands-on: [Linux VM with Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-linux-vm-access-arm)
 
-Quick-Steps ([detail](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm))
+Quick-Steps ([detail:](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm))
 - Add role assignment (**Reader**) to **all resource groups**
 - Use **Invoke** cmdlet to get access token
     ```powershell
