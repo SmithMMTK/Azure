@@ -14,8 +14,7 @@
 - Hot - Optimized for storing data that is accessed frequently.
 - Cool - Optimized for storing data that is infrequently accessed and stored for at least **30 days**.
 - Archive - Optimized for storing data that is rarely accessed and stored for at least **180 days** with flexible latency requirements (on the order of hours).
-
-    You may only tier your object storage data to hot, cool, or archive in Blob storage and General Purpose v2 (GPv2) accounts
+    **Only support at Blob level**
 
 ---
 
