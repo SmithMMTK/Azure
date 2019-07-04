@@ -11,10 +11,16 @@ By default, Load Balancer uses a 5-tuple hash composed of source IP address, sou
 - [Create LB by PowerShell](https://docs.microsoft.com/en-us/azure/load-balancer/quickstart-create-standard-load-balancer-powershell)
 
 ```powershell
-$nb = New-AzLoadBalancer -ResourceGroupName $rgName 
--Name ‘MyLB’ -SKU Standard -Location $local
-
-
+$lb = New-AzLoadBalancer `
+  -ResourceGroupName $rgName `
+  -Name 'MyLoadBalancer' `
+  -SKU Standard `
+  -Location $location `
+  -FrontendIpConfiguration $feip `
+  -BackendAddressPool $bepool `
+  -Probe $probe `
+  -LoadBalancingRule $rule `
+  -InboundNatRule $natrule1,$natrule2,$natrule3
 ```
 
 
