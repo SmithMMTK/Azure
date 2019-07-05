@@ -159,6 +159,11 @@ For background jobs you often need to ensure that only one instance of a particu
         }
 }
 ```
+>Key interesting area
+>- OrchestrationClient
+>- starter.GetStatusAsync(instanceId)
+>- starter.StartNewAsync(functionName, instanceId, eventData)
+
 
 
 #### [Container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
