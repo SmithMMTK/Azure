@@ -15,6 +15,7 @@
     - [Load Balancer](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#load-balancer---overview)
     - [Networking Options](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking-options)
 - [SECURITY](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#security)
+    - [Identity Protection](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#identity-protection)
     - [Managed Identities for Azure Resources](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#managed-identities-for-azure-resources)
     - [Azure AD Device Identity](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-ad-device-identity)
     - [Access Review](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#access-review---overview)
@@ -507,6 +508,10 @@ __Changing the IP address of an IP configuration__
 ---
 
 ### SECURITY
+
+#### [Identity Protection](https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/overview)
+
+
 
 #### [Managed identities for Azure resources](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
 
