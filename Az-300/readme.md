@@ -5,6 +5,7 @@
     - [Functions](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#functions)
     - [Container](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#container)
     - [Azure messaging services](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-messaging-services)
+    - [Azure Service Bus](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-services-bus)
 - [STORAGE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#storage)
     - [Storage Service](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-storage-service)
     - [Cosmos DB](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#cosmos-db)
@@ -159,7 +160,7 @@ For background jobs you often need to ensure that only one instance of a particu
         }
 }
 ```
->Key interesting area
+>Key interesting area in code
 >- OrchestrationClient
 >- starter.GetStatusAsync(instanceId)
 >- starter.StartNewAsync(functionName, instanceId, eventData)
@@ -198,7 +199,7 @@ Set a command or process that will run each time a container is run __CMD__
 
     docker build ./aci-helloworld -t aci-tutorial-app
 
-__Hands-On [Create and deploy container image](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)__
+__Hands-On: [Create and deploy container image](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)__
 
 __Azure Web App for Continers__ 
 
@@ -226,6 +227,47 @@ __Comparison of services__
 | Event Grid | Reactive programming | Event distribution (discrete) | React to status changes |
 | Event Hubs | Big data pipeline | Event streaming (series) | Telemetry and distributed data streaming |
 | Service Bus | High-value enterprise messaging | Message | Order processing and financial transactions |
+
+#### [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) 
+
+Microsoft Azure Service Bus is a fully managed enterprise integration message broker. Service Bus is most commonly used to decouple applications and services from each other, and is a reliable and secure platform for asynchronous data and state transfer.
+
+__Concept__
+- Namespaces : A namespace is a scoping container for all messaging components. Multiple queues and topics can reside within a single namespace, and namespaces often serve as application containers.
+- Queues : Messages are sent to and received from queues. Queues enable you to store messages until the receiving application is available to receive and process them.
+
+![alt text](https://docs.microsoft.com/en-us/azure/service-bus-messaging/media/service-bus-messaging-overview/about-service-bus-queue.png)
+
+- Topics : You can also use topics to send and receive messages. While a queue is often used for point-to-point communication, topics are useful in publish/subscribe scenarios. 
+
+![alt text](https://docs.microsoft.com/en-us/azure/service-bus-messaging/media/service-bus-messaging-overview/about-service-bus-topic.png)
+
+```powershell
+    # Create a resource group 
+    New-AzResourceGroup –Name my-resourcegroup –Location eastus
+
+    # Create a Messaging namespace
+    New-AzServiceBusNamespace -ResourceGroupName my-resourcegroup `
+    -NamespaceName namespace-name -Location eastus
+
+    # Create a queue 
+    New-AzServiceBusQueue -ResourceGroupName my-resourcegroup `
+    -NamespaceName namespace-name -Name queue-name -EnablePartitioning $False
+
+    # Get primary connection string (required in next step)
+    Get-AzServiceBusKey -ResourceGroupName my-resourcegroup `
+    -Namespace namespace-name -Name RootManageSharedAccessKey
+```
+
+```bash
+    az servicebus namespace create
+    --name measureup --resource-group sbrg 
+    --location southeastasia
+
+    az servicebus topic create
+    --name converter --resource-group sbrg
+    --namespace_name measureup
+```
 
 
 ---
