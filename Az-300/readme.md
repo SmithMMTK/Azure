@@ -28,23 +28,23 @@
 #### [Auto Scale](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-best-practices)
 
 **Before Scaling down**, autoscale tries to estimate what the final state will be if it scaled in example:
-- Current Instance = 3
-- Default = 2
-- Scale-up when Avg CPU > 80
-- Scale-down when Avg CPU < 60
-- Average load reduce to 75, (75x3) / 2 = 112.5 => No Scale-down
-- Averge load reduce to 50, (50x3) / 2 = 75 => Scale-down by 1
+>- Current Instance = 3
+>- Default = 2
+>- Scale-up when Avg CPU > 80
+>- Scale-down when Avg CPU < 60
+>- Average load reduce to 75, (75x3) / 2 = 112.5 => No Scale-down
+>- Averge load reduce to 50, (50x3) / 2 = 75 => Scale-down by 1
 
 **Auto Scale Rule**
-- Time aggregation: Maximum
-- Metric name: CPU Percentage
-- Time grain statistic: Average
-- Operator: Greater than
-- Threshold: 80
-- Duration (in minutes): 10
-- Actions: Increase count to
-    - Increase count by: // for add additional instance
-- Instance count: 3
+>- Time aggregation: Maximum
+>- Metric name: CPU Percentage
+>- Time grain statistic: Average
+>- Operator: Greater than
+>- Threshold: 80
+>- Duration (in minutes): 10
+>- Actions: Increase count to
+>    - Increase count by: // for add additional instance
+>- Instance count: 3
 
 
 ---
