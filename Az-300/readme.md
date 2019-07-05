@@ -511,6 +511,23 @@ __Changing the IP address of an IP configuration__
 
 #### [Identity Protection](https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/overview)
 
+Azure Active Directory Identity Protection is more than a monitoring and reporting tool. To protect your organization's identities, you can configure risk-based policies that automatically respond to detected issues when a specified risk level has been reached.
+
+__Identity Protection roles__
+Role | Can do | Cannot do
+--- | --- | ---
+Global administrator | Full access to Identity Protection, Onboard Identity Protection | 
+Security administrator | Full access to Identity Protection | Onboard Identity Protection, reset passwords for a user
+Security reader | Read-only access to Identity Protection | Onboard Identity Protection, remediate users, configure policies, reset passwords 
+
+__Policies__ ([detail](https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/overview#policies))
+
+- Multi-factor authentication registration policy
+    > Azure Multi-Factor Authentication provides a means to verify who you are using more than just a username and password. It provides a second layer of security to user sign-ins. In order for users to be able to respond to MFA prompts, they must first register for Azure Multi-Factor Authentication.
+- User risk policy
+    > With the user risk, Azure AD detects the probability that a user account has been compromised. As an administrator, you can configure a user risk Conditional Access policy, to automatically respond to a specific user risk level.
+- Sign-in risk policy
+    > Each risk event that has been detected for a sign-in of a user contributes to a logical concept called risky sign-in. A risky sign-in is an indicator for a sign-in attempt that might not have been performed by the legitimate owner of a user account.
 
 
 #### [Managed identities for Azure resources](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
