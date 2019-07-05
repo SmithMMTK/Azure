@@ -514,6 +514,7 @@ __Changing the IP address of an IP configuration__
 Azure Active Directory Identity Protection is more than a monitoring and reporting tool. To protect your organization's identities, you can configure risk-based policies that automatically respond to detected issues when a specified risk level has been reached.
 
 __Identity Protection roles__
+
 Role | Can do | Cannot do
 --- | --- | ---
 Global administrator | Full access to Identity Protection, Onboard Identity Protection | 
