@@ -53,15 +53,40 @@ __Combination of rules__
 
 
 __Auto Scale Rule__
->- Time aggregation: Maximum
->- Metric name: CPU Percentage
->- Time grain statistic: Average
->- Operator: Greater than
->- Threshold: 80
->- Duration (in minutes): 10
->- Actions: Increase count to
->    - Increase count by: // for add additional instance
->- Instance count: 3
+- Scale-Out
+    >- Time aggregation: Maximum
+    >- Metric name: CPU Percentage (_1 minute time grain_)
+    >- Time grain statistic: Average
+    >- Operator: Greater than
+    >- Threshold: 80
+    >- Duration (in minutes): 10
+    >- Actions: Increase count to
+    >    - Increase count by: // for add additional instance
+    >- Instance count: 3
+- Scale-In
+    > Objective: If the average minimum CPU time is below 20% over a five minute period, one VM should be removed.
+    >- Time aggregation: Average
+    >- Metric name: CPU Percentage (_1 minute time grain_)
+    >- Time grain statistic: Minimum
+    >- Operator: Less than
+    >- Threshold: 20
+    >- Duration (in minutes): 5
+    >- Actions: Decrease count by: 1
+    >- Instance count: 3
+
+- __Autoscale setting schema__ ([detail](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-understanding-settings#autoscale-setting-schema))
+    - __Time aggregation__ : The aggregation method used to aggregate the sampled metrics. For example, TimeAggregation = “Average” should aggregate the sampled metrics by taking the average. In the preceding case, take the ten 1-minute samples, and average them.
+
+    - __Time grain statistic__ : The aggregation method within the timeGrain period. For example, statistic = “Average” and timeGrain = “PT1M” means that the metrics should be aggregated every 1 minute, by taking the average. This property dictates how the metric is sampled.
+
+    - __Aggregation type__ ([detail](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview))
+        - Average
+        - Minimum
+        - Maximum
+        - Total
+        - Last
+        - Count
+
 
 #### [Azure Monitor](https://docs.microsoft.com/en-us/azure/azure-monitor/)
 The following diagram gives a high-level view of Azure Monitor. At the center of the diagram are the data stores for metrics and logs, which are the two fundamental types of data use by Azure Monitor.
@@ -351,6 +376,7 @@ __How an application gateway works__ ([detail](https://docs.microsoft.com/en-us/
 - Create __listeners__, __URL path map__, and __rules__
 - Create scalable backend pools
 
+__High Level Flow__
 ```powershell
     $gateway = Get-AzApplicationGateway
         -ResourceGroupName myRG
