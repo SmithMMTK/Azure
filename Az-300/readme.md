@@ -42,7 +42,7 @@ set-AzVm //_make vm to __Generalize___ | new-AzImage |
 #### [Auto Scale](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-best-practices)
 
 Auto Scale concept
-![alt text]{(https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/autoscale.png)
+![alt text](https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/autoscale.png)
 
 
 __Before Scaling down__, autoscale tries to estimate what the final state will be if it scaled in example:
