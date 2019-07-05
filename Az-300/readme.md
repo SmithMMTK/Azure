@@ -543,6 +543,19 @@ __Policies__ ([detail](https://docs.microsoft.com/en-us/azure/active-directory/i
     > Each risk event that has been detected for a sign-in of a user contributes to a logical concept called risky sign-in. A risky sign-in is an indicator for a sign-in attempt that might not have been performed by the legitimate owner of a user account.
 
 
+__Configure Azure Multi-Factor Authentication settings__ ([detail](https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings))
+
+Feature | Description
+--- | --- 
+Account lockout | Temporarily lock accounts in the multi-factor authentication service if there are too many denied authentication attempts in a row. This feature only applies to users who enter a PIN to authenticate. (MFA Server)
+Block/unblock users | Used to block specific users from being able to receive Multi-Factor Authentication requests. Any authentication attempts for blocked users are automatically denied. Users remain blocked for 90 days from the time that they are blocked.
+Fraud alert | Configure settings related to users ability to report fraudulent verification requests
+Notifications | Enable notifications of events from MFA Server.
+OATH tokens	| Used in cloud-based Azure MFA environments to manage OATH tokens for users.
+Phone call settings | Configure settings related to phone calls and greetings for cloud and on-premises environments.
+
+
+
 #### [Managed identities for Azure resources](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
 
 The feature provides Azure services with an automatically managed identity in Azure AD. You can use the identity to authenticate to any service that supports Azure AD authentication, including Key Vault, without any credentials in your code.
