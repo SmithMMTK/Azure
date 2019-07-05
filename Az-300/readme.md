@@ -95,6 +95,11 @@ The following diagram gives a high-level view of Azure Monitor. At the center of
 
 ![alt text](https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/overview.png)
 
+All data collected by Azure Monitor fits into one of two fundamental types, metrics and logs.
+- Metrics : Metrics are __numerical values__ that describe some aspect of a system at a particular point in time. They are lightweight and capable of supporting near real-time scenarios.
+- Logs : Logs contain different kinds of data organized into __records with different sets of properties for each type__. Telemetry such as events and traces are stored as logs in addition to performance data so that it can all be combined for analysis.
+
+
 __Azure Monitor for VM__ ([detail](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview))
 
 Monitors your Azure virtual machines (VM) at scale by analyzing the performance and health of your Windows and Linux VMs, including their different processes and interconnected dependencies on other resources and external processes. 
