@@ -1,5 +1,6 @@
 ## Index
 - [COMPUTE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#compute)
+    - [Create a managed image of a generalized VM in Azure](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#create-a-managed-image-of-a-generalized-vm-in-azure)
     - [Auto-Scale](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#auto-scale)
 - [APPLICATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#application)
     - [Functions](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#functions)
@@ -29,7 +30,11 @@
 #### [Create a managed image of a generalized VM in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image-resource)
 A managed image resource can be created from a generalized virtual machine (VM) that is stored as either a managed disk or an unmanaged disk in a storage account. The image can then be used to create multiple VMs.
 
-
+Prepare | Create image | Create VM from image
+ --- | --- | --- 
+ sysprep | get-AzVm | new-AzVm -imageName "name"
+stop-AzVm | new-AzImageConfig | 
+set-AzVm //_make vm generalize_ | new-AzImage |
 
 
 #### [Auto Scale](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-best-practices)
