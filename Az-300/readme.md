@@ -214,6 +214,33 @@ For background jobs you often need to ensure that only one instance of a particu
 >- starter.StartNewAsync(functionName, instanceId, eventData)
 
 
+__Manage connections in Azure Functions__ ([detail](https://docs.microsoft.com/en-us/azure/azure-functions/manage-connections))
+Functions in a function app share resources. Among those shared resources are connections: HTTP connections, database connections, and connections to services such as Azure Storage. When many functions are running concurrently, it's possible to run out of available connections. This article explains how to code your functions to avoid using more connections than they need.
+
+```c#
+    #r "Microsoft.Azure.Documents.Client"
+    using Microsoft.Azure.Documents.Client;
+
+    private static Lazy<DocumentClient> lazyClient = new Lazy<DocumentClient>(InitializeDocumentClient);
+    private static DocumentClient documentClient => lazyClient.Value;
+
+    private static DocumentClient InitializeDocumentClient()
+    {
+        // Perform any initialization here
+        var uri = new Uri("example");
+        var authKey = "authKey";      
+        return new DocumentClient(uri, authKey);
+    }
+
+    public static async Task Run(string input)
+    {
+        Uri collectionUri = UriFactory.CreateDocumentCollectionUri("database", "collection");
+        object document = new { Data = "example" };
+        await documentClient.UpsertDocumentAsync(collectionUri, document);       
+        // Rest of function
+    }
+```
+
 
 #### [Container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
 
