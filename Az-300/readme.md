@@ -60,6 +60,11 @@ __Auto Scale Rule__
 
 Azure Functions is a solution for easily running small pieces of code, or "functions," in the cloud. You can write just the code you need for the problem at hand, without worrying about a whole application or the infrastructure to run it. Functions can make development even more productive, and you can use your development language of choice, such as C#, F#, Node.js, Java, or PHP. Pay only for the time your code runs and trust Azure to scale as needed.
 
+__Durable Functions__ ([detail](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview))
+
+_Durable Functions_ are an extension of Azure Functions that lets you write stateful functions in a serverless environment. The extension manages state, checkpoints, and restarts for you.
+
+
 
 
 #### [Container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
