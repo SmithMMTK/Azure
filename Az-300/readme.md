@@ -438,3 +438,15 @@ Access management for cloud resources is a critical function for any organizatio
         ```
     - variables : Values that are used as JSON fragments in the template to simplify template language expressions.
     - resources : Resource types that are deployed or updated in a resource group or subscription.
+
+- [Azure Resource Manager template export](https://azure.microsoft.com/en-us/blog/export-template/)
+    - The __Export-AzureRmResourceGroup__ cmdlet captures the specified resource group as a template and saves it to a JSON file.This can be useful in scenarios where you have already created some resources in your resource group, and then want to leverage the benefits of using template backed deployments
+        ```powershell
+            Export-AzureRmResourceGroup -ResourceGroupName "TestGroup" 
+        ```
+    - The __Save-AzureRmResourceGroupDeploymentTemplate__ cmdlet saves a resource group deployment template to a JSON file.
+
+    >__Export__ _cmdlet is capture change and save templete to a JSON file._
+
+
+
