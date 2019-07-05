@@ -52,10 +52,32 @@ __Create locustfile.py__
 
 ```
 
+```python
+    from locust import HttpLocust, TaskSet, task
+
+    class MyTaskSet(TaskSet):
+        @task(2)
+        def index(self):
+            self.client.get("/")
+
+        @task(1)
+        def about(self):
+            self.client.get("/about/")
+
+    class MyLocust(HttpLocust):
+        task_set = MyTaskSet
+        min_wait = 5000
+        max_wait = 15000
+```
+
 __Start Locust__
 
 ```bash
     $ locust --host=http://targetsite.com
+
+    or
+
+     $ locust -f locust_files/my_locust_file.py --host=http://example.com
 ```
 
 
