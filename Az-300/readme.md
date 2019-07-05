@@ -119,7 +119,7 @@ Azure offers three services that assist with delivering event messages throughou
 - Hot - Optimized for storing data that is accessed frequently.
 - Cool - Optimized for storing data that is infrequently accessed and stored for at least **30 days**.
 - Archive - Optimized for storing data that is rarely accessed and stored for at least **180 days** with flexible latency requirements (on the order of hours).
-    **Only support at Blob level.**
+    >**Only support at Blob level.**
 
     **Blob-level tiering billing**
 
@@ -383,9 +383,9 @@ Access management for cloud resources is a critical function for any organizatio
         -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-storage-account-create/azuredeploy.json
     ```
 
-    Two differrence parameters:
-    - New-AzResourceGroup **-Name**
-    - New-AzResourceGroupDeployment **-ResourceGroupName**
+    >Two differrence parameters:
+    >- New-AzResourceGroup **-Name**
+    >- New-AzResourceGroupDeployment **-ResourceGroupName**
     
 - Invoke SQL Command
     ```powershell
@@ -394,10 +394,10 @@ Access management for cloud resources is a critical function for any organizatio
     ```
 
 - Migrate from AWS to Azure ([detail](https://docs.microsoft.com/en-us/azure/site-recovery/migrate-tutorial-aws-azure))
-    - Prepare Infrastructure
-        1. Create Storage Account
-        1. Create Vault
-        1. Create Virtual Network
+    >- Prepare Infrastructure
+    >    1. Create Storage Account
+    >    1. Create Vault
+    >    1. Create Virtual Network
 
 - Sets properties for a database, or moves an existing database into an elastic pool ([detail](https://docs.microsoft.com/en-us/powershell/module/azurerm.sql/set-azurermsqldatabase?view=azurermps-6.13.0))
     ```powershell
