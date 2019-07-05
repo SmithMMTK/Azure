@@ -27,7 +27,7 @@
 
 #### [Auto Scale](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-best-practices)
 
-**Before Scaling down**, autoscale tries to estimate what the final state will be if it scaled in example:
+__Before Scaling down__, autoscale tries to estimate what the final state will be if it scaled in example:
 >- Current Instance = 3
 >- Default = 2
 >- Scale-up when Avg CPU > 80
@@ -39,7 +39,7 @@
 >- Scale-In is __AND__, mean when All rules is met.
 
 
-**Auto Scale Rule**
+__Auto Scale Rule__
 >- Time aggregation: Maximum
 >- Metric name: CPU Percentage
 >- Time grain statistic: Average
@@ -56,7 +56,7 @@
 
 #### [Container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
 
-**Build the container image**
+__Build the container image__
 
 Windows environment
 ```docker
@@ -82,13 +82,13 @@ Linux environment
     CMD node /Users/smithm/app/index.js
 ```
 
-Set a command or process that will run each time a container is run **CMD** 
+Set a command or process that will run each time a container is run __CMD__ 
 
     docker build ./aci-helloworld -t aci-tutorial-app
 
-**Hands-On [Create and deploy container image](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)**
+__Hands-On [Create and deploy container image](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)__
 
-**Azure Web App for Continers** 
+__Azure Web App for Continers__ 
 
 ```bash
     az webapp config container set // Change container image
@@ -96,7 +96,7 @@ Set a command or process that will run each time a container is run **CMD**
     az webapp deploymnet source // Enable Git
 ```
 
-**Web Jobs** is a feature of Azure App Service that enables you to run a program or script in the same context as a web app, API app, or mobile app. There is no additional cost to use WebJobs ([detail](https://docs.microsoft.com/en-us/azure/app-service/webjobs-create)).
+__Web Jobs__ is a feature of Azure App Service that enables you to run a program or script in the same context as a web app, API app, or mobile app. There is no additional cost to use WebJobs ([detail](https://docs.microsoft.com/en-us/azure/app-service/webjobs-create)).
 
 
 #### [Azure messaging services](https://docs.microsoft.com/en-us/azure/event-grid/compare-messaging-services)
@@ -107,9 +107,9 @@ Azure offers three services that assist with delivering event messages throughou
 - [Event Hubs](https://docs.microsoft.com/en-us/azure/event-hubs/)
 - [Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/)
 
-**Comparison of services**
+__Comparison of services__
 
-| **Service** | **Purpose** | **Type** | **When to use** |
+| __Service__ | __Purpose__ | __Type__ | __When to use__ |
 |---|---|---|---|
 | Event Grid | Reactive programming | Event distribution (discrete) | React to status changes |
 | Event Hubs | Big data pipeline | Event streaming (series) | Telemetry and distributed data streaming |
@@ -121,11 +121,11 @@ Azure offers three services that assist with delivering event messages throughou
 #### [Azure Storage Service](https://docs.microsoft.com/en-us/azure/storage/common/storage-introduction)
 
 - Hot - Optimized for storing data that is accessed frequently.
-- Cool - Optimized for storing data that is infrequently accessed and stored for at least **30 days**.
-- Archive - Optimized for storing data that is rarely accessed and stored for at least **180 days** with flexible latency requirements (on the order of hours).
-    >**Only support at Blob level.**
+- Cool - Optimized for storing data that is infrequently accessed and stored for at least __30 days__.
+- Archive - Optimized for storing data that is rarely accessed and stored for at least __180 days__ with flexible latency requirements (on the order of hours).
+    >__Only support at Blob level.__
 
-    **Blob-level tiering billing**
+    __Blob-level tiering billing__
 
     | Operation | Write Charges (Operation + Access) | Read Charges (Operation + Access) |
     |----|---|---|
@@ -144,9 +144,9 @@ You can choose from five well-defined models on the consistency spectrum. From s
 - Eventual
 
 Consistency levels and latency
-- The read latency for all consistency levels is always guaranteed to be **less than 10 milliseconds** at the 99th percentile.
+- The read latency for all consistency levels is always guaranteed to be __less than 10 milliseconds__ at the 99th percentile.
     - The average read latency, at the 50th percentile, is typically 2 milliseconds or less
-- The write latency for all consistency levels is always guaranteed to be **less than 10 milliseconds** at the 99th percentile.
+- The write latency for all consistency levels is always guaranteed to be __less than 10 milliseconds__ at the 99th percentile.
     - The average write latency, at the 50th percentile, is usually 5 milliseconds or less
 
 [Consistency levels and data durability](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels)
@@ -237,8 +237,8 @@ The feature provides Azure services with an automatically managed identity in Az
 - Hadns-on: [Windows VM Access Storage Account via SAS](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-storage-sas)
 
 Quick-Steps ([detail:](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm))
-- Add role assignment (**Reader**) to **all resource groups**
-- Use **Invoke** cmdlet to get access token
+- Add role assignment (__Reader__) to __all resource groups__
+- Use __Invoke__ cmdlet to get access token
     ```powershell
     $response = Invoke-WebRequest -Uri 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://management.azure.com/' 
     -Method GET -Headers @{Metadata="true"}
@@ -268,8 +268,8 @@ __Device Identity__ ([detail](https://docs.microsoft.com/en-us/azure/active-dire
             These scenarios don't require you to configure a federation server for authentication.
 
         - Federated environment - A federated environment should have an identity provider that supports both WS-Trust and WS-Fed protocols:
-            - **WS-Fed**: This protocol is required to join a device to Azure AD.
-            - **WS-Trust**: This protocol is required to sign in to an Azure AD joined device.
+            - __WS-Fed__: This protocol is required to join a device to Azure AD.
+            - __WS-Trust__: This protocol is required to sign in to an Azure AD joined device.
 
 - [Hybrid Azure AD Joined (Win7, Win8.1, Win10, WinSvr2008+)](https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-join-hybrid)
 
@@ -278,12 +278,12 @@ __Device Identity__ ([detail](https://docs.microsoft.com/en-us/azure/active-dire
 
 #### [Access Review - Overview](https://docs.microsoft.com/en-us/azure/active-directory/governance/access-reviews-overview)
     
-Azure Active Directory (Azure AD) **Access Reviews** enable organizations to efficiently manage group memberships, access to enterprise applications, and role assignments. User's access can be reviewed on a regular basis to make sure only the right people have continued access [How to: Configure Access Review](https://docs.microsoft.com/en-us/azure/active-directory/governance/create-access-review).   
+Azure Active Directory (Azure AD) __Access Reviews__ enable organizations to efficiently manage group memberships, access to enterprise applications, and role assignments. User's access can be reviewed on a regular basis to make sure only the right people have continued access [How to: Configure Access Review](https://docs.microsoft.com/en-us/azure/active-directory/governance/create-access-review).   
 
 - Security group members, Office group members
 - Assigned to a connected app
 
-You can use Azure Active Directory (Azure AD) Privileged Identity Management (**PIM**) to create access reviews for privileged Azure AD roles.
+You can use Azure Active Directory (Azure AD) Privileged Identity Management (__PIM__) to create access reviews for privileged Azure AD roles.
 - Azure AD role
 - Azure resource role
 
@@ -395,8 +395,8 @@ __Understand role definitions for Azure resources__ ([Detail](https://docs.micro
     ```
 
     >Two differrence parameters:
-    >- New-AzResourceGroup **-Name**
-    >- New-AzResourceGroupDeployment **-ResourceGroupName**
+    >- New-AzResourceGroup __-Name__
+    >- New-AzResourceGroupDeployment __-ResourceGroupName__
     
 - Invoke SQL Command
     ```powershell
