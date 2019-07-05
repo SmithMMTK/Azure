@@ -10,6 +10,7 @@
 - [STORAGE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#storage)
     - [Storage Service](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-storage-service)
     - [Cosmos DB](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#cosmos-db)
+    - [SQL Database Elastic Pool](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#sql-database-elastic-pool)
 - [NETWORKING](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#networking)
     - [Application Gateway](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#application-gateway)
     - [Load Balancer](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#load-balancer---overview)
@@ -240,6 +241,11 @@ Functions in a function app share resources. Among those shared resources are co
         // Rest of function
     }
 ```
+>Key interesting area in code
+>- private static DocumentClient documentClient
+>- new Lazy<DocumentClient>(InitializeDocumentClient)
+>- new DocumentClient(uri, authKey);
+
 
 
 #### [Container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
@@ -385,6 +391,30 @@ Consistency levels and latency
 
 [Consistency levels and data durability](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels)
 ![alt text](https://docs.microsoft.com/en-us/azure/cosmos-db/media/consistency-levels/five-consistency-levels.png)
+
+
+#### [SQL Database Elastic Pool](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-pool)
+
+A common application pattern is to provision a single database for each customer. But different customers often have varying and unpredictable usage patterns, and it is difficult to predict the resource requirements of each individual database user. Traditionally, you had two options:
+
+- Over-provision resources based on peak usage and over pay, or
+- Under-provision to save cost, at the expense of performance and customer satisfaction during peaks.
+
+Elastic pools solve this problem by ensuring that databases get the performance resources they need when they need it. They provide a simple resource allocation mechanism within a predictable budget.
+
+![alt text](https://docs.microsoft.com/en-us/azure/sql-database/media/sql-database-elastic-pool/twenty-databases.png)
+
+> __Case Study:__
+> - Support 2 dbs peaking concurrently at 70 DTUs
+> - Maximum of as near to 75 DTUs
+> - Minimum the DTUs that are guaranteed to all databases in the pool
+> - Minimize pool costs and configuration
+> DTU requirement = 250
+> DTU Min = 0, DTU Max = 75
+
+
+
+
 
 ---
 
