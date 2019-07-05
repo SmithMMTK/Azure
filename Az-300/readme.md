@@ -34,7 +34,7 @@ Prepare | Create image | Create VM from image
  --- | --- | --- 
  sysprep | get-AzVm | new-AzVm -imageName "name"
 stop-AzVm | new-AzImageConfig | 
-set-AzVm //_make vm generalize_ | new-AzImage |
+set-AzVm //_make vm to __Generalize___ | new-AzImage |
 
 
 #### [Auto Scale](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-best-practices)
