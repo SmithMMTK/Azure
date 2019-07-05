@@ -375,7 +375,7 @@ __How an application gateway works__ ([detail](https://docs.microsoft.com/en-us/
         -AppcliationGateway $gateway
 ```
 
-- __PathMapConfig__
+- __Add-AzApplicationGatewayUrlPathMapConfig__
     ```powershell
         Add-AzApplicationGatewayUrlPathMapConfig `
             -ApplicationGateway $appgw `
@@ -386,7 +386,7 @@ __How an application gateway works__ ([detail](https://docs.microsoft.com/en-us/
     ```
 
 
-- __PathRuleConfig__
+- __New-AzApplicationGatewayPathRuleConfig__
     ```powershell
         $imagePathRule = New-AzApplicationGatewayPathRuleConfig `
             -Name imagePathRule `
