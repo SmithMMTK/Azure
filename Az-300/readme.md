@@ -287,8 +287,8 @@ You can use Azure Active Directory (Azure AD) Privileged Identity Management (**
 
 Azure Key Vault helps solve the following problems:
 
-- Secrets Management - Azure Key Vault can be used to Securely store and tightly control access to **tokens, passwords, certificates, API keys, and other secrets**
-- Key Management - Azure Key Vault can also be used as a Key Management solution. Azure Key Vault makes it easy to create and control the **encryption keys used to encrypt your data**.
+- Secrets Management - Azure Key Vault can be used to Securely store and tightly control access to __tokens, passwords, certificates, API keys, and other secrets__
+- Key Management - Azure Key Vault can also be used as a Key Management solution. Azure Key Vault makes it easy to create and control the __encryption keys used to encrypt your data.__
 - Certificate Management - Azure Key Vault is also a service that lets you easily provision, manage, and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for use with Azure and your internal connected resources.
 - Store secrets backed by Hardware Security Modules - The secrets and keys can be protected either by software or FIPS 140-2 Level 2 validates HSMs
 
@@ -304,7 +304,7 @@ Azure Key Vault helps solve the following problems:
     (Get-AzKeyVaultSecret -vaultName "my-Vault" -name "ExamplePassword").SecretValueText
 ```
 
-**Use Azure Key Vault with an Azure web app in .NET** ([detail](https://docs.microsoft.com/en-us/azure/key-vault/tutorial-net-create-vault-azure-web-app))
+__Use Azure Key Vault with an Azure web app in .NET__ ([detail](https://docs.microsoft.com/en-us/azure/key-vault/tutorial-net-create-vault-azure-web-app))
 
 ```c#
     async Task<string>GetConnectionString(string secretUri)
@@ -316,6 +316,14 @@ Azure Key Vault helps solve the following problems:
         return secreat.Value;
     }
 ```
+
+__Key generation plan__ ([detail](https://docs.microsoft.com/en-us/azure/storage/common/storage-security-guide#key-regeneration-plan))
+
+1. Regenerate Key 2 to ensure that it is secure. You can do this in the Azure portal.
+1. In all of the applications where the storage key is stored, change the storage key to use Key 2's new value. Test and publish the application.
+1. After all of the applications and services are up and running successfully, regenerate Key 1. This ensures that anybody to whom you have not expressly given the new key will no longer have access to the storage account
+
+
 
 #### [Role-based access control (RBAC)](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview)
 Access management for cloud resources is a critical function for any organization that is using the cloud. Role-based access control (RBAC) helps you manage who has access to Azure resources, what they can do with those resources, and what areas they have access to.
