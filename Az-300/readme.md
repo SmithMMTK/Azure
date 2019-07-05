@@ -41,7 +41,8 @@ set-AzVm //_make vm to __Generalize___ | new-AzImage |
 
 #### [Auto Scale](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-best-practices)
 
-Auto Scale concept
+Auto Scale concept:
+
 ![alt text](https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/autoscale.png)
 
 
