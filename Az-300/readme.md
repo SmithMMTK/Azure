@@ -2,6 +2,7 @@
 - [COMPUTE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#compute)
     - [Auto-Scale](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#auto-scale)
 - [APPLICATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#application)
+    - [Functions](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#functions)
     - [Container](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#container)
     - [Azure messaging services](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-messaging-services)
 - [STORAGE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#storage)
@@ -35,6 +36,7 @@ __Before Scaling down__, autoscale tries to estimate what the final state will b
 >- Average load reduce to 75, (75x3) / 2 = 112.5 => No Scale-down
 >- Averge load reduce to 50, (50x3) / 2 = 75 => Scale-down by 1
 
+__Combination of rules__
 >- Scale-Out is __OR__, mean when Any rules is met.
 >- Scale-In is __AND__, mean when All rules is met.
 
@@ -53,6 +55,12 @@ __Auto Scale Rule__
 
 ---
 ### APPLICATION
+
+#### [Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)
+
+Azure Functions is a solution for easily running small pieces of code, or "functions," in the cloud. You can write just the code you need for the problem at hand, without worrying about a whole application or the infrastructure to run it. Functions can make development even more productive, and you can use your development language of choice, such as C#, F#, Node.js, Java, or PHP. Pay only for the time your code runs and trust Azure to scale as needed.
+
+
 
 #### [Container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
 
