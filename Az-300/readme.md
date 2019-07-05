@@ -330,7 +330,7 @@ Access management for cloud resources is a critical function for any organizatio
 
 ![Alt text](https://docs.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-least-privilege.png)
 
-**[How RBAC works](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview#how-rbac-works)**
+__How RBAC works__ ([detail](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview#how-rbac-works))
 
 - Security principal : A security principal is an object that represents a user, group, service principal, or managed identity that is requesting access to Azure resources.
 
@@ -370,7 +370,7 @@ Access management for cloud resources is a critical function for any organizatio
 
 ```
 
-[Detail](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions)
+__Understand role definitions for Azure resources__ ([Detail](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions))
 
 
 
@@ -447,7 +447,7 @@ Access management for cloud resources is a critical function for any organizatio
     - variables : Values that are used as JSON fragments in the template to simplify template language expressions.
     - resources : Resource types that are deployed or updated in a resource group or subscription.
 
-- [Azure Resource Manager template export](https://azure.microsoft.com/en-us/blog/export-template/)
+- __Azure Resource Manager template export__ ([detail](https://azure.microsoft.com/en-us/blog/export-template/))
     - The __Export-AzureRmResourceGroup__ cmdlet captures the specified resource group as a template and saves it to a JSON file.This can be useful in scenarios where you have already created some resources in your resource group, and then want to leverage the benefits of using template backed deployments
         ```powershell
             Export-AzureRmResourceGroup -ResourceGroupName "TestGroup" 
