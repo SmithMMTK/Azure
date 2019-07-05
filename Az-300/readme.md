@@ -281,12 +281,17 @@ __Comparison of services__
 Microsoft Azure Service Bus is a fully managed enterprise integration message broker. Service Bus is most commonly used to decouple applications and services from each other, and is a reliable and secure platform for asynchronous data and state transfer.
 
 __Concept__
-- Namespaces : A namespace is a scoping container for all messaging components. Multiple queues and topics can reside within a single namespace, and namespaces often serve as application containers.
-- Queues : Messages are sent to and received from queues. Queues enable you to store messages until the receiving application is available to receive and process them.
+- __Namespaces__ : A namespace is a scoping container for all messaging components. Multiple queues and topics can reside within a single namespace, and namespaces often serve as application containers.
+
+- __Queues__ : Messages are sent to and received from queues. Queues enable you to store messages until the receiving application is available to receive and process them.
+
+    >__Important: One Application or Client per Queue only.__
 
 ![alt text](https://docs.microsoft.com/en-us/azure/service-bus-messaging/media/service-bus-messaging-overview/about-service-bus-queue.png)
 
-- Topics : You can also use topics to send and receive messages. While a queue is often used for point-to-point communication, topics are useful in publish/subscribe scenarios. 
+- __Topics__ : You can also use topics to send and receive messages. While a queue is often used for point-to-point communication, topics are useful in publish/subscribe scenarios. 
+
+    >__Important: Multiple-Applications or Clients to same Topic supported.__
 
 ![alt text](https://docs.microsoft.com/en-us/azure/service-bus-messaging/media/service-bus-messaging-overview/about-service-bus-topic.png)
 
@@ -478,6 +483,13 @@ ExpressRoute lets you extend your on-premises networks into the Microsoft cloud 
 
 - [Express Route](https://docs.microsoft.com/en-us/azure/expressroute/expressroute-about-virtual-network-gateways)
 ExpressRoute lets you extend your on-premises networks into the Microsoft cloud over a private connection facilitated by a connectivity provider
+
+    > __Connect ExpressRoute to On-Premise__ ([detail](https://docs.microsoft.com/en-us/azure/expressroute/expressroute-howto-circuit-portal-resource-manager))
+    > - Create an ExpressRoute circuit
+    > - Create a peering
+    > - Create an ExpressRoute VNet gateway
+    > - Create a link between the circuit and the VNet.
+
 
 - [VNet Peering](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) Virtual network peering enables you to seamlessly connect Azure virtual networks. Once peered, the virtual networks appear as one, for connectivity purposes. The traffic between virtual machines in the peered virtual networks is routed through the Microsoft backbone infrastructure, much like traffic is routed between virtual machines in the same virtual network, through private IP addresses only. Azure supports:
 
