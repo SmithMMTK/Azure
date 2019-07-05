@@ -62,7 +62,22 @@ Azure Functions is a solution for easily running small pieces of code, or "funct
 
 __Durable Functions__ ([detail](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview))
 
-_Durable Functions_ are an extension of Azure Functions that lets you write stateful functions in a serverless environment. The extension manages state, checkpoints, and restarts for you.
+_Durable Functions_ are an extension of Azure Functions that lets you write __stateful functions__ in a serverless environment. The extension manages state, checkpoints, and restarts for you.
+
+__Application patterns__ ([detail](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview#application-patterns))
+- Chaining
+- Fan-out/fan-in
+- Async HTTP APIs
+- Monitoring
+- Human interaction
+
+__Functions Type__ ([detail](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-types-features-overview))
+
+![alt text](https://docs.microsoft.com/en-us/azure/azure-functions/durable/media/durable-functions-types-features-overview/durable-concepts.png)
+
+>- Activity = Perform actions __[ActivityTrigger]__
+>- Orchestrator = Describe how actions is work in order __[OrchestratorTrigger]__
+>- Client = Trigger functions that creat new instance of an orchestration __[OrchestrationClient]__
 
 
 
