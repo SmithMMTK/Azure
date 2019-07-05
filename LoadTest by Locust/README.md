@@ -13,11 +13,11 @@ __Install Locustio__
     $ python3 -m pip install -e git://github.com/locustio/locust.git@master#egg=locustio
  ```
 
- To see available options, run:
+    To see available options, run:
 
- ```bash
-    $ locust --help
- ```
+    ```bash
+        $ locust --help
+    ```
 
 __Create locustfile.py__
 
