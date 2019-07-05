@@ -77,7 +77,7 @@ __Functions Type__ ([detail](https://docs.microsoft.com/en-us/azure/azure-functi
 
 >- Activity = Perform actions __[ActivityTrigger]__
 >- Orchestrator = Describe how actions is work in order __[OrchestratorTrigger]__
->- Client = Trigger functions that creat new instance of an orchestration __[OrchestrationClient]__
+>- Client = Trigger functions that creat new instance of an orchestration __[OrchestrationClient]__ (e.g. Queue, HTTP, Event Stream trigger)
 
 
 
