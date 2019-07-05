@@ -74,6 +74,7 @@ Monitors your Azure virtual machines (VM) at scale by analyzing the performance 
 
 ![alt text](https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/vm-insights.png)
 
+>Note: Azure Monitoring unable to monitor d.isk space available.
 
 ---
 ### APPLICATION
@@ -335,6 +336,68 @@ With Application Gateway, you can make routing decisions based on additional att
     
 ![alt text](https://docs.microsoft.com/en-us/azure/application-gateway/media/application-gateway-url-route-overview/figure1-720.png)
 
+
+__Route web traffic based on the URL using Azure PowerShell__ ([detail](https://docs.microsoft.com/en-us/azure/application-gateway/tutorial-url-route-powershell))
+
+![alt text](https://docs.microsoft.com/en-us/azure/application-gateway/media/tutorial-url-route-powershell/scenario.png)
+
+__How an application gateway works__ ([detail](https://docs.microsoft.com/en-us/azure/application-gateway/how-application-gateway-works))
+
+![alt text](https://docs.microsoft.com/en-us/azure/application-gateway/media/how-application-gateway-works/how-application-gateway-works.png)
+
+
+
+- Set up the network
+- Create __listeners__, __URL path map__, and __rules__
+- Create scalable backend pools
+
+```powershell
+    $gateway = Get-AzApplicationGateway
+        -ResourceGroupName myRG
+        -Name myAppGW
+
+    $backendlistener = Get-AzApplicationGatewayHttpListener
+        -ApplicationGateway $gateway
+        -Name backendListener
+
+    $config = Get-AzApplicationGatewayUrlPathMapConfig
+        -ApplicationGateway $gateway
+        -Name urlpathmap
+    
+    Add-AzApplicationGatewayRequstRoutingRule
+        -ApplicationGateway $gateway
+        -Name rule2
+        -RuleType PathBasedRouting
+        -HttpListener $backendlistener
+        -UrlPathMap $config
+    
+    Set-AzApplicationsGateway
+        -AppcliationGateway $gateway
+```
+
+- __PathMapConfig__
+    ```powershell
+        Add-AzApplicationGatewayUrlPathMapConfig `
+            -ApplicationGateway $appgw `
+            -Name urlpathmap `
+            -PathRules $imagePathRule, $videoPathRule `
+            -DefaultBackendAddressPool $defaultPool `
+            -DefaultBackendHttpSettings $poolSettings
+    ```
+
+
+- __PathRuleConfig__
+    ```powershell
+        $imagePathRule = New-AzApplicationGatewayPathRuleConfig `
+            -Name imagePathRule `
+            -Paths "/images/*" `
+            -BackendAddressPool $imagePool `
+            -BackendHttpSettings $poolSettings
+    ```
+
+
+
+
 #### [Load Balancer - Overview](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview)
 
 By default, Load Balancer uses a 5-tuple hash composed of source IP address, source port, destination IP address, destination port, and IP protocol number to map flows to available servers. You can choose to create affinity to a specific source IP address by opting into a 2- or 3-tuple hash for a given rule. All packets of the same packet flow arrive on the same instance behind the load-balanced front end. When the client initiates a new flow from the same source IP, the source port changes. As a result, the 5-tuple might cause the traffic to go to a different backend endpoint.
@@ -398,6 +461,22 @@ ExpressRoute lets you extend your on-premises networks into the Microsoft cloud 
     - [Point-to-Site VPN](https://docs.microsoft.com/en-us/azure/vpn-gateway/point-to-site-about)
     - [Site-to-Site VPN](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-devices)
 
+__Changing the IP address of an IP configuration__
+```powershell
+    $vnet = Get-AzureRmVirtualNetwork -Name myvnet 
+        -ResourceGroupName myrg
+
+    $subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name mysubnet 
+        -VirtualNetwork $vnet
+    
+    $nic = Get-AzureRmNetworkInterface -Name nic1 -ResourceGroupName myrg
+
+    $nic | Set-AzureRmNetworkInterfaceIpConfig -Name ipconfig1 
+        -PrivateIpAddress 10.0.0.11 -Subnet $subnet
+        -Primary
+
+    $nic | Set-AzureRmNetworkInterface
+```
 
 ---
 
