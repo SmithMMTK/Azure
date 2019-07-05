@@ -127,6 +127,39 @@ __activitiyTrigger__
         }
 ```
 
+__Singleton orchestrators__ ([detail](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-singletons))
+
+For background jobs you often need to ensure that only one instance of a particular orchestrator runs at a time. This can be done in Durable Functions by assigning a specific instance ID to an orchestrator when creating it
+
+```c#
+    [FunctionName("HttpStartSingle")]
+    public static async Task<HttpResponseMessage> RunSingle(
+        [HttpTrigger(AuthorizationLevel.Function, methods: "post", Route = "orchestrators/{functionName}/{instanceId}")] HttpRequestMessage req,
+        [OrchestrationClient] DurableOrchestrationClient starter,
+        string functionName,
+        string instanceId,
+        ILogger log)
+    {
+        // Check if an instance with the specified ID already exists.
+        var existingInstance = await starter.GetStatusAsync(instanceId);
+        if (existingInstance == null)
+        {
+            // An instance with the specified ID doesn't exist, create one.
+            dynamic eventData = await req.Content.ReadAsAsync<object>();
+            await starter.StartNewAsync(functionName, instanceId, eventData);
+            log.LogInformation($"Started orchestration with ID = '{instanceId}'.");
+            return starter.CreateCheckStatusResponse(req, instanceId);
+        }
+        else
+        {
+            // An instance with the specified ID exists, don't create one.
+            return req.CreateErrorResponse(
+                HttpStatusCode.Conflict,
+                $"An instance with ID '{instanceId}' already exists.");
+        }
+}
+```
+
 
 #### [Container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
 
