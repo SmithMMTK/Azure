@@ -35,6 +35,10 @@
 >- Average load reduce to 75, (75x3) / 2 = 112.5 => No Scale-down
 >- Averge load reduce to 50, (50x3) / 2 = 75 => Scale-down by 1
 
+>- Scale-Out is __OR__, mean when Any rules is met.
+>- Scale-In is __AND__, mean when All rules is met.
+
+
 **Auto Scale Rule**
 >- Time aggregation: Maximum
 >- Metric name: CPU Percentage
