@@ -63,6 +63,17 @@ __Auto Scale Rule__
 >    - Increase count by: // for add additional instance
 >- Instance count: 3
 
+#### [Azure Monitor](https://docs.microsoft.com/en-us/azure/azure-monitor/)
+The following diagram gives a high-level view of Azure Monitor. At the center of the diagram are the data stores for metrics and logs, which are the two fundamental types of data use by Azure Monitor.
+
+![alt text](https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/overview.png)
+
+__Azure Monitor for VM__ ([detail](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview))
+
+Monitors your Azure virtual machines (VM) at scale by analyzing the performance and health of your Windows and Linux VMs, including their different processes and interconnected dependencies on other resources and external processes. 
+
+![alt text](https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/vm-insights.png)
+
 
 ---
 ### APPLICATION
