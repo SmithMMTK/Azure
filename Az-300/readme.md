@@ -254,7 +254,7 @@ Quick-Steps ([detail:](https://docs.microsoft.com/en-us/azure/active-directory/m
 
 Through devices in Azure AD, your users are getting access to your corporate assets. To protect your corporate assets, as an IT administrator, you want to manage these device identities in Azure AD. This enables you to make sure that your users are accessing your resources from devices that meet your standards for security and compliance.
 
-[Device Identity](https://docs.microsoft.com/en-us/azure/active-directory/devices/overview)
+__Device Identity__ ([detail](https://docs.microsoft.com/en-us/azure/active-directory/devices/overview))
 - [Azure AD registered (Win10, iOS, Android, MacOS)](https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-register)
 
 - [Azure AD Joined (Win10)](https://docs.microsoft.com/en-us/azure/active-directory/devices/concept-azure-ad-join)
