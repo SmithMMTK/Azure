@@ -612,8 +612,8 @@ __Understand role definitions for Azure resources__ ([Detail](https://docs.micro
             }
         }
         ```
-    - variables : Values that are used as JSON fragments in the template to simplify template language expressions.
-    - resources : Resource types that are deployed or updated in a resource group or subscription.
+    - __variables__ : Values that are used as JSON fragments in the template to simplify template language expressions.
+    - __resources__ : Resource types that are deployed or updated in a resource group or subscription.
 
 - __Azure Resource Manager template export__ ([detail](https://azure.microsoft.com/en-us/blog/export-template/))
     - The __Export-AzureRmResourceGroup__ cmdlet captures the specified resource group as a template and saves it to a JSON file.This can be useful in scenarios where you have already created some resources in your resource group, and then want to leverage the benefits of using template backed deployments
