@@ -444,9 +444,12 @@ Access management for cloud resources is a critical function for any organizatio
         ```powershell
             Export-AzureRmResourceGroup -ResourceGroupName "TestGroup" 
         ```
+        
+        >__Export__ _cmdlet is capture change and save templete to a JSON file._
+
     - The __Save-AzureRmResourceGroupDeploymentTemplate__ cmdlet saves a resource group deployment template to a JSON file.
 
-    >__Export__ _cmdlet is capture change and save templete to a JSON file._
+
 
 
 
