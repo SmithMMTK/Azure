@@ -101,7 +101,7 @@ Monitors your Azure virtual machines (VM) at scale by analyzing the performance 
 
 ![alt text](https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/vm-insights.png)
 
->Note: Azure Monitoring unable to monitor d.isk space available.
+>Note: Azure Monitoring unable to monitor disk space remaining.
 
 ---
 ### APPLICATION
