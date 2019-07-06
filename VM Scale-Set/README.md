@@ -239,21 +239,23 @@ _cloud-init.txt_
     - git clone https://github.com/SmithMMTK/nodejs-express
     - cd nodejs-express
     - npm install --yes
-    - pm2 start nodejs app.js
+    - sudo pm2 start nodejs app.js
     - nodejs app.js
 
 > [pm2 manual](https://medium.com/pnpsolution/วิธีการ-run-node-js-บน-server-ด้วย-pm2-fd66c1e54b60)
-
+>
+> $ pm2 list
+>
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet3 --location southeastasia
+    az group create --name myResourceGroupScaleSet4 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet3 \
+    --resource-group myResourceGroupScaleSet4 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -264,13 +266,13 @@ __Create VM Scale Set with Cloud-init.txt__
 
 ```bash
 az vmss list-instance-connection-info \
-    --resource-group myResourceGroupScaleSet3 \
+    --resource-group myResourceGroupScaleSet4 \
     --name myScaleSet
 ```
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet3 \
+    --resource-group myResourceGroupScaleSet4 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -289,5 +291,5 @@ __Loop Test Client__
     done
 ```
 
-az vmss stop --resource-group myResourceGroupScaleSet3 \
+az vmss stop --resource-group myResourceGroupScaleSet4 \
     --name myScaleSet --instance-ids 1
