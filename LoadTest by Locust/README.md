@@ -15,9 +15,9 @@ __Install Locustio__
 
     To see available options, run:
 
-    ```bash
-        $ locust --help
-    ```
+```bash
+    $ locust --help
+```
 
 __Create locustfile.py__
 
