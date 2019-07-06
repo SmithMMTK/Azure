@@ -5,6 +5,9 @@
 
 
 
+
+---
+
 ## Create VM Scale Set ([detail](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/tutorial-create-and-manage-cli))
 
 __Create Resource Group__
@@ -105,7 +108,7 @@ __Start / Stop VM in a Scale Set__
 - List VM instances in a scale set
 ```bash
    az vmss list-instance-connection-info \
-    --resource-group myResourceGroup \
+     --resource-group myResourceGroup \
     --name myScaleSet
 ```
 
@@ -117,16 +120,69 @@ __Start / Stop VM in a Scale Set__
 
 - Stop VM instances in a scale set
 ```bash
-    az vmss stop --resource-group myResourceGroup 
+    az vmss stop --resource-group myResourceGroup \
     --name myScaleSet --instance-ids 1
 ```
 - Deallocate VM instances in a scale set
 ```bash
-    az vmss deallocate --resource-group myResourceGroup --name myScaleSet --instance-ids 1
+    az vmss deallocate --resource-group myResourceGroup \
+    --name myScaleSet --instance-ids 1
 ```
 
 ---
+## Install applications in virtual machine scale sets with the Azure CLI ([detail](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/tutorial-install-apps-cli))
+
+__What is the Azure Custom Script Extension?__
+The Custom Script Extension downloads and executes scripts on Azure VMs. This extension is useful for post deployment configuration, software installation, or any other configuration / management task. Scripts can be downloaded from Azure storage or GitHub, or provided to the Azure portal at extension run-time.
+
+__Create Custom Script Extension definition__
+Create file name: ___customConfig.json___
+```json
+    {
+        "fileUris": ["https://raw.githubusercontent.com/Azure-Samples/compute-automation-configurations/master/automate_nginx.sh"],
+        "commandToExecute": "./automate_nginx.sh"
+    }
+```
+
+__Apply the Custom Script Extension__
+```bash
+    az vmss extension set \
+        --publisher Microsoft.Azure.Extensions \
+        --version 2.0 \
+        --name CustomScript \
+        --resource-group myResourceGroup \
+        --vmss-name myScaleSet \
+        --settings @customConfig.json
+```
+
+__Test your scale set__
+To allow traffic to reach the web server, create a load balancer rule with az network lb rule create. The following example creates a rule named myLoadBalancerRuleWeb:
+
+```bash
+    az network lb rule create \
+        --resource-group myResourceGroup \
+        --name myLoadBalancerRuleWeb \
+        --lb-name myScaleSetLB \
+        --backend-pool-name myScaleSetLBBEPool \
+        --backend-port 80 \
+        --frontend-ip-name loadBalancerFrontEnd \
+        --frontend-port 80 \
+        --protocol tcp
+
+```
+
+To see your web server in action, obtain the public IP address of your load balancer with az network public-ip show. The following example obtains the IP address for myScaleSetLBPublicIP created as part of the scale set:
+
+```bash
+    az network public-ip show \
+        --resource-group myResourceGroup \
+        --name myScaleSetLBPublicIP \
+        --query [ipAddress] \
+        --output tsv
+```
 
 
+__Experimental : Create customConfig.json for nodejs with express__
+> To-do ...
 
-
+--- 
