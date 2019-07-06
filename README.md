@@ -1,5 +1,6 @@
 ## Azure Resources Reference
 
+* [Azure Cheat Sheet](https://github.com/SmithMMTK/home/blob/master/azure_cheat_sheet.md)
 * [Microsoft Cloud Workshop](https://microsoftcloudworkshop.com)
 * [Microsoft Cloud Adoption Framework for Azure](https://docs.microsoft.com/en-us/azure/architecture/cloud-adoption/overview)
 * [Azure Enterprise Scaffold](https://docs.microsoft.com/en-us/azure/architecture/cloud-adoption/appendix/azure-scaffold)
