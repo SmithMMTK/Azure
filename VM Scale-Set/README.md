@@ -233,22 +233,27 @@ _cloud-init.txt_
     - sudo apt-get update --yes
     - sudo apt-get install nodejs --yes
     - sudo apt-get install npm --yes
+    - sudo npm install pm2 -g
     - cd "/home/azureuser"
     - rm -rf nodejs_express    
     - git clone https://github.com/SmithMMTK/nodejs-express
     - cd nodejs-express
     - npm install --yes
+    - pm2 start nodejs app.js
     - nodejs app.js
+
+> [pm2 manual](https://medium.com/pnpsolution/วิธีการ-run-node-js-บน-server-ด้วย-pm2-fd66c1e54b60)
+
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet2 --location southeastasia
+    az group create --name myResourceGroupScaleSet3 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet2 \
+    --resource-group myResourceGroupScaleSet3 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -259,8 +264,20 @@ __Create VM Scale Set with Cloud-init.txt__
 
 ```bash
 az vmss list-instance-connection-info \
-    --resource-group myResourceGroupScaleSet2 \
+    --resource-group myResourceGroupScaleSet3 \
     --name myScaleSet
+```
+
+```bash
+    az network lb rule create \
+    --resource-group myResourceGroupScaleSet3 \
+    --name myLoadBalancerRuleWeb \
+    --lb-name myScaleSetLB \
+    --backend-pool-name myScaleSetLBBEPool \
+    --backend-port 3000 \
+    --frontend-ip-name loadBalancerFrontEnd \
+    --frontend-port 80 \
+    --protocol tcp
 ```
 
 __Loop Test Client__
@@ -272,17 +289,5 @@ __Loop Test Client__
     done
 ```
 
-```bash
-    az network lb rule create \
-    --resource-group myResourceGroupScaleSet2 \
-    --name myLoadBalancerRuleWeb \
-    --lb-name myScaleSetLB \
-    --backend-pool-name myScaleSetLBBEPool \
-    --backend-port 3000 \
-    --frontend-ip-name loadBalancerFrontEnd \
-    --frontend-port 80 \
-    --protocol tcp
-```
-
-az vmss stop --resource-group myResourceGroupScaleSet2 \
+az vmss stop --resource-group myResourceGroupScaleSet3 \
     --name myScaleSet --instance-ids 1
