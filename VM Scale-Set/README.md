@@ -291,5 +291,7 @@ __Loop Test Client__
     done
 ```
 
+## Still pending to work on reboot scenario to keep Nodejs app running
+
 az vmss stop --resource-group myResourceGroupScaleSet4 \
     --name myScaleSet --instance-ids 1
