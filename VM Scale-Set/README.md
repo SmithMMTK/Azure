@@ -1,5 +1,8 @@
 # VM Scale Set Hands-On Experience
 
+## [Create VM Scale Set](https://github.com/SmithMMTK/home/tree/master/VM%20Scale-Set#create-vm-scale-set-detail)
+
+
 ## Create VM Scale Set ([detail](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/tutorial-create-and-manage-cli))
 
 __Create Resource Group__
@@ -72,5 +75,56 @@ Memory optimized | Esv3, Ev3, M, GS, G, DSv2, DS, Dv2, D | High memory-to-core. 
 Storage optimized | Ls | High disk throughput and IO. Ideal for Big Data, SQL, and NoSQL databases.
 GPU | NV, NC | Specialized VMs targeted for heavy graphic rendering and video editing.
 High performance | H, A8-11 | Our most powerful CPU VMs with optional high-throughput network interfaces (RDMA). 
+
+```bash
+    az vm list-sizes --location southeastasia --output table
+```
+
+__Change the capacity of a scale set__
+- Query existing capacity
+```bash
+    az vmss show \
+    --resource-group myResourceGroup \
+    --name myScaleSet \
+    --query [sku.capacity] \
+    --output table
+```
+
+- Manually increase or decrease the number of VM instances in the scale set
+```bash
+    az vmss scale \
+    --resource-group myResourceGroup \
+    --name myScaleSet \
+    --new-capacity 3
+```
+
+__Start / Stop VM in a Scale Set__
+
+- List VM instances in a scale set
+```bash
+   az vmss list-instance-connection-info \
+    --resource-group myResourceGroup \
+    --name myScaleSet
+```
+
+- Start VM instances in a scale set
+```bash
+    az vmss start --resource-group myResourceGroup \
+    --name myScaleSet --instance-ids 1
+```
+
+- Stop VM instances in a scale set
+```bash
+    az vmss stop --resource-group myResourceGroup 
+    --name myScaleSet --instance-ids 1
+```
+- Deallocate VM instances in a scale set
+```bash
+    az vmss deallocate --resource-group myResourceGroup --name myScaleSet --instance-ids 1
+```
+
+---
+
+
 
 
