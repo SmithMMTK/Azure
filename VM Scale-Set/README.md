@@ -147,12 +147,12 @@ Create file name: ___customConfig.json___
 __Apply the Custom Script Extension__
 ```bash
     az vmss extension set \
-        --publisher Microsoft.Azure.Extensions \
-        --version 2.0 \
-        --name CustomScript \
-        --resource-group myResourceGroup \
-        --vmss-name myScaleSet \
-        --settings @customConfig.json
+    --publisher Microsoft.Azure.Extensions \
+    --version 2.0 \
+    --name CustomScript \
+    --resource-group myResourceGroup \
+    --vmss-name myScaleSet \
+    --settings @customConfig.json
 ```
 
 __Test your scale set__
@@ -160,14 +160,14 @@ To allow traffic to reach the web server, create a load balancer rule with az ne
 
 ```bash
     az network lb rule create \
-        --resource-group myResourceGroup \
-        --name myLoadBalancerRuleWeb \
-        --lb-name myScaleSetLB \
-        --backend-pool-name myScaleSetLBBEPool \
-        --backend-port 80 \
-        --frontend-ip-name loadBalancerFrontEnd \
-        --frontend-port 80 \
-        --protocol tcp
+    --resource-group myResourceGroup \
+    --name myLoadBalancerRuleWeb \
+    --lb-name myScaleSetLB \
+    --backend-pool-name myScaleSetLBBEPool \
+    --backend-port 80 \
+    --frontend-ip-name loadBalancerFrontEnd \
+    --frontend-port 80 \
+    --protocol tcp
 
 ```
 
@@ -175,10 +175,10 @@ To see your web server in action, obtain the public IP address of your load bala
 
 ```bash
     az network public-ip show \
-        --resource-group myResourceGroup \
-        --name myScaleSetLBPublicIP \
-        --query [ipAddress] \
-        --output tsv
+    --resource-group myResourceGroup \
+    --name myScaleSetLBPublicIP \
+    --query [ipAddress] \
+    --output tsv
 ```
 
 
