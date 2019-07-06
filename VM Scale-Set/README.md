@@ -143,6 +143,18 @@ Create file name: ___customConfig.json___
         "commandToExecute": "./automate_nginx.sh"
     }
 ```
+```json
+    {
+        "fileUris": ["https://github.com/SmithMMTK/home/blob/master/VM%20Scale-Set/nodesjs.sh"],
+        "commandToExecute": "./nodejs.sh"
+    }
+```
+
+```json
+    {
+        "commandToExecute": "sudo mkdir test"
+    }
+```
 
 __Apply the Custom Script Extension__
 ```bash
@@ -155,7 +167,26 @@ __Apply the Custom Script Extension__
     --settings @customConfig.json
 ```
 
+ az vmss extension set \
+    --publisher Microsoft.Azure.Extensions \
+    --version 2.0 \
+    --name CustomScript \
+    --resource-group myResourceGroup \
+    --vmss-name myScaleSet \
+    --settings @cus2.json
+
+
+```bash
+    az vmss extension show \
+    --name CustomScript \
+    --resource-group myResourceGroup \
+    --vmss-name myScaleSet
+```
+
+
 __Test your scale set__
+
+__Allow traffic to reach the web server__
 To allow traffic to reach the web server, create a load balancer rule with az network lb rule create. The following example creates a rule named myLoadBalancerRuleWeb:
 
 ```bash
@@ -164,7 +195,7 @@ To allow traffic to reach the web server, create a load balancer rule with az ne
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
-    --backend-port 80 \
+    --backend-port 3000 \
     --frontend-ip-name loadBalancerFrontEnd \
     --frontend-port 80 \
     --protocol tcp
@@ -186,3 +217,72 @@ __Experimental : Create customConfig.json for nodejs with express__
 > To-do ...
 
 --- 
+
+__Create App__ ([detail](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-create-vmss))
+
+_cloud-init.txt_
+
+    #cloud-config
+    package_upgrade: true
+    packages:
+    - nginx
+    - nodejs
+    - npm
+    
+    runcmd:
+    - sudo apt-get update --yes
+    - sudo apt-get install nodejs --yes
+    - sudo apt-get install npm --yes
+    - cd "/home/azureuser"
+    - rm -rf nodejs_express    
+    - git clone https://github.com/SmithMMTK/nodejs-express
+    - cd nodejs-express
+    - npm install --yes
+    - nodejs app.js
+
+__Creat Resource Group__
+```bash
+    az group create --name myResourceGroupScaleSet2 --location southeastasia
+```
+
+__Create VM Scale Set with Cloud-init.txt__
+```bash
+    az vmss create \
+    --resource-group myResourceGroupScaleSet2 \
+    --name myScaleSet \
+    --image UbuntuLTS \
+    --upgrade-policy-mode automatic \
+    --custom-data cloud-init.txt \
+    --admin-username azureuser \
+    --generate-ssh-keys
+```
+
+```bash
+az vmss list-instance-connection-info \
+    --resource-group myResourceGroupScaleSet2 \
+    --name myScaleSet
+```
+
+__Loop Test Client__
+```bash
+    for (( ; ; ))
+    do
+        curl http://23.97.60.255
+        echo
+    done
+```
+
+```bash
+    az network lb rule create \
+    --resource-group myResourceGroupScaleSet2 \
+    --name myLoadBalancerRuleWeb \
+    --lb-name myScaleSetLB \
+    --backend-pool-name myScaleSetLBBEPool \
+    --backend-port 3000 \
+    --frontend-ip-name loadBalancerFrontEnd \
+    --frontend-port 80 \
+    --protocol tcp
+```
+
+az vmss stop --resource-group myResourceGroupScaleSet2 \
+    --name myScaleSet --instance-ids 1
