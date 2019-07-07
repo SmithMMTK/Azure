@@ -19,5 +19,4 @@
     - sudo chmod u+x boot.sh
     - cd "/home/azureuser/nodejs-express"
     - npm install --yes
-    - sudo npm install pm2 -g
-    - pm2 start "/home/azureuser/app.js"
+    - nodejs app.js
