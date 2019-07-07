@@ -268,13 +268,13 @@ Once the VM has been provisioned, cloud-init will run through all the modules an
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet18 --location southeastasia
+    az group create --name myResourceGroupScaleSet19 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet18 \
+    --resource-group myResourceGroupScaleSet19 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -286,14 +286,14 @@ __Create VM Scale Set with Cloud-init.txt__
 __Get Instance SSH IP__
 ```bash
     az vmss list-instance-connection-info \
-        --resource-group myResourceGroupScaleSet18 \
+        --resource-group myResourceGroupScaleSet19 \
         --name myScaleSet
 ```
 
 __Create Probe__
 
 ```bash
-    az network lb probe create --resource-group myResourceGroupScaleSet18 \
+    az network lb probe create --resource-group myResourceGroupScaleSet19 \
     --lb-name myScaleSetLB \
     -n MyProbe --protocol http --port 3000 --path /
 ```
@@ -302,7 +302,7 @@ __Create Load Balancer Rule__
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet18 \
+    --resource-group myResourceGroupScaleSet19 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -325,13 +325,13 @@ __Loop Test Client__
 
 __Clean resources__
 ```bash
-    az group delete --name myResourceGroupScaleSet18 \
+    az group delete --name myResourceGroupScaleSet19 \
     --no-wait --yes
 ```
 
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet18 \
+az vmss stop --resource-group myResourceGroupScaleSet19 \
     --name myScaleSet --instance-ids 1
 
 
