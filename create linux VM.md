@@ -52,11 +52,11 @@ __Create Linux VM__
 ```bash
 az vm create \
     --resource-group myLinux0101 \
-    --name myLinux0101 \
+    --name myLinux01 \
     --image UbuntuLTS \
     --admin-username azureuser \
     --generate-ssh-keys \
-    --custom-data cloud-init.txt \
+    --custom-data cloud-init.txt
 ```
 
 __Get IP Address__
