@@ -221,6 +221,7 @@ __Experimental : Create customConfig.json for nodejs with express__
 > To-do ...
 
 --- 
+## Deploy Application and Code by _cloud-init.txt_
 
 __Deploy Applications and Code__ ([detail](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-create-vmss))
 
@@ -236,17 +237,17 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     - pm2
     
     runcmd:
-    - sudo apt-get update --yes
-    - sudo apt-get install nodejs --yes
-    - sudo apt-get install npm --yes
-    - sudo npm install pm2 -g
-    - cd "/home/azureuser"
-    - rm -rf nodejs_express    
+    - sudo apt-get update --yes > log.txt
+    - sudo apt-get install nodejs --yes >> log.txt
+    - sudo apt-get install npm --yes >> log.txt
+    - sudo npm install pm2 -g >> log.txt
+    - cd "/home/azureuser" 
+    - rm -rf nodejs_express     
     - git clone https://github.com/SmithMMTK/nodejs-express
     - cd nodejs-express
-    - npm install --yes
-    - nodejs app.js
-    - pm2 start "/home/azureuser/nodejs-express/app.js"
+    - npm install --yes >> log.txt
+    - nodejs app.js >> log.txt
+    - pm2 start "/home/azureuser/nodejs-express/app.js" >> log.txt
 ```
 __Troubleshooting cloud-init__
 
@@ -260,13 +261,13 @@ Once the VM has been provisioned, cloud-init will run through all the modules an
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet8 --location southeastasia
+    az group create --name myResourceGroupScaleSet9 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet8 \
+    --resource-group myResourceGroupScaleSet9 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -277,13 +278,13 @@ __Create VM Scale Set with Cloud-init.txt__
 
 ```bash
 az vmss list-instance-connection-info \
-    --resource-group myResourceGroupScaleSet8 \
+    --resource-group myResourceGroupScaleSet9 \
     --name myScaleSet
 ```
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet8 \
+    --resource-group myResourceGroupScaleSet9 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -304,12 +305,12 @@ __Loop Test Client__
 
 __Clean resources__
 ```bash
-    az group delete --name myResourceGroupScaleSet8 --no-wait --yes
+    az group delete --name myResourceGroupScaleSet9 --no-wait --yes
 ```
 
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet8 \
+az vmss stop --resource-group myResourceGroupScaleSet9 \
     --name myScaleSet --instance-ids 1
 
 
