@@ -222,6 +222,7 @@ __Create App__ ([detail](https://docs.microsoft.com/en-us/azure/virtual-machines
 
 _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topics/examples.html))
 
+```YAML
     #cloud-config
     package_upgrade: true
     packages:
@@ -235,6 +236,7 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     - cd nodejs-express
     - npm install --yes
     - nodejs app.js
+```
 
 > [pm2 manual](https://medium.com/pnpsolution/วิธีการ-run-node-js-บน-server-ด้วย-pm2-fd66c1e54b60)
 >
