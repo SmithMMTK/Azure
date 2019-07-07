@@ -234,7 +234,7 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     - sudo apt-get update --yes
     - sudo apt-get install nodejs --yes
     - sudo apt-get install npm --yes
-    - sudo apt-get install pm2 --yes
+    - sudo npm install pm2 -g
     - cd "/home/azureuser"
     - rm -rf nodejs_express    
     - git clone https://github.com/SmithMMTK/nodejs-express
@@ -251,13 +251,13 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet5 --location southeastasia
+    az group create --name myResourceGroupScaleSet6 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet5 \
+    --resource-group myResourceGroupScaleSet6 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -268,13 +268,13 @@ __Create VM Scale Set with Cloud-init.txt__
 
 ```bash
 az vmss list-instance-connection-info \
-    --resource-group myResourceGroupScaleSet5 \
+    --resource-group myResourceGroupScaleSet6 \
     --name myScaleSet
 ```
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet5 \
+    --resource-group myResourceGroupScaleSet6 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -295,5 +295,5 @@ __Loop Test Client__
 
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet5 \
+az vmss stop --resource-group myResourceGroupScaleSet6 \
     --name myScaleSet --instance-ids 1
