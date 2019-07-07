@@ -220,7 +220,7 @@ __Experimental : Create customConfig.json for nodejs with express__
 
 __Create App__ ([detail](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-create-vmss))
 
-_cloud-init.txt_
+_cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topics/examples.html))
 
     #cloud-config
     package_upgrade: true
