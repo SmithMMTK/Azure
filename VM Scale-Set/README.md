@@ -135,6 +135,10 @@ __Start / Stop VM in a Scale Set__
 __What is the Azure Custom Script Extension?__
 The Custom Script Extension downloads and executes scripts on Azure VMs. This extension is useful for post deployment configuration, software installation, or any other configuration / management task. Scripts can be downloaded from Azure storage or GitHub, or provided to the Azure portal at extension run-time.
 
+__Extension Custom Script (Linux)__ ([detail](https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-linux))
+The extension will only run a script once, if you want to run a script on every boot, then you can use [cloud-init image](https://docs.microsoft.com/azure/virtual-machines/linux/using-cloud-init) and use a [Scripts Per Boot module](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#scripts-per-boot). Alternatively, you can use the script to create a Systemd service unit.
+
+
 __Create Custom Script Extension definition__
 Create file name: ___customConfig.json___
 ```json
@@ -228,6 +232,7 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     packages:
     - nodejs
     - npm
+    - express
     - pm2
     
     runcmd:
@@ -241,8 +246,12 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     - cd nodejs-express
     - npm install --yes
     - nodejs app.js
-    - pm2 start app.js
+    - pm2 start "/home/azureuser/nodejs-express/app.js"
 ```
+__Troubleshooting cloud-init__
+
+Once the VM has been provisioned, cloud-init will run through all the modules and script defined in --custom-data in order to configure the VM. If you need to troubleshoot any errors or omissions from the configuration, you need to search for the module name (disk_setup or runcmd for example) in the cloud-init log - located in __/var/log/cloud-init.log__.
+
 
 > [pm2 manual](https://medium.com/@utkarsh_verma/configure-nginx-as-a-web-server-and-reverse-proxy-for-nodejs-application-on-aws-ubuntu-16-04-server-872922e21d38))
 >
@@ -251,13 +260,13 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet6 --location southeastasia
+    az group create --name myResourceGroupScaleSet8 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet6 \
+    --resource-group myResourceGroupScaleSet8 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -268,13 +277,13 @@ __Create VM Scale Set with Cloud-init.txt__
 
 ```bash
 az vmss list-instance-connection-info \
-    --resource-group myResourceGroupScaleSet6 \
+    --resource-group myResourceGroupScaleSet8 \
     --name myScaleSet
 ```
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet6 \
+    --resource-group myResourceGroupScaleSet8 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -293,7 +302,14 @@ __Loop Test Client__
     done
 ```
 
+__Clean resources__
+```bash
+    az group delete --name myResourceGroupScaleSet8 --no-wait --yes
+```
+
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet6 \
+az vmss stop --resource-group myResourceGroupScaleSet8 \
     --name myScaleSet --instance-ids 1
+
+
