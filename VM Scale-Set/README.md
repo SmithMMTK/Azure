@@ -1,4 +1,4 @@
-# VM Scale Set Hands-On Experience
+# VM Scale Set : Hands-On Experience
 
 ## Index
 - [Create VM Scale Set](https://github.com/SmithMMTK/home/tree/master/VM%20Scale-Set#create-vm-scale-set-detail)
