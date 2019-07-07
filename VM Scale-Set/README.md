@@ -228,6 +228,7 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     packages:
     - nodejs
     - npm
+    - pm2
     
     runcmd:
     - cd "/home/azureuser"
@@ -236,6 +237,7 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     - cd nodejs-express
     - npm install --yes
     - nodejs app.js
+    - pm2 start app.js
 ```
 
 > [pm2 manual](https://medium.com/pnpsolution/วิธีการ-run-node-js-บน-server-ด้วย-pm2-fd66c1e54b60)
