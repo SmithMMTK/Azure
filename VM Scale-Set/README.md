@@ -247,8 +247,9 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     - sudo cp boot.sh /var/lib/cloud/scripts/per-boot
     - cd /var/lib/cloud/scripts/per-boot
     - sudo chmod u+x boot.sh
-    - cd "/home/azureuser"
+    - cd "/home/azureuser/nodejs-express"
     - npm install --yes
+    - nodejs app.js
     - sudo npm install pm2 -g
     - pm2 start "/home/azureuser/app.js"
     
@@ -267,13 +268,13 @@ Once the VM has been provisioned, cloud-init will run through all the modules an
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet13 --location southeastasia
+    az group create --name myResourceGroupScaleSet18 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet13 \
+    --resource-group myResourceGroupScaleSet18 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -284,15 +285,15 @@ __Create VM Scale Set with Cloud-init.txt__
 
 __Get Instance SSH IP__
 ```bash
-az vmss list-instance-connection-info \
-    --resource-group myResourceGroupScaleSet13 \
-    --name myScaleSet
+    az vmss list-instance-connection-info \
+        --resource-group myResourceGroupScaleSet18 \
+        --name myScaleSet
 ```
 
 __Create Probe__
 
 ```bash
-    az network lb probe create --resource-group myResourceGroupScaleSet13 \
+    az network lb probe create --resource-group myResourceGroupScaleSet18 \
     --lb-name myScaleSetLB \
     -n MyProbe --protocol http --port 3000 --path /
 ```
@@ -301,7 +302,7 @@ __Create Load Balancer Rule__
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet13 \
+    --resource-group myResourceGroupScaleSet18 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -324,12 +325,13 @@ __Loop Test Client__
 
 __Clean resources__
 ```bash
-    az group delete --name myResourceGroupScaleSet13 --no-wait --yes
+    az group delete --name myResourceGroupScaleSet18 \
+    --no-wait --yes
 ```
 
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet13 \
+az vmss stop --resource-group myResourceGroupScaleSet18 \
     --name myScaleSet --instance-ids 1
 
 
