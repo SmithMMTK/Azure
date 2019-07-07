@@ -225,21 +225,15 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     #cloud-config
     package_upgrade: true
     packages:
-    - nginx
     - nodejs
     - npm
     
     runcmd:
-    - sudo apt-get update --yes
-    - sudo apt-get install nodejs --yes
-    - sudo apt-get install npm --yes
-    - sudo npm install pm2 -g
     - cd "/home/azureuser"
     - rm -rf nodejs_express    
     - git clone https://github.com/SmithMMTK/nodejs-express
     - cd nodejs-express
     - npm install --yes
-    - sudo pm2 start nodejs app.js
     - nodejs app.js
 
 > [pm2 manual](https://medium.com/pnpsolution/วิธีการ-run-node-js-บน-server-ด้วย-pm2-fd66c1e54b60)
