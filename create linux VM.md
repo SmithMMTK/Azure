@@ -51,7 +51,7 @@ __Create Resource Group__
 __Create Linux VM__
 ```bash
 az vm create \
-    --resource-group myLinux0101 \
+    --resource-group myLinux01 \
     --name myLinux01 \
     --image UbuntuLTS \
     --admin-username azureuser \
