@@ -218,7 +218,7 @@ __Experimental : Create customConfig.json for nodejs with express__
 
 --- 
 
-__Create App__ ([detail](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-create-vmss))
+__Deploy Applications and Code__ ([detail](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-create-vmss))
 
 _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topics/examples.html))
 
@@ -231,6 +231,10 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     - pm2
     
     runcmd:
+    - sudo apt-get update --yes
+    - sudo apt-get install nodejs --yes
+    - sudo apt-get install npm --yes
+    - sudo apt-get install pm2 --yes
     - cd "/home/azureuser"
     - rm -rf nodejs_express    
     - git clone https://github.com/SmithMMTK/nodejs-express
@@ -240,20 +244,20 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
     - pm2 start app.js
 ```
 
-> [pm2 manual](https://medium.com/pnpsolution/วิธีการ-run-node-js-บน-server-ด้วย-pm2-fd66c1e54b60)
+> [pm2 manual](https://medium.com/@utkarsh_verma/configure-nginx-as-a-web-server-and-reverse-proxy-for-nodejs-application-on-aws-ubuntu-16-04-server-872922e21d38))
 >
 > $ pm2 list
 >
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet4 --location southeastasia
+    az group create --name myResourceGroupScaleSet5 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet4 \
+    --resource-group myResourceGroupScaleSet5 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -264,13 +268,13 @@ __Create VM Scale Set with Cloud-init.txt__
 
 ```bash
 az vmss list-instance-connection-info \
-    --resource-group myResourceGroupScaleSet4 \
+    --resource-group myResourceGroupScaleSet5 \
     --name myScaleSet
 ```
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet4 \
+    --resource-group myResourceGroupScaleSet5 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -291,5 +295,5 @@ __Loop Test Client__
 
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet4 \
+az vmss stop --resource-group myResourceGroupScaleSet5 \
     --name myScaleSet --instance-ids 1
