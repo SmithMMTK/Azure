@@ -2,57 +2,57 @@
 
 __Create cloud-init.txt__
 ```yaml
-    #cloud-config
-    package_upgrade: true
-    packages:
-    - nginx
-    - nodejs
-    - npm
-    write_files:
-    - owner: www-data:www-data
-        path: /etc/nginx/sites-available/default
-        content: |
-        server {
-            listen 80;
-            location / {
-            proxy_pass http://localhost:3000;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection keep-alive;
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-            }
+#cloud-config
+package_upgrade: true
+packages:
+  - nginx
+  - nodejs
+  - npm
+write_files:
+  - owner: www-data:www-data
+    path: /etc/nginx/sites-available/default
+    content: |
+      server {
+        listen 80;
+        location / {
+          proxy_pass http://localhost:3000;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection keep-alive;
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
         }
-    - owner: azureuser:azureuser
-        path: /home/azureuser/myapp/index.js
-        content: |
-        var express = require('express')
-        var app = express()
-        var os = require('os');
-        app.get('/', function (req, res) {
-            res.send('Hello World from host ' + os.hostname() + '!')
-        })
-        app.listen(3000, function () {
-            console.log('Hello world app listening on port 3000!')
-        })
-    runcmd:
-    - service nginx restart
-    - cd "/home/azureuser/myapp"
-    - npm init
-    - npm install express -y
-    - nodejs index.js
+      }
+  - owner: azureuser:azureuser
+    path: /home/azureuser/myapp/index.js
+    content: |
+      var express = require('express')
+      var app = express()
+      var os = require('os');
+      app.get('/', function (req, res) {
+        res.send('Hello World from host ' + os.hostname() + '!')
+      })
+      app.listen(3000, function () {
+        console.log('Hello world app listening on port 3000!')
+      })
+runcmd:
+  - service nginx restart
+  - cd "/home/azureuser/myapp"
+  - npm init
+  - npm install express -y
+  - nodejs index.js
 ```
 
 __Create Resource Group__
 ```bash
-    az group create --name myLinux01 --location southeastasia
+    az group create --name myLinux03 --location southeastasia
 ```
 
 __Create Linux VM__
 ```bash
 az vm create \
-    --resource-group myLinux01 \
-    --name myLinux01 \
+    --resource-group myLinux03 \
+    --name myLinux03 \
     --image UbuntuLTS \
     --admin-username azureuser \
     --generate-ssh-keys \
@@ -62,20 +62,20 @@ az vm create \
 __Get IP Address__
 
 ```bash
-    az vm list-ip-addresses --resource-group myLinux01 --name myLinux01 -o table
+    az vm list-ip-addresses --resource-group myLinux03 --name myLinux03 -o table
 ```
 
 __Setup NSG__
 - List NSG
 ```bash
-    az network nsg list --resource-group myLinux01 -o table
+    az network nsg list --resource-group myLinux03 -o table
 ```
 
 - List and Create NSG Rules
 ```bash
-    az network nsg rule list --nsg-name myLinux01NSG --resource-group myLinux01
+    az network nsg rule list --nsg-name myLinux03NSG --resource-group myLinux03
 
-    az network nsg rule create -g myLinux01 --nsg-name myLinux01NSG -n nodeweb --priority 100 --destination-port-ranges 3000
+    az network nsg rule create -g myLinux03 --nsg-name myLinux03NSG -n nodeweb --priority 100 --destination-port-ranges 80
 ```
 
 __Connect to VM by SSH__
@@ -86,7 +86,7 @@ __Connect to VM by SSH__
 
 __Clean resources__
 ```bash
-    az group delete --name myLinux01 \
+    az group delete --name myLinux03 \
     --no-wait --yes
 ```
 
