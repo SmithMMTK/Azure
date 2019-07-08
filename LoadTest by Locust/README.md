@@ -22,52 +22,52 @@ __Install Locustio__
 __Create locustfile.py__
 
 ```python
-    from locust import HttpLocust, TaskSet
-    
-    def login(l):
-        l.client.post("/login", {"username":"ellen_key", "password":"education"})
+from locust import HttpLocust, TaskSet
 
-    def logout(l):
-        l.client.post("/logout", {"username":"ellen_key", "password":"education"})
+def login(l):
+    l.client.post("/login", {"username":"ellen_key", "password":"education"})
 
-    def index(l):
-        l.client.get("/")
+def logout(l):
+    l.client.post("/logout", {"username":"ellen_key", "password":"education"})
 
-    def profile(l):
-        l.client.get("/profile")
+def index(l):
+    l.client.get("/")
 
-    class UserBehavior(TaskSet):
-        tasks = {index: 2, profile: 1}
+def profile(l):
+    l.client.get("/profile")
 
-        def on_start(self):
-            login(self)
+class UserBehavior(TaskSet):
+    tasks = {index: 2, profile: 1}
 
-        def on_stop(self):
-            logout(self)
+    def on_start(self):
+        login(self)
 
-    class WebsiteUser(HttpLocust):
-        task_set = UserBehavior
-        min_wait = 5000
-        max_wait = 9000
+    def on_stop(self):
+        logout(self)
+
+class WebsiteUser(HttpLocust):
+    task_set = UserBehavior
+    min_wait = 5000
+    max_wait = 9000
 
 ```
 
 ```python
-    from locust import HttpLocust, TaskSet, task
+from locust import HttpLocust, TaskSet, task
 
-    class MyTaskSet(TaskSet):
-        @task(2)
-        def index(self):
-            self.client.get("/")
+class MyTaskSet(TaskSet):
+    @task(2)
+    def index(self):
+        self.client.get("/")
 
-        @task(1)
-        def about(self):
-            self.client.get("/about/")
+    @task(1)
+    def about(self):
+        self.client.get("/about/")
 
-    class MyLocust(HttpLocust):
-        task_set = MyTaskSet
-        min_wait = 5000
-        max_wait = 15000
+class MyLocust(HttpLocust):
+    task_set = MyTaskSet
+    min_wait = 5000
+    max_wait = 15000
 ```
 
 __Start Locust__

@@ -241,13 +241,13 @@ __Download__ [cloud-init.txt](https://github.com/SmithMMTK/home/blob/master/VM%2
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet2 --location southeastasia
+    az group create --name myResourceGroupScaleSet1 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet2 \
+    --resource-group myResourceGroupScaleSet1 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -259,14 +259,14 @@ __Create VM Scale Set with Cloud-init.txt__
 __Get Instance SSH IP__
 ```bash
     az vmss list-instance-connection-info \
-        --resource-group myResourceGroupScaleSet2 \
+        --resource-group myResourceGroupScaleSet1 \
         --name myScaleSet
 ```
 
 __Create Probe__
 
 ```bash
-    az network lb probe create --resource-group myResourceGroupScaleSet2 \
+    az network lb probe create --resource-group myResourceGroupScaleSet1 \
     --lb-name myScaleSetLB \
     -n MyProbe --protocol http --port 3000 --path /
 ```
@@ -275,7 +275,7 @@ __Create Load Balancer Rule__
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet2 \
+    --resource-group myResourceGroupScaleSet1 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -298,13 +298,13 @@ __Loop Test Client__
 
 __Clean resources__
 ```bash
-    az group delete --name myResourceGroupScaleSet2 \
+    az group delete --name myResourceGroupScaleSet1 \
     --no-wait --yes
 ```
 
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet2 \
+az vmss stop --resource-group myResourceGroupScaleSet1 \
     --name myScaleSet --instance-ids 1
 
 
