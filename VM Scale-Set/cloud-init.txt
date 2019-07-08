@@ -8,9 +8,9 @@ write_files:
   - owner: azureuser:azureuser
   - path: /home/azureuser/boot_log.txt
     contents: |
-      ========================
-      Begining of boot process
-      ========================
+      Starting boot process
+      Creat boot_log.txt
+      ______________________
   - owner: www-data:www-data
   - path: /etc/nginx/sites-available/default
     content: |
