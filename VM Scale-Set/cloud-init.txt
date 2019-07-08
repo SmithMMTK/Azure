@@ -5,6 +5,12 @@ packages:
   - nodejs
   - npm
 write_files:
+  - owner: azureuser:azureuser
+  - path: /home/azureuser/boot_log.txt
+    contents: |
+      ========================
+      Begining of boot process
+      ========================
   - owner: www-data:www-data
   - path: /etc/nginx/sites-available/default
     content: |
@@ -37,9 +43,14 @@ write_files:
         console.log('Hello world app listening on port 3000!')
       })
 runcmd:
+  - echo "Add start-up script to run after reboot" >> /home/azureuser/boot_log.txt
   - sudo sed -i 's/scripts-user$/\[scripts-user, always\]/' /etc/cloud/cloud.cfg
+  - echo "Restart nginx" >> /home/azureuser/boot_log.txt
   - service nginx restart
   - cd "/home/azureuser/myapp"
+  - echo "Initialize npm" >> /home/azureuser/boot_log.txt
   - npm init
+  - echo "Install express" >> /home/azureuser/boot_log.txt
   - npm install express -y
+  - echo "Done." >> /home/azureuser/boot_log.txt
   - nodejs index.js
