@@ -43,6 +43,7 @@ write_files:
         console.log('Hello world app listening on port 3000!')
       })
 runcmd:
+  - sudo sed -i 's/scripts-user$/\[scripts-user, always\]/' /etc/cloud/cloud.cfg
   - service nginx restart
   - cd "/home/azureuser/myapp"
   - npm init
@@ -50,16 +51,23 @@ runcmd:
   - nodejs index.js
 ```
 
+__Cloud-init Configuration__
+- Configuration File
+  >/etc/cloud/cloud.cfg
+- Debuging File
+  >/var/log/cloud-init.log
+
+
 __Create Resource Group__
 ```bash
-    az group create --name myLinux25 --location southeastasia
+    az group create --name myLinux27 --location southeastasia
 ```
 
 __Create Linux VM__
 ```bash
 az vm create \
-    --resource-group myLinux25 \
-    --name myLinux25 \
+    --resource-group myLinux27 \
+    --name myLinux27 \
     --image UbuntuLTS \
     --admin-username azureuser \
     --generate-ssh-keys \
@@ -69,20 +77,20 @@ az vm create \
 __Get IP Address__
 
 ```bash
-    az vm list-ip-addresses --resource-group myLinux25 --name myLinux25 -o table
+    az vm list-ip-addresses --resource-group myLinux27 --name myLinux27 -o table
 ```
 
 __Setup NSG__
 - List NSG
 ```bash
-    az network nsg list --resource-group myLinux25 -o table
+    az network nsg list --resource-group myLinux27 -o table
 ```
 
 - List and Create NSG Rules
 ```bash
-    az network nsg rule list --nsg-name myLinux25NSG --resource-group myLinux25
+    az network nsg rule list --nsg-name myLinux27NSG --resource-group myLinux27
 
-    az network nsg rule create -g myLinux25 --nsg-name myLinux25NSG -n nodeweb --priority 100 --destination-port-ranges 80
+    az network nsg rule create -g myLinux27 --nsg-name myLinux27NSG -n nodeweb --priority 100 --destination-port-ranges 80
 ```
 
 __Connect to VM by SSH__
@@ -93,31 +101,6 @@ __Connect to VM by SSH__
 
 __Clean resources__
 ```bash
-    az group delete --name myLinux25 \
+    az group delete --name myLinux27 \
     --no-wait --yes
 ```
-
-__Troubleshooting cloud-init__
-
-Once the VM has been provisioned, cloud-init will run through all the modules and script defined in --custom-data in order to configure the VM. If you need to troubleshoot any errors or omissions from the configuration, you need to search for the module name (disk_setup or runcmd for example) in the cloud-init log - located in __/var/log/cloud-init.log__.
-
-__Create installation script__
-
-```bash
-    sudo apt-get update --yes
-    sudo apt-get install nodejs --yes
-    sudo apt-get install npm --yes
-    rm -rf nodejs_express    
-    git clone https://github.com/SmithMMTK/nodejs-express
-    cd nodejs-express
-    npm install --yes
-    nodejs app.js
-
-```
->
-> write_file:
->  - owner: azureuser:azureuser
->    path: /var/lib/cloud/scripts/per-boot/start.js
->    content: |
->      cd "/home/azureuser/myapp"
->      nodejs index.js

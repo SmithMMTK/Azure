@@ -231,25 +231,54 @@ _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topi
 #cloud-config
 package_upgrade: true
 packages:
+  - nginx
   - nodejs
   - npm
+write_files:
+  - ownwer: azureuser:azureuser
+    path: /var/lib/cloud/scripts/per-boot/start.sh
+    content: |
+      cd "/home/azureuser/myapp"
+      nodejs index.js
+  - owner: www-data:www-data
+    path: /etc/nginx/sites-available/default
+    content: |
+      server {
+        listen 80;
+        location / {
+          proxy_pass http://localhost:3000;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection keep-alive;
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
+        }
+      }
+  - owner: azureuser:azureuser
+    path: /home/azureuser/myapp/index.js
+    content: |
+      var express = require('express')
+      var app = express()
+      var os = require('os');
+      app.get('/', function (req, res) {
+        res.send('Hello World from host ' + os.hostname() + '!')
+      })
+      app.listen(3000, function () {
+        console.log('Hello world app listening on port 3000!')
+      })
 runcmd:
-  - cd "/home/azureuser"
-  - echo "Begin Git clone" $(date) > /home/azureuser/log.txt   
-  - git clone https://github.com/SmithMMTK/nodejs-express >> /home/azureuser/log.txt
-  - echo "End Git clone" $(date) >> /home/azureuser/log.txt
-  - cd nodejs-express
-  - sudo cp boot.sh /var/lib/cloud/scripts/per-boot
-  - cd /var/lib/cloud/scripts/per-boot
-  - echo "Beging chmod" $(date) >> /home/azureuser/log.txt
-  - sudo chmod u+x boot.sh
-  - cd "/home/azureuser/nodejs-express"
-  - npm install --yes
-  - nodejs app.js
+  - sudo sed -i 's/scripts-user$/\[scripts-user, always\]/' /etc/cloud/cloud.cfg
+  - service nginx restart
+  - cd "/home/azureuser/myapp"
+  - npm init
+  - npm install express -y
+  - nodejs index.js
 ```
-__Troubleshooting cloud-init__
-
-Once the VM has been provisioned, cloud-init will run through all the modules and script defined in --custom-data in order to configure the VM. If you need to troubleshoot any errors or omissions from the configuration, you need to search for the module name (disk_setup or runcmd for example) in the cloud-init log - located in __/var/log/cloud-init.log__.
+__Cloud-init Configuration__
+- Configuration File
+  >/etc/cloud/cloud.cfg
+- Debuging File
+  >/var/log/cloud-init.log
 
 
 > [pm2 manual](https://medium.com/@utkarsh_verma/configure-nginx-as-a-web-server-and-reverse-proxy-for-nodejs-application-on-aws-ubuntu-16-04-server-872922e21d38))
@@ -261,13 +290,13 @@ Once the VM has been provisioned, cloud-init will run through all the modules an
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet23 --location southeastasia
+    az group create --name myResourceGroupScaleSet24 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet23 \
+    --resource-group myResourceGroupScaleSet24 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -279,14 +308,14 @@ __Create VM Scale Set with Cloud-init.txt__
 __Get Instance SSH IP__
 ```bash
     az vmss list-instance-connection-info \
-        --resource-group myResourceGroupScaleSet23 \
+        --resource-group myResourceGroupScaleSet24 \
         --name myScaleSet
 ```
 
 __Create Probe__
 
 ```bash
-    az network lb probe create --resource-group myResourceGroupScaleSet23 \
+    az network lb probe create --resource-group myResourceGroupScaleSet24 \
     --lb-name myScaleSetLB \
     -n MyProbe --protocol http --port 3000 --path /
 ```
@@ -295,7 +324,7 @@ __Create Load Balancer Rule__
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet23 \
+    --resource-group myResourceGroupScaleSet24 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -318,13 +347,13 @@ __Loop Test Client__
 
 __Clean resources__
 ```bash
-    az group delete --name myResourceGroupScaleSet23 \
+    az group delete --name myResourceGroupScaleSet24 \
     --no-wait --yes
 ```
 
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet23 \
+az vmss stop --resource-group myResourceGroupScaleSet24 \
     --name myScaleSet --instance-ids 1
 
 
