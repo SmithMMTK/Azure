@@ -225,56 +225,9 @@ __Experimental : Create customConfig.json for nodejs with express__
 
 ###__Deploy Applications and Code__ ([detail](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-create-vmss))
 
-_cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topics/examples.html))
 
-```YAML
-#cloud-config
-package_upgrade: true
-packages:
-  - nginx
-  - nodejs
-  - npm
-write_files:
-  - owner: azureuser:azureuser
-    path: /var/lib/cloud/scripts/per-boot/start.sh
-    content: |
-      cd "/home/azureuser/myapp"
-      nodejs index.js
-  - owner: www-data:www-data
-    path: /etc/nginx/sites-available/default
-    content: |
-      server {
-        listen 80;
-        location / {
-          proxy_pass http://localhost:3000;
-          proxy_http_version 1.1;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection keep-alive;
-          proxy_set_header Host $host;
-          proxy_cache_bypass $http_upgrade;
-        }
-      }
-  - owner: azureuser:azureuser
-    path: /home/azureuser/myapp/index.js
-    content: |
-      var express = require('express')
-      var app = express()
-      var os = require('os');
-      app.get('/', function (req, res) {
-        res.send('Hello World from host ' + os.hostname() + '!')
-      })
-      app.listen(3000, function () {
-        console.log('Hello world app listening on port 3000!')
-      })
-runcmd:
-  - sudo sed -i 's/scripts-user$/\[scripts-user, always\]/' /etc/cloud/cloud.cfg
-  - service nginx restart
-  - cd "/home/azureuser/myapp"
-  - npm init
-  - npm install express -y
-  - nodejs index.js
-```
-__Cloud-init Configuration__
+__Download__ [cloud-init.txt](https://github.com/SmithMMTK/home/blob/master/VM%20Scale-Set/cloud-init.txt)
+
 - Configuration File
     > /etc/cloud/cloud.cfg
 - Debuging File
@@ -283,22 +236,18 @@ __Cloud-init Configuration__
     > cloud-init analyze show -i my-cloud-init.log
 
 
-> [pm2 manual](https://medium.com/@utkarsh_verma/configure-nginx-as-a-web-server-and-reverse-proxy-for-nodejs-application-on-aws-ubuntu-16-04-server-872922e21d38))
->
-> $ pm2 list
->
 
 ### Start Deployment
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet1 --location southeastasia
+    az group create --name myResourceGroupScaleSet2 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet1 \
+    --resource-group myResourceGroupScaleSet2 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -310,14 +259,14 @@ __Create VM Scale Set with Cloud-init.txt__
 __Get Instance SSH IP__
 ```bash
     az vmss list-instance-connection-info \
-        --resource-group myResourceGroupScaleSet1 \
+        --resource-group myResourceGroupScaleSet2 \
         --name myScaleSet
 ```
 
 __Create Probe__
 
 ```bash
-    az network lb probe create --resource-group myResourceGroupScaleSet1 \
+    az network lb probe create --resource-group myResourceGroupScaleSet2 \
     --lb-name myScaleSetLB \
     -n MyProbe --protocol http --port 3000 --path /
 ```
@@ -326,7 +275,7 @@ __Create Load Balancer Rule__
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet1 \
+    --resource-group myResourceGroupScaleSet2 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -349,13 +298,13 @@ __Loop Test Client__
 
 __Clean resources__
 ```bash
-    az group delete --name myResourceGroupScaleSet1 \
+    az group delete --name myResourceGroupScaleSet2 \
     --no-wait --yes
 ```
 
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet1 \
+az vmss stop --resource-group myResourceGroupScaleSet2 \
     --name myScaleSet --instance-ids 1
 
 

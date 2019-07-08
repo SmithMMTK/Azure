@@ -2,11 +2,8 @@
 
 __[Create Automation when first boot](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-automate-vm-deployment)__
 
-__Create cloud-init.txt__
-```yaml
-#cloud-config
-[cloud-init.txt]()
-```
+
+__Download__ [cloud-init.txt](https://github.com/SmithMMTK/home/blob/master/VM%20Scale-Set/cloud-init.txt)
 
 __Cloud-init Configuration__
 - Configuration File
