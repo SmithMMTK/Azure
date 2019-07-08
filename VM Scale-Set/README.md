@@ -235,7 +235,7 @@ packages:
   - nodejs
   - npm
 write_files:
-  - ownwer: azureuser:azureuser
+  - owner: azureuser:azureuser
     path: /var/lib/cloud/scripts/per-boot/start.sh
     content: |
       cd "/home/azureuser/myapp"
@@ -276,9 +276,11 @@ runcmd:
 ```
 __Cloud-init Configuration__
 - Configuration File
-  >/etc/cloud/cloud.cfg
+    > /etc/cloud/cloud.cfg
 - Debuging File
-  >/var/log/cloud-init.log
+    > /var/log/cloud-init.log
+- Boot Time Analysis - cloud-init analyze
+    > cloud-init analyze show -i my-cloud-init.log
 
 
 > [pm2 manual](https://medium.com/@utkarsh_verma/configure-nginx-as-a-web-server-and-reverse-proxy-for-nodejs-application-on-aws-ubuntu-16-04-server-872922e21d38))
@@ -290,13 +292,13 @@ __Cloud-init Configuration__
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet24 --location southeastasia
+    az group create --name myResourceGroupScaleSet1 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet24 \
+    --resource-group myResourceGroupScaleSet1 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -308,14 +310,14 @@ __Create VM Scale Set with Cloud-init.txt__
 __Get Instance SSH IP__
 ```bash
     az vmss list-instance-connection-info \
-        --resource-group myResourceGroupScaleSet24 \
+        --resource-group myResourceGroupScaleSet1 \
         --name myScaleSet
 ```
 
 __Create Probe__
 
 ```bash
-    az network lb probe create --resource-group myResourceGroupScaleSet24 \
+    az network lb probe create --resource-group myResourceGroupScaleSet1 \
     --lb-name myScaleSetLB \
     -n MyProbe --protocol http --port 3000 --path /
 ```
@@ -324,7 +326,7 @@ __Create Load Balancer Rule__
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet24 \
+    --resource-group myResourceGroupScaleSet1 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -347,13 +349,13 @@ __Loop Test Client__
 
 __Clean resources__
 ```bash
-    az group delete --name myResourceGroupScaleSet24 \
+    az group delete --name myResourceGroupScaleSet1 \
     --no-wait --yes
 ```
 
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet24 \
+az vmss stop --resource-group myResourceGroupScaleSet1 \
     --name myScaleSet --instance-ids 1
 
 
