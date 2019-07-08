@@ -228,31 +228,24 @@ __Experimental : Create customConfig.json for nodejs with express__
 _cloud-init.txt_ ([full example](https://cloudinit.readthedocs.io/en/latest/topics/examples.html))
 
 ```YAML
-    #cloud-config
-    package_upgrade: true
-    packages:
-    - nodejs
-    - npm
-    - express
-    
-    runcmd:
-    - sudo apt-get update --yes > /home/azureuser/log.txt
-    - sudo apt-get install nodejs --yes >> /home/azureuser/log.txt
-    - sudo apt-get install npm --yes >> /home/azureuser/log.txt
-    - sudo npm install pm2 -g >> /home/azureuser/log.txt
-    - cd "/home/azureuser" 
-    - rm -rf nodejs_express     
-    - git clone https://github.com/SmithMMTK/nodejs-express >> /home/azureuser/log.txt
-    - cd nodejs-express
-    - sudo cp boot.sh /var/lib/cloud/scripts/per-boot
-    - cd /var/lib/cloud/scripts/per-boot
-    - sudo chmod u+x boot.sh
-    - cd "/home/azureuser/nodejs-express"
-    - npm install --yes
-    - nodejs app.js
-    - sudo npm install pm2 -g
-    - pm2 start "/home/azureuser/app.js"
-    
+#cloud-config
+package_upgrade: true
+packages:
+  - nodejs
+  - npm
+runcmd:
+  - cd "/home/azureuser"
+  - echo "Begin Git clone" $(date) > /home/azureuser/log.txt   
+  - git clone https://github.com/SmithMMTK/nodejs-express >> /home/azureuser/log.txt
+  - echo "End Git clone" $(date) >> /home/azureuser/log.txt
+  - cd nodejs-express
+  - sudo cp boot.sh /var/lib/cloud/scripts/per-boot
+  - cd /var/lib/cloud/scripts/per-boot
+  - echo "Beging chmod" $(date) >> /home/azureuser/log.txt
+  - sudo chmod u+x boot.sh
+  - cd "/home/azureuser/nodejs-express"
+  - npm install --yes
+  - nodejs app.js
 ```
 __Troubleshooting cloud-init__
 
@@ -268,13 +261,13 @@ Once the VM has been provisioned, cloud-init will run through all the modules an
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet19 --location southeastasia
+    az group create --name myResourceGroupScaleSet23 --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet19 \
+    --resource-group myResourceGroupScaleSet23 \
     --name myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
@@ -286,14 +279,14 @@ __Create VM Scale Set with Cloud-init.txt__
 __Get Instance SSH IP__
 ```bash
     az vmss list-instance-connection-info \
-        --resource-group myResourceGroupScaleSet19 \
+        --resource-group myResourceGroupScaleSet23 \
         --name myScaleSet
 ```
 
 __Create Probe__
 
 ```bash
-    az network lb probe create --resource-group myResourceGroupScaleSet19 \
+    az network lb probe create --resource-group myResourceGroupScaleSet23 \
     --lb-name myScaleSetLB \
     -n MyProbe --protocol http --port 3000 --path /
 ```
@@ -302,7 +295,7 @@ __Create Load Balancer Rule__
 
 ```bash
     az network lb rule create \
-    --resource-group myResourceGroupScaleSet19 \
+    --resource-group myResourceGroupScaleSet23 \
     --name myLoadBalancerRuleWeb \
     --lb-name myScaleSetLB \
     --backend-pool-name myScaleSetLBBEPool \
@@ -325,13 +318,13 @@ __Loop Test Client__
 
 __Clean resources__
 ```bash
-    az group delete --name myResourceGroupScaleSet19 \
+    az group delete --name myResourceGroupScaleSet23 \
     --no-wait --yes
 ```
 
 ## Still pending to work on reboot scenario to keep Nodejs app running
 
-az vmss stop --resource-group myResourceGroupScaleSet19 \
+az vmss stop --resource-group myResourceGroupScaleSet23 \
     --name myScaleSet --instance-ids 1
 
 
