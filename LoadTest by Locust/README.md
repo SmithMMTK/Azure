@@ -6,17 +6,17 @@ Website: [Locust](https://docs.locust.io/en/stable/quickstart.html)
 
 __Install Locustio__
 ```bash
-    $ python -m pip install locustio
-    
-    Or
-    
-    $ python3 -m pip install -e git://github.com/locustio/locust.git@master#egg=locustio
+$ python -m pip install locustio
+
+Or
+
+$ python3 -m pip install -e git://github.com/locustio/locust.git@master#egg=locustio
  ```
 
- To see available options, run:
+To see available options, run:
 
 ```bash
-    $ locust --help
+$ locust --help
 ```
 
 __Create locustfile.py__
@@ -73,11 +73,11 @@ class MyLocust(HttpLocust):
 __Start Locust__
 
 ```bash
-    $ locust --host=http://targetsite.com
+$ locust --host=http://targetsite.com
 
-    or
+or
 
-     $ locust -f locust_files/my_locust_file.py --host=http://example.com
+$ locust -f locust_files/my_locust_file.py --host=http://example.com
 ```
 
 
