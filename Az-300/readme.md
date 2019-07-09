@@ -26,7 +26,6 @@
 - [AUTOMATION](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#automation)
 
 
-
 ---
 ### COMPUTE 
 
@@ -275,6 +274,7 @@ Functions in a function app share resources. Among those shared resources are co
 >- private static DocumentClient documentClient
 >- new Lazy<DocumentClient>(InitializeDocumentClient)
 >- new DocumentClient(uri, authKey);
+
 
 
 
