@@ -7,6 +7,7 @@
     - [Container](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#container)
     - [Azure messaging services](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-messaging-services)
     - [Azure Service Bus](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-services-bus)
+    - [Azure App Services](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-app-services)
 - [STORAGE](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#storage)
     - [Storage Service](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#azure-storage-service)
     - [Cosmos DB](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md#cosmos-db)
@@ -68,6 +69,7 @@ __Combination of rules__
 
 __Auto Scale Rule__
 - Scale-Out
+    > Objective: Over 10 minutes period, the maximum CPU time should not exceed 80%. If the does, the app should scale out across three VMs.
     >- Time aggregation: Maximum
     >- Metric name: CPU Percentage (_1 minute time grain_)
     >- Time grain statistic: Average
@@ -392,6 +394,30 @@ __[Web server diagnostics and application diagnostics](https://docs.microsoft.co
 
 - __Web Server Logging__ - Information about HTTP transactions using the W3C extended log file format. It's useful when determining overall site metrics such as the number of requests handled or how many requests are from a specific IP address.
 
+__[Web Jobs Runtime](https://docs.microsoft.com/en-us/azure/app-service/webjobs-sdk-how-to#webjobs-host)__
+    
+```c#
+    static void Main(string[] args)
+    {
+        var _storageConn = ConfigurationManager
+            .ConnectionStrings["MyStorageConnection"].ConnectionString;
+    
+        //// Dashboard logging is deprecated; use Application Insights.
+        //var _dashboardConn = ConfigurationManager
+        //    .ConnectionStrings["MyDashboardConnection"].ConnectionString;
+    
+        JobHostConfiguration config = new JobHostConfiguration();
+        config.StorageConnectionString = _storageConn;
+        //config.DashboardConnectionString = _dashboardConn;
+        JobHost host = new JobHost(config);
+        host.RunAndBlock();
+    }
+```
+
+Code Highlight: 
+>host.RunAndBlock(); // for manual trigger
+
+
 ---
 ### STORAGE
 #### [Azure Storage Service](https://docs.microsoft.com/en-us/azure/storage/common/storage-introduction)
@@ -427,6 +453,21 @@ Consistency levels and latency
 
 [Consistency levels and data durability](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels)
 ![alt text](https://docs.microsoft.com/en-us/azure/cosmos-db/media/consistency-levels/five-consistency-levels.png)
+
+__[Physical partitions](https://docs.microsoft.com/en-us/azure/cosmos-db/partition-data)__
+![alt text](https://docs.microsoft.com/en-us/azure/cosmos-db/media/partition-data/logical-partitions.png)
+
+__Choosing a partition key__ ([detail](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview#choose-partitionkey))
+
+- A single logical partition has an upper limit of 10 GB of storage.
+
+- Azure Cosmos containers have a minimum throughput of 400 request units per second (RU/s). Requests to the same partition key can't exceed the throughput that's allocated to a partition. If requests exceed the allocated throughput, requests are rate-limited. So, it's important to pick a partition key that doesn't result in "hot spots" within your application.
+
+- Choose a partition key that has a wide range of values and access patterns that are evenly spread across logical partitions. This helps spread the data and the activity in your container across the set of logical partitions, so that resources for data storage and throughput can be distributed across the logical partitions.
+
+- Choose a partition key that spreads the workload evenly across all partitions and evenly over time. Your choice of partition key should balance the need for efficient partition queries and transactions against the goal of distributing items across multiple partitions to achieve scalability.
+
+- Candidates for partition keys might include properties that appear frequently as a filter in your queries. Queries can be efficiently routed by including the partition key in the filter predicate.
 
 
 #### [SQL Database Elastic Pool](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-pool)
@@ -628,12 +669,12 @@ Security reader | Read-only access to Identity Protection | Onboard Identity Pro
 
 __Policies__ ([detail](https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/overview#policies))
 
-- Multi-factor authentication registration policy
+- __Multi-factor authentication registration policy__
     > Azure Multi-Factor Authentication provides a means to verify who you are using more than just a username and password. It provides a second layer of security to user sign-ins. In order for users to be able to respond to MFA prompts, they must first register for Azure Multi-Factor Authentication.
-- User risk policy
-    > With the user risk, Azure AD detects the probability that a user account has been compromised. As an administrator, you can configure a user risk Conditional Access policy, to automatically respond to a specific user risk level.
-- Sign-in risk policy
-    > Each risk event that has been detected for a sign-in of a user contributes to a logical concept called risky sign-in. A risky sign-in is an indicator for a sign-in attempt that might not have been performed by the legitimate owner of a user account.
+- __User risk policy__
+    > Azure AD analyzes each sign-in of a user. The objective of the analysis is to detect suspicious actions that come along with the sign-in. In Azure AD, the suspicious actions the system can detect are also known as risk events. While some risk events can be detected in real-time, there are also risk events requiring more time. For example, to detect an impossible travel to atypical locations, the system requires an initial learning period of 14 days to __learn about a user's regular behavior__. There are several options to resolve detected risk events. For example, you can resolve individual risk events manually, or you can get them resolved using a sign-in risk or a user risk Conditional Access policy.
+- __Sign-in risk policy__
+    > Azure AD analyzes each sign-in of a user. The objective of the analysis is to detect suspicious actions that come along with the sign-in. For example, is the sign-in done using an anonymous IP address, or is the sign-in initiated from an unfamiliar location? In Azure AD, the suspicious actions the system can detect are also known as risk events. Based on the risk events that have been detected during a sign-in, Azure AD calculates a value. The value represents the probability (low, medium, high) that the sign-in is not performed by the legitimate user. The probability is called sign-in risk level.
 
 
 __Configure Azure Multi-Factor Authentication settings__ ([detail](https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings))
