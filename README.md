@@ -11,4 +11,5 @@
 
 ## Useful Link
 * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+* [VI Cheatsheet](https://github.com/SmithMMTK/home/blob/master/vi_cheat_sheet.md)
 * [Az-300 Prep](https://github.com/SmithMMTK/home/blob/master/Az-300/readme.md)
