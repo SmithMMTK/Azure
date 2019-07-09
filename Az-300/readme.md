@@ -375,6 +375,13 @@ __Concept__
     -Namespace namespace-name -Name RootManageSharedAccessKey
 ```
 
+The states that can be set for a queue are:
+
+- Active: The queue is active.
+- Disabled: The queue is suspended.
+- SendDisabled: The queue is partially suspended, with receive being permitted.
+- ReceiveDisabled: The queue is partially suspended, with send being permitted
+
 ```bash
     az servicebus namespace create
     --name measureup --resource-group sbrg 
@@ -433,6 +440,11 @@ Code Highlight:
     |----|---|---|
     | SetBlobTier Direction | hot->cool, hot->archive, cool->archive | archive->cool, archive->hot, cool->hot |
 
+__Azure Storage redundancy__ ([detail](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy))
+- LRS : 3 copies within region
+- GRS : 3 copies on remote region
+- RA-GRS : 3 copies on remote region with read access
+
 #### [Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
 
 [Consistency, availability, and performance tradeoffs](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels-tradeoffs)
@@ -489,6 +501,11 @@ Elastic pools solve this problem by ensuring that databases get the performance 
 > DTU requirement = 250
 > DTU Min = 0, DTU Max = 75
 
+__Choose the right SQL Server option in Azure__ ([detail](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-paas-vs-sql-server-iaas))
+
+SQL Server on VM | Managed instance in SQL Database	| Single database / elastic pool in SQL Database
+--- | --- | ---
+You have full control over the SQL Server engine. Up to 99.95% availability | High compatibility with SQL Server on-premises. 99.99% availability guaranteed. __Limited to vCPU purchasing model only.__ | The most commonly used SQL Server features are available. 99.99% availability guaranteed. Built-in backups, patching, recovery.
 
 
 
@@ -623,6 +640,8 @@ ExpressRoute lets you extend your on-premises networks into the Microsoft cloud 
     > - _Create a peering_ // _When use ISP offer, the ISP configure peering_
     > - Create an ExpressRoute VNet gateway
     > - Create a link between the circuit and the VNet.
+    
+    > Not required VPN Server.
 
 
 - [VNet Peering](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) Virtual network peering enables you to seamlessly connect Azure virtual networks. Once peered, the virtual networks appear as one, for connectivity purposes. The traffic between virtual machines in the peered virtual networks is routed through the Microsoft backbone infrastructure, much like traffic is routed between virtual machines in the same virtual network, through private IP addresses only. Azure supports:
@@ -923,7 +942,12 @@ __Understand role definitions for Azure resources__ ([Detail](https://docs.micro
 
     - The __Save-AzureRmResourceGroupDeploymentTemplate__ cmdlet saves a resource group deployment template to a JSON file.
 
-
-
+- __Log Analytics (KQL)__
+```KQL
+    Heartbeat
+    | where TimeGenerated > ago(7d)
+    | summmarize max(TimeGenerated) by Computer
+    | where max_TimeGenerated < ago(1d)
+```
 
 
