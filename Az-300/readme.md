@@ -38,6 +38,13 @@ Prepare | Create image | Create VM from image
 stop-AzVm | new-AzImageConfig | 
 set-AzVm //_make vm to __Generalize___ | new-AzImage |
 
+#### [Migrate Hyper-V VM to Azure](https://docs.microsoft.com/en-us/azure/site-recovery/migrate-tutorial-on-premises-azure)
+- __Create__ Recovery Services vault
+- Set __Protection goal__ to migration from on-premise to Azure
+- Create __Hyper-V site__ and add to VM
+- Install __Site Recovery Agent__ on local VM
+- Register Hyper-V site in vault
+
 
 #### [Auto Scale](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-best-practices)
 
@@ -115,6 +122,17 @@ Monitors your Azure virtual machines (VM) at scale by analyzing the performance 
 
 ---
 ### APPLICATION
+
+#### [On-Premises data gateway](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-gateway-install#how-does-the-gateway-work)
+
+The data gateway facilitates quick and secure communication between your logic app, the gateway cloud service, and your on-premises data source. The gateway cloud service encrypts and stores your data source credentials and gateway details. The service also routes queries and their results between your logic app, the on-premises data gateway, and your data source on premises
+
+![alt text](https://docs.microsoft.com/en-us/azure/logic-apps/media/logic-apps-gateway-install/how-on-premises-data-gateway-works-flow-diagram.png)
+
+__Detail Instruction__ ([link](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-gateway-connection))
+
+![alt text](https://docs.microsoft.com/en-us/azure/logic-apps/media/logic-apps-gateway-connection/logic-app-find-api-connections.png)
+
 
 #### [Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)
 
@@ -365,6 +383,14 @@ __Concept__
     --namespace_name measureup
 ```
 
+#### Azure App Service
+
+__[Web server diagnostics and application diagnostics](https://docs.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#whatisdiag)__
+- __Detailed Error Logging__ - Detailed information for any request that results in HTTP status code 400 or greater. It may contain information that can help determine why the server returned the error code. One __HTML file__ is generated for each error in the app's file system, and up to 50 errors (files) are retained. When the number of HTML files exceed 50, the oldest 26 files are automatically deleted.
+
+- __Failed Request Tracing__ - Detailed information on failed requests, including a trace of the IIS components used to process the request and the time taken in each component. It's useful if you want to improve site performance or isolate a specific HTTP error. One folder is generated for each error in the app's file system. File retention policies are the same as the detailed error logging above.
+
+- __Web Server Logging__ - Information about HTTP transactions using the W3C extended log file format. It's useful when determining overall site metrics such as the number of requests handled or how many requests are from a specific IP address.
 
 ---
 ### STORAGE
@@ -553,7 +579,7 @@ ExpressRoute lets you extend your on-premises networks into the Microsoft cloud 
 
     > __Connect ExpressRoute to On-Premise__ ([detail](https://docs.microsoft.com/en-us/azure/expressroute/expressroute-howto-circuit-portal-resource-manager))
     > - Create an ExpressRoute circuit
-    > - Create a peering
+    > - _Create a peering_ // _When use ISP offer, the ISP configure peering_
     > - Create an ExpressRoute VNet gateway
     > - Create a link between the circuit and the VNet.
 
