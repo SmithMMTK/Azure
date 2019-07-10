@@ -7,7 +7,7 @@
     - [Container](https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#container)
     - [Azure messaging services](https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#azure-messaging-services)
     - [Azure Service Bus](https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#azure-service-bus)
-    - [Azure App Services](https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#azure-app-services)
+    - [Azure App Services](https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#azure-app-service)
 - [STORAGE](https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#storage)
     - [Storage Service](https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#azure-storage-service)
     - [Cosmos DB](https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#cosmos-db)
