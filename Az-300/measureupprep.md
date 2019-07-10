@@ -638,7 +638,7 @@ ExpressRoute lets you extend your on-premises networks into the Microsoft cloud 
 
     > __Connect ExpressRoute to On-Premise__ ([detail](https://docs.microsoft.com/en-us/azure/expressroute/expressroute-howto-circuit-portal-resource-manager))
     > - Create an ExpressRoute circuit
-    > - _Create a peering_ // _When use ISP offer, the ISP configure peering_
+    > - _Create a peering_ // _When use ISP offer only layer-2_
     > - Create an ExpressRoute VNet gateway
     > - Create a link between the circuit and the VNet.
     
