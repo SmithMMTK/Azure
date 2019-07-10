@@ -25,6 +25,7 @@
     - [Role-based access control (RBAC)](https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#role-based-access-control-rbac)
 - [AUTOMATION](https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#automation)
 
+https://github.com/SmithMMTK/home/blob/master/Az-300/measureupprep.md#migrate-hyper-v-vm-to-azure
 
 ---
 ### COMPUTE 
