@@ -17,6 +17,29 @@ Azure offers three services that assist with delivering event messages throughou
 - [Event Hubs](https://docs.microsoft.com/en-us/azure/event-hubs/)
 - [Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/)
 
+---
+
+__Replication Option Comparison__
+
+Replication	| Copies | Strategy
+--- | --- | ---
+Locally redundant storage (LRS)	| Maintains three copies of your data.	|Data is replicated three time within a single facility in a single region.
+Zone-redundant storage (ZRS)    | 	Maintains three copies of your data.	| Data is replicated three times across two to three facilities, either within a single region or across two regions.
+Geo-redundant storage (GRS)	| Maintains six copies of your data.	 |Data is replicated three times within the primary region and is also replicated three times in a secondary region hundreds of miles away from the primary region.
+Read access geo-redundant storage (RA-GRS) | Maintains six copies of your data. | Data is replicated to a secondary geographic location and provides read access to your data in the secondary location.
+
+
+Replication Option  |	LRS   | ZRS   |   GRS |   RA-GRS
+--- | --- | --- | --- | ---
+Node unavailability within a data center | Yes | Yes | Yes | Yes
+An entire data center (zonal or non-zonal) becomes unavailable | No | Yes | Yes | Yes
+A region-wide outage | No | No | Yes | Yes
+Read access to your data (in a remote, geo-replicated region) in the event of region-wide unavailability | No | No | No | Yes
+Available in storage account types | GPv1, GPv2, Blob | Standard, GPv2 | GPv1, GPv2, Blob | GPv1, GPv2, Blob
+[( More ... )](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy-grs)
+
+---
+
 __Comparison of services__
 
 | __Service__ | __Purpose__ | __Type__ | __When to use__ |
