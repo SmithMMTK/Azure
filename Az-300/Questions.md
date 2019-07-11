@@ -58,3 +58,14 @@
 
 [__x__] az role assignment create --role "App Contributor" assignee-object-id "GUID"
 
+[__x__] Azure App Service : Detailed error logs => HTML documents that provide information about HTTP errors
+
+[__x__] Disable-ADSyncExportDeletionThreshold => Disable the deletion protection (for large volume sync)
+
+[__x__] Steps to do Hyper-V migration to Azure
+- Create Recovery Services vault
+- Set Protection goal to migration from on-premises to Azure
+- Create a Hyper-V site and add the VM
+- Install Site Recovery Provider on local VM
+- Register the Hyper-V site in the vault
+
