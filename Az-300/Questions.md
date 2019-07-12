@@ -41,7 +41,7 @@
 
 ---
 
-[__x__] KQL Hearbeat
+- KQL Hearbeat [x]
     ```KQL
     Heartbeat
     | where TimeGenerated > ago(7d)
@@ -49,23 +49,25 @@
     | where max_TimeGenerated < ago(1d)
     ```
 
----
-
-[__x__] Backup all from VMs
+- Backup all from VMs [x]
     - Create a Recovery Services vault
     - Define a backup policy to protect the VMs
     - Perform the initial backup
 
-[__x__] az role assignment create --role "App Contributor" assignee-object-id "GUID"
+- az role assignment create --role "App Contributor" assignee-object-id "GUID" [x]
 
-[__x__] Azure App Service : Detailed error logs => HTML documents that provide information about HTTP errors
+- Azure App Service : Detailed error logs => HTML documents that provide information about HTTP errors [x]
 
-[__x__] Disable-ADSyncExportDeletionThreshold => Disable the deletion protection (for large volume sync)
+- Disable-ADSyncExportDeletionThreshold => Disable the deletion protection (for large volume sync) [x]
 
-[__x__] Steps to do Hyper-V migration to Azure
-- Create Recovery Services vault
-- Set Protection goal to migration from on-premises to Azure
-- Create a Hyper-V site and add the VM
-- Install Site Recovery Provider on local VM
-- Register the Hyper-V site in the vault
+- Steps to do Hyper-V migration to Azure [x]
+    - Create Recovery Services vault
+    - Set Protection goal to migration from on-premises to Azure
+    - Create a Hyper-V site and add the VM
+    - Install Site Recovery Provider on local VM
+    - Register the Hyper-V site in the vault
+
+- Backing up VM to make a copy of VMs and store the copies for furture repair or rebuild
+    - Azure Backup
+    - Recovery Services vault
 
