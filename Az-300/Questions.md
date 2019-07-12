@@ -41,7 +41,7 @@
 
 ---
 
-- KQL Hearbeat [x]
+- KQL Heartbeat [x]
     ```KQL
     Heartbeat
     | where TimeGenerated > ago(7d)
@@ -49,25 +49,59 @@
     | where max_TimeGenerated < ago(1d)
     ```
 
+- KQL Heartbeat [x]
+    ```KQL
+    Heartbeat
+    | where TeimGenerated > ago(1h)
+    | summarize distinct_computers = Dcount (Computer) by OSType
+    ``` 
+    >__Dcount__ = Distinct number of computers
+    
+---
 - Backup all from VMs [x]
     - Create a Recovery Services vault
     - Define a backup policy to protect the VMs
     - Perform the initial backup
-
-- az role assignment create --role "App Contributor" assignee-object-id "GUID" [x]
-
+---
+- az role assignment create --role "App Contributor" assignee-object-id "GUID" [xx]
+---
 - Azure App Service : Detailed error logs => HTML documents that provide information about HTTP errors [x]
-
+---
 - Disable-ADSyncExportDeletionThreshold => Disable the deletion protection (for large volume sync) [x]
-
+---
 - Steps to do Hyper-V migration to Azure [x]
     - Create Recovery Services vault
     - Set Protection goal to migration from on-premises to Azure
     - Create a Hyper-V site and add the VM
     - Install Site Recovery Provider on local VM
     - Register the Hyper-V site in the vault
-
-- Backing up VM to make a copy of VMs and store the copies for furture repair or rebuild
+---
+- Backing up VM to make a copy of VMs and store the copies for furture repair or rebuild [x]
     - Azure Backup
     - Recovery Services vault
+---
+- Re-enter credential (in case password expired) => Add-ADSyncAADServiceAccount [o]
+---
+- Use http://xxx.azurewebsites.net/api/logstream endpoint to track progress information for web app container instances.
+---
+- Azure Disk Encryption [x]
+    - Supported Standard and Premium
+    - Must encrypt OS partition first
+    - Only support Azure Key Management service
+---
+- Typical case : Azure Notification Hubs
+    - 1 namespaces
+    - 2 hubs
+    - 1 policies
+---
+- az moitor metrics alert creat -n A1 -g RG1 --condition "avg Percentage CPU > 95" --windows-size 10m --action AG1 [x]
+---
+- New-NetFirewallRule -DisplayName "Ping" -Protocol ICMPv4
+---
+- Monitoring AKS
+    - Enable monitoring for the cluster
+    - Create a Log Analytics workspace
+    - Add Azure Monitor for Containers to the workspace
+    - View charts on the Insights page of the AKS cluster
+---
 
