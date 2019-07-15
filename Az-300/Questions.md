@@ -112,9 +112,18 @@
         1. Create Vault
         1. Create Backup Policy
         1. Select VM -> Enable backup
-    - Site Recovery
+    - Site Recovery from On-Premise Hyper-V
         1. Create Recovery Services vault
         1. Set Protection goal to migration from on-premise to Azure
         1. Create Hyper-V site and add to VM
         1. Install Site Recovery Agent on local VM
         1. Register Hyper-V site in vault
+    - From AWS to Azure
+        1. Create Vault
+        1. Create Storage Account
+        1. Prepare a Vault
+---
+- az provider register --namespace Microsoft.EventGrid
+--
+- Cosmos DB => Eventual
+---
