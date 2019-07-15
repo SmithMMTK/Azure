@@ -107,3 +107,14 @@
 - Password Hash Synchronization, Pass-through Authentication supported SSO scenario
 ---
 
+- Backup and Recovery Vault
+    - Backup Scenario
+        1. Create Vault
+        1. Create Backup Policy
+        1. Select VM -> Enable backup
+    - Site Recovery
+        1. Create Recovery Services vault
+        1. Set Protection goal to migration from on-premise to Azure
+        1. Create Hyper-V site and add to VM
+        1. Install Site Recovery Agent on local VM
+        1. Register Hyper-V site in vault
