@@ -104,4 +104,6 @@
     - Add Azure Monitor for Containers to the workspace
     - View charts on the Insights page of the AKS cluster
 ---
+- Password Hash Synchronization, Pass-through Authentication supported SSO scenario
+---
 
