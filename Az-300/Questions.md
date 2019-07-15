@@ -127,3 +127,13 @@
 --
 - Cosmos DB => Eventual
 ---
+- Monitoring AKS
+    - From Azure Portal Enable Monitor for Cluster
+    - Create Log Analytics
+    - Add AKS into workspace
+    - View chart from Insights Page
+
+---
+- ../api/logstream to track progress for Windows Container Apps
+---
+
