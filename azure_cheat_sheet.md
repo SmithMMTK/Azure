@@ -19,6 +19,14 @@ Azure offers three services that assist with delivering event messages throughou
 
 ---
 
+__Decision tree for Azure compute services__
+
+![alt text](https://docs.microsoft.com/en-us/azure/architecture/guide/images/compute-decision-tree.svg)
+
+[more...](https://docs.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree)
+
+---
+
 __Replication Option Comparison__
 
 Replication	| Copies | Strategy
