@@ -9,6 +9,17 @@ Storage optimized | Ls | High disk throughput and IO. Ideal for Big Data, SQL, a
 GPU | NV, NC | Specialized VMs targeted for heavy graphic rendering and video editing.
 High performance | H, A8-11 | Our most powerful CPU VMs with optional high-throughput network interfaces (RDMA). 
 ---
+
+__High Availability Options__
+
+Option | SLA
+--- | ---
+Single VM | 99.9%
+Availability set | 99.95%
+Availability Zone | 99.99%
+
+
+---
 __Azure messaging services__ ([detail](https://docs.microsoft.com/en-us/azure/event-grid/compare-messaging-services))
 
 Azure offers three services that assist with delivering event messages throughout a solution. These services are:
