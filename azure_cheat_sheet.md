@@ -75,3 +75,20 @@ __Comparison of services__
 | Event Grid | Reactive programming | Event distribution (discrete) | React to status changes |
 | Event Hubs | Big data pipeline | Event streaming (series) | Telemetry and distributed data streaming |
 | Service Bus | High-value enterprise messaging | Message | Order processing and financial transactions |
+
+---
+
+__Comparison between Functions vs. WebJobs__
+
+. | Functions | WebJobs
+--- | --- | ---
+Serverless app model with automatic scaling	| Supported | 
+Develop and test in browser	| Supported | 
+Pay-per-use pricing	| Supported | 
+Integration with Logic Apps	| Supported | 
+Trigger events | Timer, Azure Storage queues and blobs, Azure Service Bus queues and topics, Azure Cosmos DB, Azure Event Hubs, HTTP/WebHook (GitHub, Slack), Azure Event Grid | Timer, Azure Storage queues and blobs, Azure Service Bus queues and topics, Azure Cosmos DB, Azure Event Hubs, File system
+Supported languages | C#, F#, JavaScript, Java (preview), Pytho (preview) | C#
+Package managers | NPM and NuGet | NuGet
+
+---
+
