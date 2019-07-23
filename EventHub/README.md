@@ -78,6 +78,35 @@ main().catch(err => {
 });
 ```
 
+Optional:
+```nodejs
+const { EventHubClient } = require("@azure/event-hubs");
+
+// Define connection string and the name of the Event Hub
+const connectionString = "Endpoint=sb://az300evhub10069.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=QdpYM+rATsozj1xW8vHkxWsq0jX4axEImNPr9akjAeM=";
+const eventHubsName = "myfirsthub";
+
+async function main() {
+  const client = EventHubClient.createFromConnectionString(connectionString, eventHubsName);
+
+  for (let i = 0; i < 100; i++) {
+    var windSpeed = 8 + (Math.random() * 4);
+    
+    const data = {body: JSON.stringify({ deviceId: 'myIoTSensor', windSpeed: windSpeed})};
+    
+    console.log(`Sending message: ${data.body}`);
+    await client.send(data);
+  }
+
+  await client.close();
+}
+
+main().catch(err => {
+  console.log("Error occurred: ", err);
+});
+
+```
+
 Replace connectionString and eventHubsName
 
 Run command
