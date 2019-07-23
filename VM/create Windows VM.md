@@ -11,9 +11,9 @@ az vm create \
     --name $vmname \
     --image win2016datacenter \
     --admin-username azureuser \
-    --admin-password pass@word1w$RANDOM
+    --admin-password pass@word1w$vmname
     
-echo pass@word1w$RANDOM
+echo pass@word1w$vmname
 
 az vm open-port --port 80 \
 --resource-group $vmname --name $vmname
@@ -26,5 +26,5 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 ```
 
 ```bash
-az group delete --name $mname --no-wait -y
+az group delete --name $vmname --no-wait -y
 ```
