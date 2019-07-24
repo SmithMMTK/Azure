@@ -92,3 +92,18 @@ Package managers | NPM and NuGet | NuGet
 
 ---
 
+__Mixing Authentication__
+
+Authentication Method	| Usage
+--- | ---
+Password	| MFA and SSPR
+Security questions	| SSPR Only
+Email address	|SSPR Only
+Microsoft Authenticator app	| MFA and public preview for SSPR
+OATH Hardware token	| Public preview for MFA and SSPR
+SMS	|MFA and SSPR
+Voice call	|MFA and SSPR
+App passwords	|MFA only in certain cases
+
+
+---
