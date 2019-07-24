@@ -151,4 +151,7 @@ Example output:
 ```bash
 az group delete --name $aksname --yes --no-wait
 ```
-__More detail:__ https://docs.microsoft.com/en-us/azure/aks/virtual-kubelet 
+__More detail:__ 
+- https://docs.microsoft.com/en-us/azure/aks/virtual-kubelet 
+- https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-scale#autoscale-pods 
+
