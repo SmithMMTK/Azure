@@ -125,3 +125,7 @@ az network route-table route create -g azvnet -n myRoute \
 az network vnet subnet update -g azvnet -n subnet1 --vnet-name vnet1 --route-table myRoute
 az network vnet subnet update -g azvnet -n subnet2 --vnet-name vnet2 --route-table myRoute
 ```
+# Delete resource
+```bash
+az group delete -g azvnet --no-wait -y
+```
