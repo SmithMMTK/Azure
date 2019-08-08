@@ -1,6 +1,8 @@
 
+# Create Resource Group
+```bash
 az group create -n azvnet -l southeastasia
-
+```
 
 # Create 3 VNet (Hub and Spoke vnet1, vnet2, vnet 3)
 ```bash
