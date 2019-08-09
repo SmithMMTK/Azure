@@ -120,7 +120,7 @@ az network route-table route create -g azvnet -n myRoute \
 --route-table-name myRoute -n vnet2rt --next-hop-type VirtualNetworkGateway --address-prefix 10.2.0.0/16
 ```
 
-# Manual add Routing Table to Subnet
+# Add Routing Table to Subnet
 ```bash
 az network vnet subnet update -g azvnet -n subnet1 --vnet-name vnet1 --route-table myRoute
 az network vnet subnet update -g azvnet -n subnet2 --vnet-name vnet2 --route-table myRoute
