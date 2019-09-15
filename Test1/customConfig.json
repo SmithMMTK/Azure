@@ -1,0 +1,4 @@
+{
+    "fileUris": ["https://raw.githubusercontent.com/SmithMMTK/home/master/scripts/installnodejs.sh"],
+    "commandToExecute": "./installnodejs.sh"
+}
