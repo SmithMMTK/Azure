@@ -1,0 +1,2 @@
+location = "southeastasia"
+rg = "aztfvnet"
