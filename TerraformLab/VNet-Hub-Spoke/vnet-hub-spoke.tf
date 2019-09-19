@@ -1,5 +1,5 @@
 locals {
-  prefix-hub         = "hub"
+  prefix-hub  = "hub"
   prefix-spoke1 = "spoke1"
   prefix-spoke2 = "spoke2"
   hub-location       = "southeastasia"
@@ -31,16 +31,30 @@ resource "azurerm_virtual_network" "hub-vnet" {
   }
 }
 
+
 resource "azurerm_subnet" "myhubsubnet" {
-    name                 = "myHubSubnet"
+    name                 = "${local.prefix-hub}-subnet"
     resource_group_name  = "${azurerm_resource_group.hub-vnet-rg.name}"
     virtual_network_name = "${azurerm_virtual_network.hub-vnet.name}"
     address_prefix       = "${local.hub-address-subnet1}"
 }
+
 
 resource "azurerm_subnet" "myhubsubnet2" {
     name                 = "myHubSubnet2"
     resource_group_name  = "${azurerm_resource_group.hub-vnet-rg.name}"
     virtual_network_name = "${azurerm_virtual_network.hub-vnet.name}"
     address_prefix       = "${local.hub-address-subnet2}"
+}
+
+
+resource "azurerm_virtual_network" "spoke1-vnet" {
+  name = "${local.prefix-spoke1}-vnet"
+  location = "${local.hub-location}"
+  resource_group_name = "${azurerm_resource_group.hub-vnet-rg.name}"
+  address_space = ["${local.spoke1-address_space}"]
+  
+  tags = {
+    environment = "hub-spoke-vpn"}
+
 }
