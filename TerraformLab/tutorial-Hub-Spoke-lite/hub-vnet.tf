@@ -1,7 +1,8 @@
 locals {
   prefix-hub         = "hub"
-  hub-location       = "CentralUS"
-  hub-resource-group = "hub-vnet-rg"
+  hub-location       = "southeastasia"
+  #hub-resource-group = "hub-vnet-rg"
+  hub-resource-group = "${var.rg_name}"
   shared-key         = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
 }
 
@@ -32,6 +33,33 @@ resource "azurerm_subnet" "hub-mgmt" {
   address_prefix       = "10.0.0.64/27"
 }
 
+resource "azurerm_public_ip" "hubpublicip" {
+    name                         = "hubpip"
+    location                     = "${local.hub-location}"
+    resource_group_name          = "${azurerm_resource_group.hub-vnet-rg.name}"
+    allocation_method            = "Dynamic"
+}
+
+resource "azurerm_network_security_group" "hubnsg" {
+    name                = "hub_nsg"
+    location            = "${local.hub-location}"
+    resource_group_name = "${azurerm_resource_group.hub-vnet-rg.name}"
+    
+    security_rule {
+        name                       = "SSH"
+        priority                   = 1001
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "22"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+    }
+
+}
+
+
 resource "azurerm_subnet" "hub-dmz" {
   name                 = "dmz"
   resource_group_name  = "${azurerm_resource_group.hub-vnet-rg.name}"
@@ -44,11 +72,14 @@ resource "azurerm_network_interface" "hub-nic" {
   location             = "${azurerm_resource_group.hub-vnet-rg.location}"
   resource_group_name  = "${azurerm_resource_group.hub-vnet-rg.name}"
   enable_ip_forwarding = true
+  network_security_group_id = "${azurerm_network_security_group.hubnsg.id}"
+
 
   ip_configuration {
     name                          = "${local.prefix-hub}"
     subnet_id                     = "${azurerm_subnet.hub-mgmt.id}"
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = "${azurerm_public_ip.hubpublicip.id}"
   }
 
 }
@@ -69,7 +100,7 @@ resource "azurerm_virtual_machine" "hub-vm" {
   }
 
   storage_os_disk {
-    name              = "myosdisk1"
+    name              = "myosdisk1-hubvm"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"

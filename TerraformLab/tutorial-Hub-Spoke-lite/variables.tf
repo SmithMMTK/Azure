@@ -17,3 +17,8 @@ variable "vmsize" {
   description = "Size of the VMs"
   default     = "Standard_DS1_v2"
 }
+
+variable "rg_name" {
+  description = "Resource Group Name to host resources"
+  default = "az-Tf-VNET5"
+}

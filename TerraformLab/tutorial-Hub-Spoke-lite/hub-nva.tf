@@ -1,11 +1,12 @@
 locals {
   prefix-hub-nva         = "hub-nva"
-  hub-nva-location       = "CentralUS"
-  hub-nva-resource-group = "hub-nva-rg"
+  hub-nva-location       = "southeastasia"
+  # hub-nva-resource-group = "hub-nva-rg"
+  hub-nva-resource-group = "${var.rg_name}"
 }
 
 resource "azurerm_resource_group" "hub-nva-rg" {
-  name     = "${local.prefix-hub-nva}-rg"
+  name     = "${local.hub-nva-resource-group}"
   location = "${local.hub-nva-location}"
 
 }
@@ -13,7 +14,7 @@ resource "azurerm_resource_group" "hub-nva-rg" {
 resource "azurerm_network_interface" "hub-nva-nic" {
   name                 = "${local.prefix-hub-nva}-nic"
   location             = "${azurerm_resource_group.hub-nva-rg.location}"
-  resource_group_name  = "${azurerm_resource_group.hub-nva-rg.name}"
+  resource_group_name  = "${local.hub-nva-resource-group}"
   enable_ip_forwarding = true
 
   ip_configuration {
@@ -40,7 +41,7 @@ resource "azurerm_virtual_machine" "hub-nva-vm" {
   }
 
   storage_os_disk {
-    name              = "myosdisk1"
+    name              = "myosdisk1-nva"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"

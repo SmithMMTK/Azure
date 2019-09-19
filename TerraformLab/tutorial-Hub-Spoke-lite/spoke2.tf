@@ -1,6 +1,7 @@
 locals {
-  spoke2-location       = "CentralUS"
-  spoke2-resource-group = "spoke2-vnet-rg"
+  spoke2-location       = "southeastasia"
+  #spoke2-resource-group = "spoke2-vnet-rg"
+  spoke2-resource-group = "${var.rg_name}"
   prefix-spoke2         = "spoke2"
 }
 
@@ -22,6 +23,32 @@ resource "azurerm_subnet" "spoke2-mgmt" {
   resource_group_name  = "${azurerm_resource_group.spoke2-vnet-rg.name}"
   virtual_network_name = "${azurerm_virtual_network.spoke2-vnet.name}"
   address_prefix       = "10.2.0.64/27"
+}
+
+resource "azurerm_public_ip" "spoke2publicip" {
+    name                         = "spoke2pip"
+    location                     = "${local.spoke2-location}"
+    resource_group_name          = "${azurerm_resource_group.spoke2-vnet-rg.name}"
+    allocation_method            = "Dynamic"
+}
+
+resource "azurerm_network_security_group" "spoke2nsg" {
+    name                = "spoke2_nsg"
+    location            = "${local.spoke2-location}"
+    resource_group_name = "${azurerm_resource_group.spoke2-vnet-rg.name}"
+    
+    security_rule {
+        name                       = "SSH"
+        priority                   = 1001
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "22"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+    }
+
 }
 
 resource "azurerm_subnet" "spoke2-workload" {
@@ -49,11 +76,13 @@ resource "azurerm_network_interface" "spoke2-nic" {
   location             = "${azurerm_resource_group.spoke2-vnet-rg.location}"
   resource_group_name  = "${azurerm_resource_group.spoke2-vnet-rg.name}"
   enable_ip_forwarding = true
+  network_security_group_id = "${azurerm_network_security_group.spoke2nsg.id}"
 
   ip_configuration {
     name                          = "${local.prefix-spoke2}"
     subnet_id                     = "${azurerm_subnet.spoke2-mgmt.id}"
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = "${azurerm_public_ip.spoke2publicip.id}"
   }
 
 }
@@ -73,7 +102,7 @@ resource "azurerm_virtual_machine" "spoke2-vm" {
   }
 
   storage_os_disk {
-    name              = "myosdisk1"
+    name              = "myosdisk1-spoke2"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
@@ -102,3 +131,9 @@ resource "azurerm_virtual_network_peering" "hub-spoke2-peer" {
   use_remote_gateways       = false
   depends_on = ["azurerm_virtual_network.spoke2-vnet", "azurerm_virtual_network.hub-vnet"]
 }
+
+#resource "azurerm_subnet_network_security_group_association" "spoke2nsglink" {
+#  subnet_id                 = "${azurerm_subnet.spoke2-mgmt.id}"
+#  network_security_group_id = "${azurerm_network_security_group.spoke2nsg.id}"
+#  depends_on = ["azurerm_virtual_network.spoke2-vnet", "azurerm_subnet.spoke2-mgmt", "azurerm_network_security_group.spoke2nsg"]
+#}
