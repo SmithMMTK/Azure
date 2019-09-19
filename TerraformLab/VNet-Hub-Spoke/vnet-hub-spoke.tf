@@ -13,13 +13,13 @@ locals {
   spoke2-address-subnet1 = "30.0.0.0/24"
 }
 
-
+## Create Resource Group
 resource "azurerm_resource_group" "hub-vnet-rg" {
   name     = "${local.hub-resource-group}"
   location = "${local.hub-location}"
 }
 
-
+## Create Hub VNET 
 resource "azurerm_virtual_network" "hub-vnet" {
   name                = "${local.prefix-hub}-vnet"
   location            = "${azurerm_resource_group.hub-vnet-rg.location}"
@@ -31,8 +31,8 @@ resource "azurerm_virtual_network" "hub-vnet" {
   }
 }
 
-
-resource "azurerm_subnet" "myhubsubnet" {
+## Create Hub Subnet
+resource "azurerm_subnet" "hubsubnet" {
     name                 = "${local.prefix-hub}-subnet"
     resource_group_name  = "${azurerm_resource_group.hub-vnet-rg.name}"
     virtual_network_name = "${azurerm_virtual_network.hub-vnet.name}"
@@ -40,21 +40,56 @@ resource "azurerm_subnet" "myhubsubnet" {
 }
 
 
-resource "azurerm_subnet" "myhubsubnet2" {
-    name                 = "myHubSubnet2"
-    resource_group_name  = "${azurerm_resource_group.hub-vnet-rg.name}"
-    virtual_network_name = "${azurerm_virtual_network.hub-vnet.name}"
-    address_prefix       = "${local.hub-address-subnet2}"
-}
-
-
+## Crate Spoke 1 VNET
 resource "azurerm_virtual_network" "spoke1-vnet" {
   name = "${local.prefix-spoke1}-vnet"
   location = "${local.hub-location}"
   resource_group_name = "${azurerm_resource_group.hub-vnet-rg.name}"
-  address_space = ["${local.spoke1-address_space}"]
+  address_space = ["${local.spoke1-address-space}"]
   
   tags = {
     environment = "hub-spoke-vpn"}
 
+}
+
+## Create Spoke 1 Subnet
+resource "azurerm_subnet" "spoke1subnet" {
+    name = "${local.prefix-spoke1}-subnet"
+    resource_group_name = "${azurerm_resource_group.hub-vnet-rg.name}"
+    virtual_network_name = "${azurerm_virtual_network.spoke1-vnet.name}"
+    address_prefix = "${local.spoke1-address-subnet1}"
+}
+
+## Create Spoke 2 VNET
+resource "azurerm_virtual_network" "spoke2-vnet" {
+  name = "${local.prefix-spoke2}-vnet"
+  location = "${local.hub-location}"
+  resource_group_name = "${azurerm_resource_group.hub-vnet-rg.name}"
+  address_space = ["${local.spoke2-address-space}"]
+  
+  tags = {
+    environment = "hub-spoke-vpn"}
+
+}
+
+## Create Spoke 2 Subnet
+resource "azurerm_subnet" "spoke2subnet" {
+  name = "${local.prefix-spoke2}-subnet"
+  resource_group_name = "${azurerm_resource_group.hub-vnet-rg.name}"
+  virtual_network_name = "${azurerm_virtual_network.spoke2-vnet.name}"
+  address_prefix = "${local.spoke2-address-subnet1}"
+}
+
+## Create Network Peering between Hub -> Spoke VNET 1
+
+module "vnetpeering" {
+    source    =   "../.."
+    vnet_peering_names  =   ["hub-to-spoke1", "spoke-to-hub"]
+    vnet_names           = ["${azurerm_virtual_network.hub-vnet.name}","${azurerm_virtual_network.spoke1-vnet.name}"]
+    resource_group_names = ["${azurerm_resource_group.hub-vnet-rg.name}","${azurerm_resource_group.hub-vnet-rg.name}"]
+
+  tags = {
+    environment = "dev"
+    costcenter  = "it"
+  }
 }
