@@ -16,11 +16,14 @@ resource "azurerm_virtual_network" "hub-vnet" {
   resource_group_name = "${azurerm_resource_group.hub-vnet-rg.name}"
   address_space       = ["10.0.0.0/16"]
 
-  tags {
-    environment = "hub-spoke"
-  }
 }
 
+resource "azurerm_subnet" "hub-gateway-subnet" {
+  name                 = "GatewaySubnet"
+  resource_group_name  = "${azurerm_resource_group.hub-vnet-rg.name}"
+  virtual_network_name = "${azurerm_virtual_network.hub-vnet.name}"
+  address_prefix       = "10.0.255.224/27"
+}
 
 resource "azurerm_subnet" "hub-mgmt" {
   name                 = "mgmt"
@@ -48,9 +51,6 @@ resource "azurerm_network_interface" "hub-nic" {
     private_ip_address_allocation = "Dynamic"
   }
 
-  tags {
-    environment = "${local.prefix-hub}"
-  }
 }
 
 #Virtual Machine
@@ -85,7 +85,4 @@ resource "azurerm_virtual_machine" "hub-vm" {
     disable_password_authentication = false
   }
 
-  tags {
-    environment = "${local.prefix-hub}"
-  }
 }

@@ -8,9 +8,6 @@ resource "azurerm_resource_group" "hub-nva-rg" {
   name     = "${local.prefix-hub-nva}-rg"
   location = "${local.hub-nva-location}"
 
-  tags {
-    environment = "${local.prefix-hub-nva}"
-  }
 }
 
 resource "azurerm_network_interface" "hub-nva-nic" {
@@ -26,9 +23,6 @@ resource "azurerm_network_interface" "hub-nva-nic" {
     private_ip_address            = "10.0.0.36"
   }
 
-  tags {
-    environment = "${local.prefix-hub-nva}"
-  }
 }
 
 resource "azurerm_virtual_machine" "hub-nva-vm" {
@@ -62,9 +56,6 @@ resource "azurerm_virtual_machine" "hub-nva-vm" {
     disable_password_authentication = false
   }
 
-  tags {
-    environment = "${local.prefix-hub-nva}"
-  }
 }
 
 resource "azurerm_virtual_machine_extension" "enable-routes" {
@@ -85,9 +76,6 @@ resource "azurerm_virtual_machine_extension" "enable-routes" {
     }
 SETTINGS
 
-  tags {
-    environment = "${local.prefix-hub-nva}"
-  }
 }
 
 resource "azurerm_route_table" "hub-gateway-rt" {
@@ -115,10 +103,6 @@ resource "azurerm_route_table" "hub-gateway-rt" {
     next_hop_type          = "VirtualAppliance"
     next_hop_in_ip_address = "10.0.0.36"
   }
-
-  tags {
-    environment = "${local.prefix-hub-nva}"
-  }
 }
 
 resource "azurerm_subnet_route_table_association" "hub-gateway-rt-hub-vnet-gateway-subnet" {
@@ -140,15 +124,6 @@ resource "azurerm_route_table" "spoke1-rt" {
     next_hop_in_ip_address = "10.0.0.36"
   }
 
-  route {
-    name           = "default"
-    address_prefix = "0.0.0.0/0"
-    next_hop_type  = "vnetlocal"
-  }
-
-  tags {
-    environment = "${local.prefix-hub-nva}"
-  }
 }
 
 resource "azurerm_subnet_route_table_association" "spoke1-rt-spoke1-vnet-mgmt" {
@@ -176,15 +151,6 @@ resource "azurerm_route_table" "spoke2-rt" {
     next_hop_type          = "VirtualAppliance"
   }
 
-  route {
-    name           = "default"
-    address_prefix = "0.0.0.0/0"
-    next_hop_type  = "vnetlocal"
-  }
-
-  tags {
-    environment = "${local.prefix-hub-nva}"
-  }
 }
 
 resource "azurerm_subnet_route_table_association" "spoke2-rt-spoke2-vnet-mgmt" {
