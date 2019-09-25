@@ -107,3 +107,14 @@ App passwords	|MFA only in certain cases
 
 
 ---
+
+__Role Definition and Built-in Roles__
+
+- [Role Definition and Description](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#available-roles)
+	
+- [Least-privileged roles by task](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/roles-delegate-by-task)
+	
+- [Built-In-Roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles)
+
+
+---
