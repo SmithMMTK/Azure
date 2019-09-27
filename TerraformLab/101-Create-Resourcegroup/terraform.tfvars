@@ -1,2 +1,0 @@
-location = "southeastasia"
-rg = "aztfvnet"
