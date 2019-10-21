@@ -12,8 +12,8 @@
 
 __Create Resource Group__
 ```bash
-    myResourceGroup="azVMSS3"
-    myScaleSet="azVMSS3"
+    myResourceGroup="azVMSS2"
+    myScaleSet="azVMSS2"
     
     az group create --name $myResourceGroup --location southeastasia
 ```
@@ -154,8 +154,8 @@ Create file name: ___customConfig.json___
 ```
 ```json
     {
-        "fileUris": ["https://github.com/SmithMMTK/home/blob/master/VM%20Scale-Set/nodesjs.sh"],
-        "commandToExecute": "./nodejs.sh"
+        "fileUris": ["https://raw.githubusercontent.com/SmithMMTK/home/master/scripts/installnodejs.sh"],
+        "commandToExecute": "./installnodejs.sh"
     }
 ```
 
@@ -192,6 +192,22 @@ __Apply the Custom Script Extension__
     --resource-group $myResourceGroup \
     --vmss-name $myScaleSet
 ```
+
+```bash
+
+    az vmss list-instances \
+    --resource-group $myResourceGroup \
+    --name $myScaleSet \
+    --output table
+    
+    az vmss list-instance-connection-info \
+    --resource-group $myResourceGroup \
+    --name $myScaleSet
+    
+    az vmss update-instances --resource-group $myResourceGroup \
+    --name $myScaleSet --instance-ids 0
+```
+[More](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set)
 
 
 __Test your scale set__
@@ -232,7 +248,7 @@ __Experimental : Create customConfig.json for nodejs with express__
 ###__Deploy Applications and Code__ ([detail](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-create-vmss))
 
 
-__Download__ [cloud-init.txt](https://github.com/SmithMMTK/home/blob/master/VM%20Scale-Set/cloud-init.txt)
+__Download__ [cloud-init.txt](https://raw.githubusercontent.com/SmithMMTK/home/master/Hands-On/VM%20Scale-Set/cloud-init.txt)
 
 - Configuration File
     > /etc/cloud/cloud.cfg
@@ -247,14 +263,14 @@ __Download__ [cloud-init.txt](https://github.com/SmithMMTK/home/blob/master/VM%2
 
 __Creat Resource Group__
 ```bash
-    az group create --name myResourceGroupScaleSet1 --location southeastasia
+    az group create --name $myResourceGroup --location southeastasia
 ```
 
 __Create VM Scale Set with Cloud-init.txt__
 ```bash
     az vmss create \
-    --resource-group myResourceGroupScaleSet1 \
-    --name myScaleSet \
+    --resource-group $myResourceGroup \
+    --name $myScaleSet \
     --image UbuntuLTS \
     --upgrade-policy-mode automatic \
     --custom-data cloud-init.txt \
@@ -297,7 +313,7 @@ __Loop Test Client__
 ```bash
     for (( ; ; ))
     do
-        curl http://23.97.60.255
+        curl http://13.67.44.82/
         echo
     done
 ```
