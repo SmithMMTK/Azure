@@ -12,8 +12,8 @@
 
 __Create Resource Group__
 ```bash
-    myResourceGroup="azVMSS1"
-    myScaleSet="azVMSS2"
+    myResourceGroup="azVMSS3"
+    myScaleSet="azVMSS3"
     
     az group create --name $myResourceGroup --location southeastasia
 ```
@@ -42,7 +42,7 @@ __View the VM instances in a scale set__
     az vmss get-instance-view \
     --resource-group $myResourceGroup \
     --name $myScaleSet \
-    --instance-id 1
+    --instance-id 0
 ```
 
 __List connection information__
@@ -94,8 +94,8 @@ __Change the capacity of a scale set__
 - Query existing capacity
 ```bash
     az vmss show \
-    --resource-group myResourceGroup \
-    --name myScaleSet \
+    --resource-group $myResourceGroup \
+    --name $myScaleSet \
     --query [sku.capacity] \
     --output table
 ```
@@ -103,9 +103,9 @@ __Change the capacity of a scale set__
 - Manually increase or decrease the number of VM instances in the scale set
 ```bash
     az vmss scale \
-    --resource-group myResourceGroup \
-    --name myScaleSet \
-    --new-capacity 3
+    --resource-group $myResourceGroup \
+    --name $myScaleSet \
+    --new-capacity 0
 ```
 
 __Start / Stop VM in a Scale Set__
@@ -113,25 +113,25 @@ __Start / Stop VM in a Scale Set__
 - List VM instances in a scale set
 ```bash
    az vmss list-instance-connection-info \
-     --resource-group myResourceGroup \
-    --name myScaleSet
+     --resource-group $myResourceGroup \
+    --name $myScaleSet
 ```
 
 - Start VM instances in a scale set
 ```bash
-    az vmss start --resource-group myResourceGroup \
-    --name myScaleSet --instance-ids 1
+    az vmss start --resource-group $myResourceGroup \
+    --name $myScaleSet --instance-ids 1
 ```
 
 - Stop VM instances in a scale set
 ```bash
-    az vmss stop --resource-group myResourceGroup \
-    --name myScaleSet --instance-ids 1
+    az vmss stop --resource-group $myResourceGroup \
+    --name $myScaleSet --instance-ids 1
 ```
 - Deallocate VM instances in a scale set
 ```bash
-    az vmss deallocate --resource-group myResourceGroup \
-    --name myScaleSet --instance-ids 1
+    az vmss deallocate --resource-group $myResourceGroup \
+    --name $myScaleSet --instance-ids 1
 ```
 
 ---
@@ -171,11 +171,12 @@ __Apply the Custom Script Extension__
     --publisher Microsoft.Azure.Extensions \
     --version 2.0 \
     --name CustomScript \
-    --resource-group myResourceGroup \
-    --vmss-name myScaleSet \
+    --resource-group $myResourceGroup \
+    --vmss-name $myScaleSet \
     --settings @customConfig.json
 ```
 
+```bash
  az vmss extension set \
     --publisher Microsoft.Azure.Extensions \
     --version 2.0 \
@@ -183,13 +184,13 @@ __Apply the Custom Script Extension__
     --resource-group myResourceGroup \
     --vmss-name myScaleSet \
     --settings @cus2.json
-
+```
 
 ```bash
     az vmss extension show \
     --name CustomScript \
-    --resource-group myResourceGroup \
-    --vmss-name myScaleSet
+    --resource-group $myResourceGroup \
+    --vmss-name $myScaleSet
 ```
 
 
