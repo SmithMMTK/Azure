@@ -12,8 +12,8 @@
 
 __Create Resource Group__
 ```bash
-    myResourceGroup="azVMSS"
-    myScaleSet="azVMSS"
+    myResourceGroup="azVMSS1"
+    myScaleSet="azVMSS2"
     
     az group create --name $myResourceGroup --location southeastasia
 ```
@@ -25,7 +25,9 @@ __Create a Scale Set__
     --name $myScaleSet \
     --image UbuntuLTS \
     --admin-username azureuser \
-    --generate-ssh-keys
+    --generate-ssh-keys \
+#    --vnet-name VMSS \
+#    --subnet vmss
 ```
 
 __View the VM instances in a scale set__
