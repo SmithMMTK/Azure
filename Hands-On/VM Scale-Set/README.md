@@ -12,14 +12,17 @@
 
 __Create Resource Group__
 ```bash
-    az group create --name myResourceGroup --location southeastasia
+    myResourceGroup="azVMSS"
+    myScaleSet="azVMSS"
+    
+    az group create --name $myResourceGroup --location southeastasia
 ```
 
 __Create a Scale Set__
 ```bash
     az vmss create \
-    --resource-group myResourceGroup \
-    --name myScaleSet \
+    --resource-group $myResourceGroup \
+    --name $myScaleSet \
     --image UbuntuLTS \
     --admin-username azureuser \
     --generate-ssh-keys
@@ -28,23 +31,23 @@ __Create a Scale Set__
 __View the VM instances in a scale set__
 ```bash
     az vmss list-instances \
-    --resource-group myResourceGroup \
-    --name myScaleSet \
+    --resource-group $myResourceGroup \
+    --name $myScaleSet \
     --output table
 ```
 >To view additional information about a specific VM instance, add the --instance-id parameter to az vmss get-instance-view. 
 ```bash
     az vmss get-instance-view \
-    --resource-group myResourceGroup \
-    --name myScaleSet \
+    --resource-group $myResourceGroup \
+    --name $myScaleSet \
     --instance-id 1
 ```
 
 __List connection information__
 ```bash
     az vmss list-instance-connection-info \
-    --resource-group myResourceGroup \
-    --name myScaleSet
+    --resource-group $myResourceGroup \
+    --name $myScaleSet
 ```
 
 The following example output shows the instance name, public IP address of the load balancer, and port number that the NAT rules forward traffic to:
