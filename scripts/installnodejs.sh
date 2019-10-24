@@ -1,3 +1,4 @@
+echo "Start Custom Script." >> /home/azureuser/boot_log.txt
 echo "Change directory." >> /home/azureuser/boot_log.txt
 cd ~/
 echo "Start cloning Git." >> /home/azureuser/boot_log.txt
