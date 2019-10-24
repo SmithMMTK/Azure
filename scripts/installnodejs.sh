@@ -3,4 +3,4 @@ sudo apt-get update -y
 sudo apt-get install nodejs -y
 sudo apt-get install npm -y
 cd /nodejs-express
-nodejs index.js
+node index.js
