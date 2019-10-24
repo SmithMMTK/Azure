@@ -145,17 +145,25 @@ The extension will only run a script once, if you want to run a script on every 
 
 
 __Create Custom Script Extension definition__
+
+[https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-linux#troubleshooting}](Troubleshooting)
+
+>
+> /var/log/waagent.log 
+> /var/log/azure/custom-script/handler.log
+>
+
 Create file name: ___customConfig.json___
 ```json
     {
         "fileUris": ["https://raw.githubusercontent.com/Azure-Samples/compute-automation-configurations/master/automate_nginx.sh"],
-        "commandToExecute": "./automate_nginx.sh"
+        "commandToExecute": "sh ./automate_nginx.sh"
     }
 ```
 ```json
     {
         "fileUris": ["https://raw.githubusercontent.com/SmithMMTK/home/master/scripts/installnodejs.sh"],
-        "commandToExecute": "./installnodejs.sh"
+        "commandToExecute": "sh ./installnodejs.sh"
     }
 ```
 
